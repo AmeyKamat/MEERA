@@ -1,0 +1,8 @@
+# event driven library
+circuits==3.2
+
+# npl library
+spacy==2.0.11
+
+# configuration parser
+configparser==3.5.0
