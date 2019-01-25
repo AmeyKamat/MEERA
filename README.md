@@ -4,7 +4,7 @@ MEERA is a acronym for "Multifunctional Event-driven Expert in Real-time Assista
 
 ## How to install
 
-MEERA requires python and pip installed as prerequisite. It has been tested on Ubuntu 16.04 LTS.
+MEERA requires python3.6 and pip installed as prerequisite. It has been tested on Ubuntu 16.04 LTS.
 
 Run install.sh file in the project root to install MEERA.
 
@@ -14,4 +14,4 @@ Run install.sh file in the project root to install MEERA.
 
 ## Architecture
      
-![alt text](https://github.com/AmeyKamat/ProjectJarvis/blob/master/doc/project_architecture.png "Project Architecture")
+![alt text](https://github.com/AmeyKamat/MEERA/blob/master/doc/architecture.png "MEERA Architecture")
