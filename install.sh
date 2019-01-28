@@ -29,7 +29,9 @@ echo Installing Dependencies...
 python3.6 -m pip install -r requirements.txt
 echo
 
-chmod +x deploy.sh
-./deploy.sh
+echo Deactivating Virtual Environment...
+deactivate
 echo
 
+echo Installation Complete.
+echo
