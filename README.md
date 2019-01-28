@@ -1,5 +1,7 @@
 # M.E.E.R.A
 
+*This project is work in progress. For functional, but older version of this project please check [Project JARVIS](https://github.com/AmeyKamat/ProjectJarvis)*
+
 MEERA is a acronym for "Multifunctional Event-driven Expert in Real-time Assistance". It is an open source AI Bot framework. The machine learning module is entirely on board. MEERA can be easily integrated with any third party service by developing a plugin.
 
 ## System Requirements
