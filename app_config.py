@@ -8,12 +8,14 @@ from web.root_controller import Root
 from context.component import ContextComponent
 from nlp.component import NLPAnalysisComponent
 from preprocessing.component import PreprocessingComponent
+from plugins.component import TasKExecutorComponent
 
 BOOTSTRAP_MODULES = {
 	"appComponents": [
 		ContextComponent(),
 		NLPAnalysisComponent(),
-		PreprocessingComponent()
+		PreprocessingComponent(),
+		TasKExecutorComponent()
 	],
 	"jobRunnerComponents": [
 	],

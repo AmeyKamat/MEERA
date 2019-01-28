@@ -14,3 +14,12 @@ class ChatRequestedEvent(Event):
 
 class SkillRequestedEvent(Event):
 	"""event"""
+
+class EntitiesPreprocessedEvent(Event):
+	"""event"""
+
+class TaskExecutedEvent(Event):
+	"""event"""
+
+class NoPluginsAvailableEvent(Event):
+	"""event"""
