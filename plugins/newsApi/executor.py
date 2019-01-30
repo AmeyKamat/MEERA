@@ -1,12 +1,12 @@
 import requests
 
-class NewsPlugin(object):
+class NewsAPIPlugin(object):
 
 	def __init__(self, config):
 		super(NewsPlugin, self).__init__()
 		self.config = config
 
-	def execute(context):
+	def execute(intent, entities):
 		entities = context.nlpAnalysis.entities
 		if "query" in entities:
 			response = requests.get(self.config["news_api"], params = {
@@ -19,7 +19,7 @@ class NewsPlugin(object):
 				'apiKey': self.config["key"]
 			})
 
-		articles = response.json()["articles"]
+		return response.json()["articles"]
 		text = ""
 		voice = ""
 		for article in articles:

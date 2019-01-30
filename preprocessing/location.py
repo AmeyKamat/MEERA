@@ -16,6 +16,7 @@ class LocationPreprocessor(object):
 		})
 
 		return {
+			"location": location,
 			"latitude": response.json()["results"][0]["geometry"]["location"]["lat"],
 			"longitude": response.json()["results"][0]["geometry"]["location"]["lng"]
 		}

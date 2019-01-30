@@ -1,4 +1,4 @@
 class DatePreprocessor(object):
 
 	def preprocess(date):
-		return {}
+		return { "date": date }

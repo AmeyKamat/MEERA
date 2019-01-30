@@ -21,5 +21,8 @@ class EntitiesPreprocessedEvent(Event):
 class TaskExecutedEvent(Event):
 	"""event"""
 
+class DialogueGeneratedEvent(Event):
+	"""event"""
+
 class NoPluginsAvailableEvent(Event):
 	"""event"""

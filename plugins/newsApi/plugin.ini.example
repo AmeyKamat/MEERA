@@ -1,4 +1,4 @@
-[NewsPlugin]
+[NewsAPIPlugin]
 version = 0.0.1
 intent = news
 news_url = https://newsapi.org/v2/everything

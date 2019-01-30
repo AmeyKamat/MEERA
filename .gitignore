@@ -7,4 +7,4 @@ venv/
 nlp/models/
 
 preprocessing/component.ini
-plugins/news/plugin.ini
+plugins/newsApi/plugin.ini
