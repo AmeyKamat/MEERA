@@ -22,10 +22,10 @@ def train(modelName, outputDirectory, entityTypes, trainingData, iterations=20):
         for iteration in range(iterations):
             random.shuffle(trainingData)
             losses = {}
-            for text, entities in train_data:
-                model.update([text], [entities], sgd=optimizer, drop=0.35,
+            for data in trainingData:
+                model.update([data["sentence"]], [{'entities':data["entities"]}], sgd=optimizer, drop=0.35,
                            losses=losses)
-            print('losses in iteration',itn, ': ', losses['ner'])
+            print('losses in iteration',iterations, ': ', losses['ner'])
 
     if outputDirectory is not None:
         outputDirectory = Path(outputDirectory)

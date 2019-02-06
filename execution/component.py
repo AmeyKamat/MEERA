@@ -39,7 +39,7 @@ class TasKExecutorComponent(Component):
 			config.read("./plugins/{0}/plugin.ini".format(plugin))
 			pluginClassName = config.sections()[0]
 			pluginIntent = config[pluginClassName]["intent"]
-			if self.pluginPreference[pluginIntent] == pluginClassName:
+			if pluginIntent != "custom" and self.pluginPreference[pluginIntent] == pluginClassName:
 				module = importlib.import_module("plugins.{0}.executor".format(plugin))
 				plugins[pluginIntent] = getattr(module, pluginClassName)(config[pluginClassName])
 		return plugins

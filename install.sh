@@ -29,6 +29,10 @@ echo Installing Dependencies...
 python3.6 -m pip install -r requirements.txt
 echo
 
+echo Creating nlp/models Directory...
+mkdir nlp/models
+echo
+
 echo Deactivating Virtual Environment...
 deactivate
 echo
