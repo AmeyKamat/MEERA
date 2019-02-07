@@ -13,3 +13,10 @@ requests==2.20.0
 # temporary fix for issue https://github.com/explosion/spaCy/issues/2810
 # remove this after upgrading to spacy 2.1.x
 msgpack-numpy==0.4.3.2
+msgpack==0.5.6
+
+# for telegram bot instantiation
+websockets==7.0
+
+# for communication with telegram
+python-telegram-bot==11.1.0

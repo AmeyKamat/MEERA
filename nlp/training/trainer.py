@@ -66,8 +66,26 @@ def getEntities(line):
 			)
 	return entities
 
-SKILL_CATEGORIES = ['news']
-NER_CATEGORIES = ['date', 'query', 'news-category']
+def getEntityNames(line):
+	entities = []
+	record = line.split('|')
+	if len(record) > 2:
+		for index in range(2, len(record)):
+			entity = record[index]
+			entities.append(entity.split(',')[0])
+	return entities
+
+def getSkillCategories(skillRawTrainingData):
+	return set([line.split('|')[1] for line in skillRawTrainingData])
+
+def getChatCategories(chatRawTrainingData):
+	return set([line.split('|')[1] for line in chatRawTrainingData])
+
+def getEntityCategories(skillRawTrainingData):
+	entityNames = []
+	for line in skillRawTrainingData:
+		entityNames += getEntityNames(line)
+	return entityNames
 
 skillRawTrainingData = []
 chatRawTrainingData = []
@@ -82,7 +100,15 @@ for plugin in installedPlugins:
 file = open("./nlp/chat.utterance".format(plugin), "r")
 
 for line in file:
-    chatRawTrainingData.append(line, "utf-8")
+    chatRawTrainingData.append(line)
+
+SKILL_CATEGORIES = getSkillCategories(skillRawTrainingData)
+CHAT_CATEGORIES = getChatCategories(chatRawTrainingData)
+NER_CATEGORIES = getEntityCategories(skillRawTrainingData)
+
+print(SKILL_CATEGORIES)
+print(CHAT_CATEGORIES)
+print(NER_CATEGORIES)
 
 skillData = getSkillData(skillRawTrainingData)
 chatData = getchatData(chatRawTrainingData)

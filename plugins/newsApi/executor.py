@@ -20,24 +20,6 @@ class NewsAPIPlugin(object):
 			})
 
 		return response.json()["articles"]
-		text = ""
-		voice = ""
-		for article in articles:
-			source = article["source"]["name"]
-			headline = article["title"]
-			url = article["url"]
-			voice = voice + "According to {0}, {1}. ".format(source, headline)
-			text = text + "{0}\nSource: {1}\n{2}\n\n".format(headline, source, url)
-
-		voice = voice + "These headlines are powered by News Api.org"
-		text = text + "Powered By NewsApi.org"
-
-		return {
-			"text": text,
-			"voice": voice
-		}
-
-
 
 	
 		
