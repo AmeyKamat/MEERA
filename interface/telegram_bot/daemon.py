@@ -3,20 +3,21 @@
 import telegram
 import websockets
 import asyncio
-import logging
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                     level=logging.INFO)
+from configparser import ConfigParser
+
+config = ConfigParser()
+config.read("./interface/telegram_bot/telegram.ini")
 
 update_id = None
 
 async def start():
 	global update_id 
-	bot = telegram.Bot('670497399:AAE8_x3_cQc57yacx9dVgnV0rqCP84vZZ8s')
+	bot = telegram.Bot(config["telegram"]["token"])
 	try:
 		update_id = bot.get_updates()[0].update_id
 	except IndexError:
 		update_id = None
-	async with websockets.connect('ws://localhost:8000/websocket') as websocket:
+	async with websockets.connect(config["meera"]["url"]) as websocket:
 		while True:
 			try:
 				for update in bot.get_updates(offset=update_id, timeout=0):

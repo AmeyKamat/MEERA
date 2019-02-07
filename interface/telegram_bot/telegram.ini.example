@@ -1,0 +1,5 @@
+[telegram]
+token = [YOUR BOT TOKEN HERE]
+
+[meera]
+url = ws://localhost:8000/websocket
