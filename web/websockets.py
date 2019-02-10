@@ -1,3 +1,5 @@
+import json
+
 from circuits.net.events import write
 from circuits import Component, handler
 
@@ -7,20 +9,40 @@ class WSGateway(Component):
 
 	channel="wsserver"
 
-	connections = {}
 
-	def read(self, sock, message):
-		print(message)
-		self.fire(MessageReceivedEvent(message))
+
+	def __init__(self, clientManager):
+		super(WSGateway, self).__init__()
+		self.clientManager = clientManager
+
+		self.switcher = {
+			"hello": self.hello,
+			"message": self.message
+		}
+
+	def read(self, sock, request):
+		parsedRequest = json.loads(request)
+		self.switcher[parsedRequest["type"]](sock, parsedRequest)
 
 	def connect(self, sock, host, port):
-		print("a")
-		self.socket = sock
+		print("device connected with host: {} and port {}".format(host, port))
 
 	def disconnect(self, sock):
-		print("b")
-		self.socket = None
+		self.clientManager.unregisterDisconnectedClients()
 
 	@handler("ChatRequestedEvent")
 	def chat(self, context):
-		self.fire(write(self.socket, context.nlpAnalysis["category"]))
+		socket = self.clientManager.getSocket(context.clientId)
+		self.fire(write(socket, context.nlpAnalysis["category"]))
+
+	def hello(self, sock, parsedRequest):
+		client = self.clientManager.registerClient(sock, parsedRequest)
+		self.fire(write(sock, json.dumps(client.__dict__)))
+
+	def message(self, sock, parsedRequest):
+		if self.clientManager.validateClient(parsedRequest["clientId"]):
+			self.fire(MessageReceivedEvent(parsedRequest))
+		else:
+			self.fire(write(sock, "Unknown Client: Say hello to MEERA first!"))
+			raise Exception("Unknown Client {}: Say hello to MEERA first!".format(parsedRequest.clientId))
+

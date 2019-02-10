@@ -8,8 +8,8 @@ class ContextComponent(Component):
 	recordedContexts = []
 
 	@handler("MessageReceivedEvent")
-	def recordContext(self, message):
-		context = Context(message)
+	def recordContext(self, request):
+		context = Context(request["clientId"], request["message"])
 
 		self.recordedContexts.append(context)
 		print("Context created: " + str(context))

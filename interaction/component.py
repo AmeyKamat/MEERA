@@ -14,7 +14,6 @@ class InteractionComponent(Component):
 		config.read("./plugins/plugins.ini")
 		self.pluginPreference = config["plugins"]
 		self.plugins = self.getPlugins()
-		print(self.plugins)
 
 	@handler("TaskExecutedEvent")
 	def execute(self, context):
@@ -28,7 +27,7 @@ class InteractionComponent(Component):
 
 	def getPlugins(self):
 		installedPlugins = [f.name for f in os.scandir("plugins") if f.is_dir() and f.name != "__pycache__"] 
-		print(installedPlugins)
+		
 		plugins = {}
 		for plugin in installedPlugins:
 			config = ConfigParser()
