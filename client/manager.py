@@ -1,6 +1,6 @@
 import uuid
 from copy import deepcopy
-from connection.client import Client
+from client.model import Client
 
 class ClientManager(object):
 	
@@ -43,7 +43,6 @@ class ClientManager(object):
 
 	def unregisterDisconnectedClients(self):
 		for clientId, socket in list(self.idSocketMapping.items()):
-			print(socket is None)
 			if socket is None or socket.fileno() == -1:
 				client = self.clientIds[clientId]
 				self.clientNames.pop(client.name)

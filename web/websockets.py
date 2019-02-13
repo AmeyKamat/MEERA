@@ -9,8 +9,6 @@ class WSGateway(Component):
 
 	channel="wsserver"
 
-
-
 	def __init__(self, clientManager):
 		super(WSGateway, self).__init__()
 		self.clientManager = clientManager
@@ -41,6 +39,7 @@ class WSGateway(Component):
 
 	def message(self, sock, parsedRequest):
 		if self.clientManager.validateClient(parsedRequest["clientId"]):
+			print(parsedRequest)
 			self.fire(MessageReceivedEvent(parsedRequest))
 		else:
 			self.fire(write(sock, "Unknown Client: Say hello to MEERA first!"))

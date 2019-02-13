@@ -4,6 +4,7 @@ from circuits.web import Controller
 
 class ClientController(Controller):
 
+	channel = "/clients"
 
 	def __init__(self, clientManager):
 		super(ClientController, self).__init__()

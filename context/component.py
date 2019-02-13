@@ -5,13 +5,12 @@ from events import ContextCreatedEvent
 
 class ContextComponent(Component):
 
-	recordedContexts = []
+	def __init__(self, contextManager):
+		super(ContextComponent, self).__init__()
+		self.contextManager = contextManager
 
 	@handler("MessageReceivedEvent")
 	def recordContext(self, request):
-		context = Context(request["clientId"], request["message"])
-
-		self.recordedContexts.append(context)
-		print("Context created: " + str(context))
-		
+		context = self.contextManager.createContext(request)
+		print("Context created: " + str(context.contextId))
 		self.fire(ContextCreatedEvent(context))

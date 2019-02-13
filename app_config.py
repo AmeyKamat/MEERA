@@ -4,9 +4,12 @@ from circuits.web import Logger, Static
 
 from web.websockets import WSGateway
 from web.root_controller import Root
-from web.connection_controller import ClientController
+from web.client_controller import ClientController
+from web.context_controller import ContextController
+from web.conversation_controller import ConversationController
 
-from connection.manager import ClientManager
+from client.manager import ClientManager
+from context.manager import ContextManager
 
 from context.component import ContextComponent
 from nlp.component import NLPAnalysisComponent
@@ -15,10 +18,11 @@ from execution.component import TasKExecutorComponent
 from interaction.component import InteractionComponent
 
 clientManager = ClientManager()
+contextManager = ContextManager()
 
 BOOTSTRAP_MODULES = {
 	"appComponents": [
-		ContextComponent(),
+		ContextComponent(contextManager),
 		NLPAnalysisComponent(),
 		PreprocessingComponent(),
 		TasKExecutorComponent(),
@@ -27,6 +31,8 @@ BOOTSTRAP_MODULES = {
 	"gateways": [
 		WSGateway(clientManager),
 		ClientController(clientManager),
+		ContextController(contextManager),
+		ConversationController(contextManager),
 		Root(),
 		Static()
 	],
@@ -34,7 +40,7 @@ BOOTSTRAP_MODULES = {
 		WebSocketsDispatcher("/websocket")
 	],
 	"circuitComponents": [
-		Logger(),
-		Debugger()
+		Logger()
+		#Debugger()
 	]
 }
