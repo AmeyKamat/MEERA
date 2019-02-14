@@ -10,6 +10,6 @@ class ClientController(Controller):
 		super(ClientController, self).__init__()
 		self.clientManager = clientManager
 
-	def clients(self):
+	def index(self):
 		return json.dumps(
 			list(map(lambda x: x.__dict__, self.clientManager.getRegisteredClients())))
