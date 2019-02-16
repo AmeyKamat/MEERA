@@ -40,7 +40,7 @@ def getRequestTypeResolutionData(skillRawTrainingData, chatRawTrainingData):
 	return requestResolutionTypeData
 
 def getSentence(line):
-	return re.sub(r'[^\w\s]','', line.split('|')[0]).strip().lower
+	return re.sub(r'[^\w\s]','', line.split('|')[0]).lower().strip()
 
 def getCategory(line, categories):
 	categoryCounter = {}
