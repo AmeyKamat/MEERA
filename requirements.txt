@@ -20,3 +20,6 @@ websockets==7.0
 
 # for communication with telegram
 python-telegram-bot==11.1.0
+
+# parsing verbose date and time
+parsedatetime==2.4

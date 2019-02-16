@@ -1,2 +1,18 @@
 is there any news about president today|news|query,24,33|date,34,39
-show me the news related to business|news|news-category,28,36
+show me the news related to business|news|query,28,36
+tell me the sports news|news|query,12,18
+what is today's news|news|date,8,13
+is there a news today regarding president|news|date,16,21|query,32,41
+is there any news about president today|news|query,24,33|date,34,39
+what is the news in sports today|news|query,20,26|date,27,32
+did something happen in world politics today|news|query,24,38|date,39,44
+is there anything on news today|news|date,26,31
+what happened in politics today|news|query,17,25|date,26,31
+what happened in sports today|news|query,17,23|date,24,29
+show me some news in afganistan|news|query,21,31
+what happened in business today|news|query,17,25|date,26,31
+tell me what happened in india today|news|query,25,30|date,31,36
+can you get news for me|news
+show me news from india|news|query,18,23
+get me business news last week|news|query,7,15|date,21,30
+Search news on football|news|query,15,23

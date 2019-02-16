@@ -9,6 +9,8 @@ class Context(object):
 	nlpAnalysis = None
 	previousContext = None
 	selfLocation = None
+	interaction = {}
+	result = {}
 	status = "INITIALISED"
 
 	def __init__(self, clientId, message):

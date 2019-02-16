@@ -28,10 +28,10 @@ class WSGateway(Component):
 	def disconnect(self, sock):
 		self.clientManager.unregisterDisconnectedClients()
 
-	@handler("ChatRequestedEvent")
+	@handler("DialogueGeneratedEvent")
 	def chat(self, context):
 		socket = self.clientManager.getSocket(context.clientId)
-		self.fire(write(socket, context.nlpAnalysis["category"]))
+		self.fire(write(socket, json.dumps(context.interaction)))
 
 	def hello(self, sock, parsedRequest):
 		client = self.clientManager.registerClient(sock, parsedRequest)

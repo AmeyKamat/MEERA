@@ -15,7 +15,8 @@ class PreprocessingComponent(Component):
 	@handler("SkillRequestedEvent")
 	def preprocess(self, context):
 		entities = context.nlpAnalysis.entities
-		for key, value in entities:
+		for key in entities.keys():
+			value = entities[key]
 			preprocessor = self.prepocessors.get(key)
 			if preprocessor != None:
 				entities.update(preprocessor.preprocess(value))

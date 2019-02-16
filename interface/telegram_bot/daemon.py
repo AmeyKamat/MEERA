@@ -37,9 +37,9 @@ async def start():
 							"message": update.message.text 
 						}))
 						try:
-							message = websocket.recv()
-							message = await asyncio.wait_for(message, 5)
-							update.message.reply_text(message)
+							response = websocket.recv()
+							response = json.loads( await asyncio.wait_for(response, 10))
+							update.message.reply_text(response["text"])
 						except(asyncio.TimeoutError):
 							print(update.message.text)
 							update.message.reply_text("ERROR Occured")

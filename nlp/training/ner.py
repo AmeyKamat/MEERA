@@ -25,7 +25,7 @@ def train(modelName, outputDirectory, entityTypes, trainingData, iterations=20):
             for data in trainingData:
                 model.update([data["sentence"]], [{'entities':data["entities"]}], sgd=optimizer, drop=0.35,
                            losses=losses)
-            print('losses in iteration',iterations, ': ', losses['ner'])
+            print('losses in iteration',iteration, ': ', losses['ner'])
 
     if outputDirectory is not None:
         outputDirectory = Path(outputDirectory)

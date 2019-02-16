@@ -3,6 +3,7 @@
 import os
 import ner
 import textcat
+import re
 
 def getSkillData(skillRawTrainingData):
 	skillData = []
@@ -39,7 +40,7 @@ def getRequestTypeResolutionData(skillRawTrainingData, chatRawTrainingData):
 	return requestResolutionTypeData
 
 def getSentence(line):
-	return line.split('|')[0]
+	return re.sub(r'[^\w\s]','', line.split('|')[0]).strip().lower
 
 def getCategory(line, categories):
 	categoryCounter = {}
@@ -59,9 +60,9 @@ def getEntities(line):
 			entity = record[index]
 			entities.append(
 				(
-					int(entity.split(',')[1]), 	# start index
-					int(entity.split(',')[2]),	# end index
-					entity.split(',')[0]		# entity
+					int(entity.split(',')[1]), 			# start index
+					int(entity.split(',')[2]),			# end index
+					entity.split(',')[0].strip()		# entity
 				)
 			)
 	return entities
@@ -72,14 +73,14 @@ def getEntityNames(line):
 	if len(record) > 2:
 		for index in range(2, len(record)):
 			entity = record[index]
-			entities.append(entity.split(',')[0])
+			entities.append(entity.split(',')[0].strip())
 	return entities
 
 def getSkillCategories(skillRawTrainingData):
-	return set([line.split('|')[1] for line in skillRawTrainingData])
+	return set([line.split('|')[1].strip() for line in skillRawTrainingData])
 
 def getChatCategories(chatRawTrainingData):
-	return set([line.split('|')[1] for line in chatRawTrainingData])
+	return set([line.split('|')[1].strip() for line in chatRawTrainingData])
 
 def getEntityCategories(skillRawTrainingData):
 	entityNames = []
@@ -104,7 +105,7 @@ for line in file:
 
 SKILL_CATEGORIES = getSkillCategories(skillRawTrainingData)
 CHAT_CATEGORIES = getChatCategories(chatRawTrainingData)
-NER_CATEGORIES = getEntityCategories(skillRawTrainingData)
+NER_CATEGORIES = set(getEntityCategories(skillRawTrainingData))
 
 print(SKILL_CATEGORIES)
 print(CHAT_CATEGORIES)

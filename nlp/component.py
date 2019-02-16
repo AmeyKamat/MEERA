@@ -17,9 +17,9 @@ class NLPAnalysisComponent(Component):
 		context.nlpAnalysis = analysis
 		print(analysis)
 		
-		if analysis["confidence"] < float(self.config['thresholds']['analysisConfidence']):
+		if analysis.confidence < float(self.config['thresholds']['analysisConfidence']):
 			self.fire(NLPConfidenceLowEvent(context))
-		elif analysis["requestType"] == "chat":
+		elif analysis.requestType == "chat":
 			self.fire(ChatRequestedEvent(context))
-		elif analysis["requestType"] == "skill":
+		elif analysis.requestType == "skill":
 			self.fire(SkillRequestedEvent(context))

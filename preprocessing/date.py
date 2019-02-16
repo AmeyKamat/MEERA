@@ -1,4 +1,15 @@
+from datetime import datetime
+import parsedatetime
+
 class DatePreprocessor(object):
 
-	def preprocess(date):
-		return { "date": date }
+	calender = parsedatetime.Calendar()
+
+	def preprocess(self, date):
+		timeStruct, parseStatus = self.calender.parse("date")
+		parsedDate = datetime(*timeStruct[:6])
+
+		return { 
+			"date": date,
+			"parsedDate": parsedDate
+		 }

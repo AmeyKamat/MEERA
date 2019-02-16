@@ -16,12 +16,14 @@ from nlp.component import NLPAnalysisComponent
 from preprocessing.component import PreprocessingComponent
 from execution.component import TasKExecutorComponent
 from interaction.component import InteractionComponent
+from inputmessagelogging.component import InputMessageLoggingComponent
 
 clientManager = ClientManager()
 contextManager = ContextManager()
 
 BOOTSTRAP_MODULES = {
 	"appComponents": [
+		InputMessageLoggingComponent(),
 		ContextComponent(contextManager),
 		NLPAnalysisComponent(),
 		PreprocessingComponent(),
@@ -40,7 +42,7 @@ BOOTSTRAP_MODULES = {
 		WebSocketsDispatcher("/websocket")
 	],
 	"circuitComponents": [
-		Logger()
-		#Debugger()
+		Logger(),
+		Debugger()
 	]
 }

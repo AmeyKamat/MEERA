@@ -1,5 +1,8 @@
 import spacy
+import re
 from configparser import ConfigParser
+
+from nlp.model import NLPAnalysis
 
 class NLPAnalyser(object):
 
@@ -17,28 +20,28 @@ class NLPAnalyser(object):
 
 		
 	def analyze(self, utterance):
-		analysis = {}
-		
+		analysis = NLPAnalysis()
+		utterance = re.sub(r'[^\w\s]','',utterance).lower()
 		rawAnalysis = self.requestTypeModel(utterance)
-		analysis["requestType"] = self.getCategory(rawAnalysis)
-		analysis["confidence"] = self.getConfidence(rawAnalysis, analysis["requestType"])
+		analysis.requestType = self.getCategory(rawAnalysis)
+		analysis.confidence = self.getConfidence(rawAnalysis, analysis.requestType)
 		
-		if analysis["confidence"] < float(self.config['thresholds']['requestTypeConfidence']):
+		if analysis.confidence < float(self.config['thresholds']['requestTypeConfidence']):
 			return analysis
 
-		if analysis["requestType"] == "chat":
-			rawAnalysis = self.chatModel(utterance)
-			analysis["category"] = self.getCategory(rawAnalysis)
-			analysis["confidence"] = self.getConfidence(rawAnalysis, analysis["category"])
-		elif analysis["requestType"] == "skill":
-			rawAnalysis = self.intentModel(utterance)
-			analysis["intent"] = self.getCategory(rawAnalysis)
-			analysis["confidence"] = self.getConfidence(rawAnalysis, analysis["intent"])
+		if analysis.requestType == "chat":
+			rawAnalysis = self.chatModel(utterance.strip())
+			analysis.category = self.getCategory(rawAnalysis)
+			analysis.confidence = self.getConfidence(rawAnalysis, analysis.category)
+		elif analysis.requestType == "skill":
+			rawAnalysis = self.intentModel(utterance.strip())
+			analysis.intent = self.getCategory(rawAnalysis)
+			analysis.confidence = self.getConfidence(rawAnalysis, analysis.intent)
 
-			rawAnalysis = self.entitiesModel(utterance)
-			analysis["entities"] = {}
+			rawAnalysis = self.entitiesModel(utterance.strip())
+			analysis.entities = {}
 			for ent in rawAnalysis.ents:
-				analysis["entities"][ent.label_] = ent.text
+				analysis.entities[ent.label_] = ent.text
 
 		return analysis
 

@@ -3,11 +3,10 @@ import requests
 class NewsAPIPlugin(object):
 
 	def __init__(self, config):
-		super(NewsPlugin, self).__init__()
+		super(NewsAPIPlugin, self).__init__()
 		self.config = config
 
-	def execute(intent, entities):
-		entities = context.nlpAnalysis.entities
+	def execute(self, message, intent, entities):
 		if "query" in entities:
 			response = requests.get(self.config["news_api"], params = {
 				'q': entities["query"],

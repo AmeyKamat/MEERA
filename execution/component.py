@@ -17,13 +17,15 @@ class TasKExecutorComponent(Component):
 		config.read("./plugins/plugins.ini")
 		self.pluginPreference = config["plugins"]
 		self.plugins = self.getPlugins()
+		print(self.plugins)
 
 	@handler("EntitiesPreprocessedEvent")
 	def execute(self, context):
-		intent = context.intent
+		intent = context.nlpAnalysis.intent
 		plugin = self.plugins.get(intent)
-		if plugin != None:
-			context["result"] = plugin.execute(deepcopy(context.intent), deepcopy(context.entities))
+		print(plugin)
+		if plugin is not None:
+			context.result = plugin.execute(deepcopy(context.message), deepcopy(context.nlpAnalysis.intent), deepcopy(context.nlpAnalysis.entities))
 			self.fire(TaskExecutedEvent(context))
 		else:
 			self.fire(NoPluginsAvailableEvent(context))
@@ -31,7 +33,6 @@ class TasKExecutorComponent(Component):
 
 	def getPlugins(self):
 		installedPlugins = [f.name for f in os.scandir("plugins") if f.is_dir() and f.name != "__pycache__"] 
-		
 		plugins = {}
 		for plugin in installedPlugins:
 			config = ConfigParser()
