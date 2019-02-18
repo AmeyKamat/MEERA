@@ -19,6 +19,6 @@ class PreprocessingComponent(Component):
 			value = entities[key]
 			preprocessor = self.prepocessors.get(key)
 			if preprocessor != None:
-				entities.update(preprocessor.preprocess(value))
+				entities[key] = preprocessor.preprocess(value)
 		context.nlpAnalysis.entities = entities
 		self.fire(EntitiesPreprocessedEvent(context))

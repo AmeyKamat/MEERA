@@ -8,7 +8,7 @@ class NewsAPIPlugin(object):
 
 	def execute(self, message, intent, entities):
 		if "query" in entities:
-			response = requests.get(self.config["news_api"], params = {
+			response = requests.get(self.config["news_url"], params = {
 				'q': entities["query"],
 				'apiKey': self.config["key"]
 			})

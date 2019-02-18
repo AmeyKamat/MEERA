@@ -12,8 +12,8 @@ class ContextManager(object):
 		return self.contexts[contextId]
 
 	def createContext(self, request):
-		clientId = request['clientId']
-		message = request['message']
+		clientId = request["body"]['clientId']
+		message = request["body"]['message']
 		context = Context(clientId, message)
 		self.contexts[context.contextId] = context
 

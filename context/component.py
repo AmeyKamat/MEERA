@@ -1,7 +1,7 @@
 from circuits import Component, handler
 
 from context.model import Context
-from events import ContextCreatedEvent
+from events import *
 
 class ContextComponent(Component):
 
@@ -11,6 +11,21 @@ class ContextComponent(Component):
 
 	@handler("MessageReceivedEvent")
 	def recordContext(self, request):
+		print(request)
 		context = self.contextManager.createContext(request)
 		print("Context created: " + str(context.contextId))
 		self.fire(ContextCreatedEvent(context))
+
+
+	@handler("SelfLocationReceivedEvent")
+	def updateSelfLocationInContext(self, request):
+		contextId = request["contextId"]
+		context = self.contextManager.getContext(contextId)
+		entities = context.nlpAnalysis.entities
+
+		entities["self-location"] = {
+			"latitude": request["body"]["latitude"],
+			"longitude": request["body"]["longitude"]
+		}
+
+		self.fire(EntitiesPreprocessedEvent(context))

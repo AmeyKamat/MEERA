@@ -6,6 +6,7 @@ from configparser import ConfigParser
 from circuits import Component, handler
 
 from events import *
+from execution.exception import SelfLocationNotFoundException
 
 class TasKExecutorComponent(Component):
 
@@ -25,8 +26,11 @@ class TasKExecutorComponent(Component):
 		plugin = self.plugins.get(intent)
 		print(plugin)
 		if plugin is not None:
-			context.result = plugin.execute(deepcopy(context.message), deepcopy(context.nlpAnalysis.intent), deepcopy(context.nlpAnalysis.entities))
-			self.fire(TaskExecutedEvent(context))
+			try:
+				context.result = plugin.execute(deepcopy(context.message), deepcopy(context.nlpAnalysis.intent), deepcopy(context.nlpAnalysis.entities))
+				self.fire(TaskExecutedEvent(context))
+			except SelfLocationNotFoundException:
+				self.fire(SelfLocationRequiredEvent(context))
 		else:
 			self.fire(NoPluginsAvailableEvent(context))
 		

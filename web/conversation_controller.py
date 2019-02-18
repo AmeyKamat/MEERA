@@ -2,6 +2,8 @@ import json
 
 from circuits.web import Controller
 
+from util import jsonDefault
+
 class ConversationController(Controller):
 
 	channel = "/conversations"
@@ -19,7 +21,7 @@ class ConversationController(Controller):
 				"contexts": getContextIdList(initialContext)
 			})
 
-		return json.dumps(formattedConversations, default= lambda o: o.__dict__, indent=4)
+		return json.dumps(formattedConversations, default=jsonDefault)
 
 def getContextIdList(initialContext):
 	context = initialContext

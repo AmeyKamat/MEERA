@@ -3,6 +3,8 @@ from copy import deepcopy
 
 from circuits.web import Controller
 
+from util import jsonDefault
+
 class ContextController(Controller):
 
 	channel = "/context"
@@ -17,4 +19,4 @@ class ContextController(Controller):
 		if context.previousContext is not None:
 			context.previousContext = context.previousContext.contextId
 		
-		return json.dumps(context, default= lambda o: o.__dict__, indent=4)
+		return json.dumps(context, default=jsonDefault, indent=4)

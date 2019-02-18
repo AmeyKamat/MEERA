@@ -56,4 +56,4 @@ class ClientManager(object):
 
 	def createClient(self, request):
 		clientId = str(uuid.uuid4())
-		return Client(clientId, request["name"], request["deviceType"])
+		return Client(clientId, request["body"]["name"], request["body"]["deviceType"])

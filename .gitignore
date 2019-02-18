@@ -8,6 +8,7 @@ nlp/models/
 
 preprocessing/component.ini
 plugins/newsApi/plugin.ini
+plugins/googleSelfLocation/plugin.ini
 interface/telegram_bot/telegram.ini
 
 log/

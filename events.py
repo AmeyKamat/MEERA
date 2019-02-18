@@ -26,3 +26,13 @@ class DialogueGeneratedEvent(Event):
 
 class NoPluginsAvailableEvent(Event):
 	"""event"""
+
+class SelfLocationRequiredEvent(Event):
+	"""event"""
+
+class ClientRegisteredEvent(Event):
+	"""event"""
+
+class SelfLocationReceivedEvent(Event):
+	"""event"""
+		

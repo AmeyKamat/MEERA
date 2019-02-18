@@ -2,6 +2,8 @@ import json
 
 from circuits.web import Controller
 
+from util import jsonDefault
+
 class ClientController(Controller):
 
 	channel = "/clients"
@@ -12,4 +14,4 @@ class ClientController(Controller):
 
 	def index(self):
 		return json.dumps(
-			list(map(lambda x: x.__dict__, self.clientManager.getRegisteredClients())))
+			list(map(jsonDefault, self.clientManager.getRegisteredClients())))
