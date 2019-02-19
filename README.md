@@ -1,5 +1,7 @@
 # M.E.E.R.A
 
+[![Build Status](https://travis-ci.org/AmeyKamat/MEERA.svg?branch=master)](https://travis-ci.org/AmeyKamat/MEERA)
+
 ![alt text](https://github.com/AmeyKamat/MEERA/blob/master/doc/logo.png "MEERA")
 
 
