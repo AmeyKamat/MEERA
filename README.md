@@ -1,6 +1,6 @@
 # M.E.E.R.A
 
-[![Build Status](https://travis-ci.org/AmeyKamat/MEERA.svg?branch=master)](https://travis-ci.org/AmeyKamat/MEERA) ![GitHub release](https://img.shields.io/github/release/AmeyKamat/MEERA.svg)
+[![Build Status](https://travis-ci.org/AmeyKamat/MEERA.svg?branch=master)](https://travis-ci.org/AmeyKamat/MEERA) ![GitHub (pre-)release](https://img.shields.io/github/release-pre/AmeyKamat/MEERA.svg)
 
 ![alt text](https://github.com/AmeyKamat/MEERA/blob/master/doc/logo.png "MEERA")
 
