@@ -6,7 +6,7 @@ class LocationPreprocessor(object):
 	config = ConfigParser()
 	config.read("./preprocessing/component.ini")
 	
-	def preprocess(location):
+	def preprocess(self, location):
 		url = self.config["location"]["api"]
 		key = self.config["location"]["key"]
 		

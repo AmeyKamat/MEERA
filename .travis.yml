@@ -5,4 +5,5 @@ python:
 install:
   - chmod +x ./install.sh
   - ./install.sh
-script: 
+script:
+  - pylint **/*.py --disable=C,R,W

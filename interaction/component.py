@@ -5,7 +5,7 @@ from copy import deepcopy
 
 from circuits import Component, handler
 
-from events import DialogueGeneratedEvent
+from events import *
 from interaction.chatInteractionManager import ChatInteractionManager
 
 class InteractionComponent(Component):
