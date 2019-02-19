@@ -23,3 +23,6 @@ python-telegram-bot==11.1.0
 
 # parsing verbose date and time
 parsedatetime==2.4
+
+# linting python code
+pylint==2.2.2
