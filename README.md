@@ -1,6 +1,6 @@
 # M.E.E.R.A
 
-[![Build Status](https://travis-ci.org/AmeyKamat/MEERA.svg?branch=master)](https://travis-ci.org/AmeyKamat/MEERA) ![GitHub (pre-)release](https://img.shields.io/github/release-pre/AmeyKamat/MEERA.svg) ![GitHub](https://img.shields.io/github/license/AmeyKamat/MEERA.svg)
+[![Build Status](https://travis-ci.org/AmeyKamat/MEERA.svg?branch=master)](https://travis-ci.org/AmeyKamat/MEERA) [![Documentation Status](https://readthedocs.org/projects/meera/badge/?version=latest)](https://meera.readthedocs.io/en/latest/?badge=latest) ![GitHub (pre-)release](https://img.shields.io/github/release-pre/AmeyKamat/MEERA.svg) ![GitHub](https://img.shields.io/github/license/AmeyKamat/MEERA.svg) 
 
 ![alt text](https://github.com/AmeyKamat/MEERA/blob/master/doc/logo.png "MEERA")
 
