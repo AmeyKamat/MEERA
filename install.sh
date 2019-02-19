@@ -33,6 +33,10 @@ echo Creating nlp/models Directory...
 mkdir nlp/models
 echo
 
+echo Creating log Directory
+mkdir log
+chmod +w log
+
 echo Deactivating Virtual Environment...
 deactivate
 echo
