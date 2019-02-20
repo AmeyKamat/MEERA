@@ -4,6 +4,7 @@ import os
 import ner
 import textcat
 import re
+from copy import deepcopy
 from threading import Thread
 
 
@@ -117,10 +118,10 @@ skillData = getSkillData(skillRawTrainingData)
 chatData = getchatData(chatRawTrainingData)
 requestTypeResolutionData = getRequestTypeResolutionData(skillRawTrainingData, chatRawTrainingData)
 
-intentTrainingThread = Thread(target=textcat.train, args=("en.assistant.intent.model", "./nlp/models/intent_model", SKILL_CATEGORIES, skillData, 100))
-entityTraningThread = Thread(target=ner.train, args=("en.assistant.entity.model", "./nlp/models/entities_model", NER_CATEGORIES, skillData, 100))
+intentTrainingThread = Thread(target=textcat.train, args=("en.assistant.intent.model", "./nlp/models/intent_model", SKILL_CATEGORIES, deepcopy(skillData), 100))
+entityTraningThread = Thread(target=ner.train, args=("en.assistant.entity.model", "./nlp/models/entities_model", NER_CATEGORIES, deepcopy(skillData), 50))
 chatTrainingThread = Thread(target=textcat.train, args=("en.assistant.chat.model", "./nlp/models/chat_model", CHAT_CATEGORIES, chatData, 100))
-requestTypeTrainingThread = Thread(target=textcat.train, args=("en.assistant.requestType.model", "./nlp/models/request_type_model", ["chat", "skill"], requestTypeResolutionData, 100))
+requestTypeTrainingThread = Thread(target=textcat.train, args=("en.assistant.requestType.model", "./nlp/models/request_type_model", ["chat", "skill"], deepcopy(requestTypeResolutionData), 100))
 
 entityTraningThread.start()
 intentTrainingThread.start()

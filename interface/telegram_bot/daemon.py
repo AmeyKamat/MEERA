@@ -105,7 +105,6 @@ async def start():
 					try:
 						for update in bot.get_updates(offset=updateId, timeout=0):
 							updateId = update.update_id + 1
-							if update.message.location is not None:
 							if update.message and update.message.text:
 								try:
 									response = await sendMessage(websocket, client, currentContextId, update.message.text)

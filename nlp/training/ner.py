@@ -1,6 +1,7 @@
 import random
 from pathlib import Path
 import spacy
+from spacy.util import minibatch, compounding
 
 def train(modelName, outputDirectory, entityTypes, trainingData, iterations=20):
     
@@ -16,16 +17,19 @@ def train(modelName, outputDirectory, entityTypes, trainingData, iterations=20):
         ner.add_label(type)
         optimizer = model.entity.create_optimizer()
 
+    formattedTrainingData = [(data["sentence"], {"entities": data["entities"]}) for data in trainingData]
+
     other_pipes = [pipe for pipe in model.pipe_names if pipe != 'ner']
 
     with model.disable_pipes(*other_pipes):
         for iteration in range(iterations):
-            random.shuffle(trainingData)
+            random.shuffle(formattedTrainingData)
             losses = {}
-            for data in trainingData:
-                model.update([data["sentence"]], [{'entities':data["entities"]}], sgd=optimizer, drop=0.35,
-                           losses=losses)
-            print('losses in iteration',iteration, ': ', losses['ner'])
+            batches = minibatch(formattedTrainingData, size=compounding(4.0, 32.0, 1.001))
+            for batch in batches:
+                texts, annotations = zip(*batch)
+                model.update(texts, annotations, drop=0.5, losses=losses, sgd=optimizer)
+            print('{}\t\t\titeration={}/{}\t\t\ttloss={}'.format(modelName, iteration, iterations, losses['ner']))
 
     if outputDirectory is not None:
         outputDirectory = Path(outputDirectory)

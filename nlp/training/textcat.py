@@ -17,13 +17,12 @@ def train(modelName, outputDirectory, categories, trainingData, iterations=20):
         textcat.add_label(category)
 
     split = int(len(trainingData) * INTENT_SPLIT)
-    trainingTexts = [ data["sentence"] for data in trainingData ][:split]
-    trainingCategories = [ data["category"] for data in trainingData ][:split]
-    evaluationTexts = [ data["sentence"] for data in trainingData ][split:]
-    evaluationCategories = [ data["category"] for data in trainingData ][split:]
-
-    print("Using {} examples ({} training, {} evaluation)"
-          .format(len(trainingData), len(trainingTexts), len(evaluationTexts)))
+    #trainingTexts = [ data["sentence"] for data in trainingData ][:split]
+    #trainingCategories = [ data["category"] for data in trainingData ][:split]
+    #evaluationTexts = [ data["sentence"] for data in trainingData ][split:]
+    #evaluationCategories = [ data["category"] for data in trainingData ][split:]
+    trainingTexts = [ data["sentence"] for data in trainingData ]
+    trainingCategories = [ data["category"] for data in trainingData ]
 
     zippedTrainingData = list(zip(trainingTexts,
                           [{'cats': cats} for cats in trainingCategories]))
@@ -34,7 +33,7 @@ def train(modelName, outputDirectory, categories, trainingData, iterations=20):
         optimizer = model.begin_training()
 
         print("Training the model...")
-        print('{:^5}\t{:^5}\t{:^5}\t{:^5}\t{:^5}'.format('Iter #', 'LOSS', 'P', 'R', 'F'))
+        #print('{:^5}\t{:^5}\t{:^5}\t{:^5}\t{:^5}'.format('Iter #', 'LOSS', 'P', 'R', 'F'))
         
         for i in range(iterations):
             losses = {}
@@ -47,11 +46,12 @@ def train(modelName, outputDirectory, categories, trainingData, iterations=20):
 
                 model.update(texts, annotations, sgd=optimizer, drop=0.2,
                            losses=losses)
-            with textcat.model.use_params(optimizer.averages):
-                scores = evaluate(model.tokenizer, textcat, evaluationTexts, evaluationCategories)
-            print('{0}\t{1:.3f}\t{2:.3f}\t{3:.3f}\t{4:.3f}'
-                  .format(i, losses['textcat'], scores['textcat_p'],
-                          scores['textcat_r'], scores['textcat_f']))
+            #with textcat.model.use_params(optimizer.averages):
+            #    scores = evaluate(model.tokenizer, textcat, evaluationTexts, evaluationCategories)
+            print('{}\t\t\titeration={}/{}\t\t\tloss={}'.format(modelName, i, iterations, losses['textcat']))
+            #print('{0}: {1}\t{2:.3f}\t{3:.3f}\t{4:.3f}\t{5:.3f}'
+            #      .format(modelName, i, losses['textcat'], scores['textcat_p'],
+            #              scores['textcat_r'], scores['textcat_f']))
 
     if outputDirectory is not None:
         outputDirectory = Path(outputDirectory)

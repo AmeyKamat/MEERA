@@ -12,6 +12,8 @@ class GoogleSearchPlugin(object):
 		else:
 			searchQuery = message
 
+		result = {}
+
 		result["url"] = self.config["search_api"] + urllib.request.pathname2url(searchQuery)
 	
 		return result

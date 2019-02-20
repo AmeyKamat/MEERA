@@ -3,7 +3,7 @@ import random
 class WhatDoesTheFoxSayPlugin(object):
 
 	def __init__(self, config):
-		super(SayPlugin, self).__init__()
+		super(WhatDoesTheFoxSayPlugin, self).__init__()
 		self.config = config
 		self.foxSounds = [
 			"Ring-ding-ding-ding-dingeringeding!",
