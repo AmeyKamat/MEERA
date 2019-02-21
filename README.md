@@ -22,7 +22,11 @@ MEERA is a acronym for "Multifunctional Event-driven Expert in Real-time Assista
 
 ## How to train
 
-Run ```train.sh``` file in project root folder
+Run ```train_model.sh``` file in project root folder
+
+## How to evaluate model
+
+Run ```test_model.sh``` file in project root folder
 
 ## How to deploy
 

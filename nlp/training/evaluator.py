@@ -18,11 +18,10 @@ for example in testData["skillData"]:
 	expectedIntent = example["category"]
 	prediction = model(utterance)
 	predictedIntent = sorted(prediction.cats, key=prediction.cats.get, reverse=True)[0]
-	print(expectedIntent.__str__() + " " + predictedIntent)
 	if expectedIntent[predictedIntent] == 1.0:
 		correctPredictions = correctPredictions + 1
 
-print("Intent Classifier Accuracy: {} percent", correctPredictions*0.1/totalPredictions)
+print("Intent Classifier Accuracy: {} percent", correctPredictions*100/totalPredictions)
 
 
 # analyse requestType
@@ -38,7 +37,6 @@ for example in testData["requestTypeData"]:
 	expectedRequestType = example["category"]
 	prediction = model(utterance)
 	predictedRequestType = sorted(prediction.cats, key=prediction.cats.get, reverse=True)[0]
-	print(expectedRequestType.__str__() + " " + predictedRequestType)
 	if expectedRequestType[predictedRequestType] == 1.0:
 		correctPredictions = correctPredictions + 1
 
@@ -58,7 +56,6 @@ for example in testData["chatData"]:
 	expectedChatResponse = example["category"]
 	prediction = model(utterance)
 	predictedChatResponse = sorted(prediction.cats, key=prediction.cats.get, reverse=True)[0]
-	print(expectedChatResponse.__str__() + " " + predictedChatResponse)
 	if expectedChatResponse[predictedChatResponse] == 1.0:
 		correctPredictions = correctPredictions + 1
 
