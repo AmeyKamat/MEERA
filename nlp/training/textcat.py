@@ -31,8 +31,7 @@ def train(modelName, outputDirectory, categories, trainingData, iterations=20):
     
     with model.disable_pipes(*other_pipes):  # only train textcat
         optimizer = model.begin_training()
-
-        print("Training the model...")
+        
         #print('{:^5}\t{:^5}\t{:^5}\t{:^5}\t{:^5}'.format('Iter #', 'LOSS', 'P', 'R', 'F'))
         
         for i in range(iterations):
@@ -48,7 +47,7 @@ def train(modelName, outputDirectory, categories, trainingData, iterations=20):
                            losses=losses)
             #with textcat.model.use_params(optimizer.averages):
             #    scores = evaluate(model.tokenizer, textcat, evaluationTexts, evaluationCategories)
-            print('{}\t\t\titeration={}/{}\t\t\tloss={}'.format(modelName, i, iterations, losses['textcat']))
+            print('{}({}/{})\t\t\t\t\t\tloss={}'.format(modelName, i, iterations, losses['textcat']))
             #print('{0}: {1}\t{2:.3f}\t{3:.3f}\t{4:.3f}\t{5:.3f}'
             #      .format(modelName, i, losses['textcat'], scores['textcat_p'],
             #              scores['textcat_r'], scores['textcat_f']))
