@@ -25,4 +25,4 @@ python-telegram-bot==11.1.0
 parsedatetime==2.4
 
 # linting python code
-pylint==2.2.2
+pylint==2.3.0
