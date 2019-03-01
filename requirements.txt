@@ -1,8 +1,8 @@
 # event driven library
 circuits==3.2
 
-# npl library
-spacy==2.0.17
+# nlp library
+spacy==2.0.18
 
 # configuration parser
 configparser==3.5.0
