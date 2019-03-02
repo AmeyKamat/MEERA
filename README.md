@@ -1,13 +1,10 @@
 # M.E.E.R.A
 
-[![Build Status](https://travis-ci.org/AmeyKamat/MEERA.svg?branch=master)](https://travis-ci.org/AmeyKamat/MEERA) [![Known Vulnerabilities](https://snyk.io/test/github/AmeyKamat/MEERA/badge.svg)](https://snyk.io/test/github/AmeyKamat/MEERA) [![Documentation Status](https://readthedocs.org/projects/meera/badge/?version=latest)](https://meera.readthedocs.io/en/latest/?badge=latest) 
+[![Build Status](https://travis-ci.org/AmeyKamat/MEERA.svg?branch=master)](https://travis-ci.org/AmeyKamat/MEERA) ![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/AmeyKamat/MEERA.svg?style=plastic) [![Documentation Status](https://readthedocs.org/projects/meera/badge/?version=latest)](https://meera.readthedocs.io/en/latest/?badge=latest) 
 
 ![GitHub (pre-)release](https://img.shields.io/github/release-pre/AmeyKamat/MEERA.svg) ![GitHub](https://img.shields.io/github/license/AmeyKamat/MEERA.svg) 
 
-![alt text](https://github.com/AmeyKamat/MEERA/blob/master/doc/logo.png "MEERA")
-
-
-*This project is work in progress. For functional, but older version of this project please check [Project JARVIS](https://github.com/AmeyKamat/ProjectJarvis)*
+![MEERA Logo](https://github.com/AmeyKamat/MEERA/blob/master/doc/logo.png "MEERA")
 
 MEERA is a acronym for "Multifunctional Event-driven Expert in Real-time Assistance". It is an open source AI Bot framework. The machine learning module is entirely on board. MEERA can be easily integrated with any third party service by developing a plugin.
 
@@ -17,26 +14,20 @@ MEERA is a acronym for "Multifunctional Event-driven Expert in Real-time Assista
 * Python 3.6 (Tested on Python 3.6.8)
 * pip (Tested on pip 19.0.1)
 
-## How to install
+## Usage
 
-1. Install ```python3.6``` and ```pip```.
-2. Run ```install.sh``` file in project root folder
+    Usage: ./meera.sh [command]
 
-## How to train
+    Supported commands:
 
-Run ```train_model.sh``` file in project root folder
-
-## How to evaluate model
-
-Run ```test_model.sh``` file in project root folder
-
-## How to deploy
-
-Run ```start.sh``` file in project root folder
-
-## How to clean deployment
-
-Run ```clean.sh``` file in project root folder
+    clean				: cleans the project directory
+    install				: installs project
+    lint				: checks for compile time errors
+    train [iterations]	: trains ML models. Optional parameter: # of iterations. Default value is 50
+    evaluate			: evaluates ML models
+    test				: runs tests
+    start				: starts the deployment
+    help				: help on supported commands
 
 ## Technology
 
@@ -45,4 +36,4 @@ Run ```clean.sh``` file in project root folder
 
 ## Architecture
      
-![alt text](https://github.com/AmeyKamat/MEERA/blob/master/doc/architecture.png "MEERA Architecture")
+![MEERA Architecture](https://github.com/AmeyKamat/MEERA/blob/master/doc/architecture.png "MEERA Architecture")

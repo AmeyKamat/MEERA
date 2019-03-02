@@ -6,6 +6,6 @@ echo
 
 echo Booting MEERA...
 chmod +x index.py
-./index.py
+python3.6 ./index.py
 
 deactivate

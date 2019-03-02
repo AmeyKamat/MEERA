@@ -6,6 +6,6 @@ echo
 
 echo Training MEERA...
 chmod +x ./nlp/training/trainer.py
-./nlp/training/trainer.py
+python3.6 ./nlp/training/trainer.py  $1
 
 deactivate
