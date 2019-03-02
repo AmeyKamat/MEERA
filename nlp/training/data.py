@@ -82,7 +82,7 @@ def getEntityCategories(skillRawTrainingData):
 	entityNames = []
 	for line in skillRawTrainingData:
 		entityNames += getEntityNames(line)
-	return entityNames
+	return set(entityNames)
 
 def getData():
 

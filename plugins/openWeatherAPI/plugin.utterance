@@ -1,0 +1,13 @@
+how is the weather in london|weather|location,22,28
+what is the humidity in mumbai|weather|location,24,30
+what is the weather outside|weather
+how is the weather outside|weather
+how is the weather here|weather
+what is the temperature outside|weather
+how is the temperature is Pune|weather|location,26,30
+what is the atmospheric pressure in Delhi|weather|location,36,41
+what is the atmospheric pressure outside|weather
+what is the pressure here|weather
+what is the weather in new york|weather|location,23,31
+how is weather in Panaji|weather|location,18,24
+what is the humidity outside|weather

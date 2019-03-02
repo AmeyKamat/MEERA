@@ -6,7 +6,7 @@ class SayPlugin(object):
 		super(SayPlugin, self).__init__()
 		self.config = config
 
-	def execute(self, message, intent, entities):
+	def execute(self, context):
 		return {}
 
 	

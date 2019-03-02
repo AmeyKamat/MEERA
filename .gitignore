@@ -7,8 +7,9 @@ venv/
 nlp/models/
 
 preprocessing/component.ini
-plugins/newsApi/plugin.ini
+plugins/newsAPI/plugin.ini
 plugins/googleSelfLocation/plugin.ini
+plugins/openWeatherAPI/plugin.ini
 interface/telegram_bot/telegram.ini
 
 log/
