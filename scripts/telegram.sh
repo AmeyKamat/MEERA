@@ -6,6 +6,6 @@ echo
 
 echo Starting Telegram Daemon...
 chmod +x ./interface/telegram_bot/daemon.py
-./interface/telegram_bot/daemon.py
+python3.6 ./interface/telegram_bot/daemon.py
 
 deactivate

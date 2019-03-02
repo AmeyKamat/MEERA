@@ -5,7 +5,7 @@ python:
 install:
   - chmod +x ./meera.sh
   - ./meera.sh install
-  - ./meera.sh train
+  - ./meera.sh train 5
   - find . -name "*.ini.example" -exec bash -c 'mv "$1" "${1%.ini.example}".ini' - '{}' \; # rename all .ini.example files to .ini to verify deployment
 script:
   - ./meera.sh lint

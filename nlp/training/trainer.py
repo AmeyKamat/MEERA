@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import sys
 
 import ner
 import textcat
@@ -14,6 +15,8 @@ print("Intents: " + trainingData["intents"].__str__())
 print("Entities: " + trainingData["entities"].__str__())
 print("ChatCategories: " + trainingData["chatCategories"].__str__())
 
+iterations = int(sys.argv[1])
+
 intentTrainingThread = Thread(
 	target=textcat.train, 
 	args=(
@@ -21,7 +24,7 @@ intentTrainingThread = Thread(
 		"./nlp/models/intent_model", 
 		trainingData["intents"], 
 		deepcopy(trainingData["skillData"]), 
-		50
+		iterations
 	)
 )
 
@@ -32,7 +35,7 @@ entityTraningThread = Thread(
 		"./nlp/models/entities_model", 
 		trainingData["entities"], 
 		deepcopy(trainingData["skillData"]), 
-		50
+		iterations
 	)
 )
 
@@ -43,7 +46,7 @@ chatTrainingThread = Thread(
 		"./nlp/models/chat_model", 
 		trainingData["chatCategories"], 
 		deepcopy(trainingData["chatData"]), 
-		50
+		iterations
 	)
 )
 
@@ -54,7 +57,7 @@ requestTypeTrainingThread = Thread(
 		"./nlp/models/request_type_model", 
 		trainingData["requestTypes"], 
 		deepcopy(trainingData["requestTypeData"]), 
-		50
+		iterations
 	)
 )
 
