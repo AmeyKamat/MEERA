@@ -28,7 +28,7 @@ echo Virtual Environment Activated.
 echo
 
 echo Installing Dependencies...
-python3.6 -m pip install -r requirements.txt
+pip install -r requirements.txt
 echo
 
 echo Creating nlp/models Directory...
