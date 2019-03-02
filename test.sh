@@ -4,7 +4,7 @@ echo Activating Virtual Environment...
 source venv/bin/activate
 echo
 
-echo $(which python3.6)
+echo $(/usr/bin/env)
 
 echo Running tests...
 pytest -s tests/
