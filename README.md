@@ -16,18 +16,18 @@ MEERA is a acronym for "Multifunctional Event-driven Expert in Real-time Assista
 
 ## Usage
 
-    Usage: ./meera.sh [command]
+    Usage: ./meera.sh [command [optional parameters...]]
 
     Supported commands:
 
-    clean				: cleans the project directory
-    install				: installs project
-    lint				: checks for compile time errors
-    train [iterations]	: trains ML models. Optional parameter: # of iterations. Default value is 50
-    evaluate			: evaluates ML models
-    test				: runs tests
-    start				: starts the deployment
-    help				: help on supported commands
+    clean               : cleans the project directory
+    install             : installs project
+    lint                : checks for compile time errors
+    train [iterations]  : trains ML models. Optional parameter: # of iterations. Default value is 50
+    evaluate            : evaluates ML models
+    test                : runs tests
+    start               : starts the deployment
+    help                : help on supported commands
 
 ## Technology
 
