@@ -4,7 +4,7 @@ echo Activating Virtual Environment...
 source venv/bin/activate
 echo
 
-echo $(/usr/bin/env)
+echo $(/usr/bin/env python3.6)
 
 echo Running tests...
 chmod +x ./tests/*
