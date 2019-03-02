@@ -3,12 +3,11 @@ language: python
 python:
   - "3.6"
 install:
-  - echo $PATH
-  - which python3.6
-  - chmod +x ./install.sh
-  - chmod +x ./test.sh
-  - ./install.sh
+  - chmod +x ./meera.sh
+  - ./meera.sh install
+  - ./meera.sh train
   - find . -name "*.ini.example" -exec bash -c 'mv "$1" "${1%.ini.example}".ini' - '{}' \; # rename all .ini.example files to .ini to verify deployment
 script:
-  - pylint **/*.py --disable=C,R,W
-  - ./test.sh
+  - ./meera.sh lint
+  - ./meera.sh evaluate
+  - ./meera.sh test
