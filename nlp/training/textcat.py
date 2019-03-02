@@ -47,7 +47,7 @@ def train(modelName, outputDirectory, categories, trainingData, iterations=20):
                            losses=losses)
             #with textcat.model.use_params(optimizer.averages):
             #    scores = evaluate(model.tokenizer, textcat, evaluationTexts, evaluationCategories)
-            print('{}({}/{})\t\t\t\t\t\tloss={}'.format(modelName, i, iterations, losses['textcat']))
+            print('{0:40}\t\t\t\t\t\tloss={1}'.format("{0}({1}/{2})".format(modelName, i, iterations), losses['textcat']))
             #print('{0}: {1}\t{2:.3f}\t{3:.3f}\t{4:.3f}\t{5:.3f}'
             #      .format(modelName, i, losses['textcat'], scores['textcat_p'],
             #              scores['textcat_r'], scores['textcat_f']))
