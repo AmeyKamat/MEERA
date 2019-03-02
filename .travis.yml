@@ -6,6 +6,7 @@ install:
   - chmod +x ./install.sh
   - ./install.sh
   - find . -name "*.ini.example" -exec bash -c 'mv "$1" "${1%.ini.example}".ini' - '{}' \; # rename all .ini.example files to .ini to verify deployment
+  - source venv/bin/activate
 script:
   - pylint **/*.py --disable=C,R,W
   - pytest -s tests/
