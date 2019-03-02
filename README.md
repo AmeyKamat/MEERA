@@ -1,6 +1,6 @@
 # M.E.E.R.A
 
-[![Build Status](https://travis-ci.org/AmeyKamat/MEERA.svg?branch=master)](https://travis-ci.org/AmeyKamat/MEERA) ![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/AmeyKamat/MEERA.svg?style=plastic) [![Documentation Status](https://readthedocs.org/projects/meera/badge/?version=latest)](https://meera.readthedocs.io/en/latest/?badge=latest) 
+[![Build Status](https://travis-ci.org/AmeyKamat/MEERA.svg?branch=master)](https://travis-ci.org/AmeyKamat/MEERA) ![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/AmeyKamat/MEERA.svg) [![Documentation Status](https://readthedocs.org/projects/meera/badge/?version=latest)](https://meera.readthedocs.io/en/latest/?badge=latest) 
 
 ![GitHub (pre-)release](https://img.shields.io/github/release-pre/AmeyKamat/MEERA.svg) ![GitHub](https://img.shields.io/github/license/AmeyKamat/MEERA.svg) 
 
