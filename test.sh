@@ -7,6 +7,7 @@ echo
 echo $(/usr/bin/env)
 
 echo Running tests...
-python3.6 -m pytest -s tests/
+chmod +x ./tests/*
+pytest -s tests/
 
 deactivate
