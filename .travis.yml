@@ -3,6 +3,7 @@ language: python
 python:
   - "3.6"
 install:
+  - echo $PATH
   - which python3.6
   - chmod +x ./install.sh
   - chmod +x ./test.sh
