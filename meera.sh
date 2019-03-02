@@ -36,6 +36,8 @@ if [ $# -eq 2 ]; then
 	iterations=$2
 fi
 
+chmod +x scripts/*.sh
+
 case $1 in
 
 'clean')		./scripts/clean.sh;;
