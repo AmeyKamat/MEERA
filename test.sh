@@ -7,6 +7,6 @@ echo
 echo $(/usr/bin/env)
 
 echo Running tests...
-pytest -s tests/
+python3.6 -m pytest -s tests/
 
 deactivate
