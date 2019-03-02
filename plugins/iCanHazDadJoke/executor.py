@@ -9,7 +9,7 @@ class ICanHazDadJokePlugin(object):
 		super(ICanHazDadJokePlugin, self).__init__()
 		self.config = config
 
-	def execute(self, message, intent, entities):
+	def execute(self, context):
 		response = requests.get(self.config["joke_url"], headers = {
 				"User-Agent": self.config["user_agent"],
 				"accept": "application/json"

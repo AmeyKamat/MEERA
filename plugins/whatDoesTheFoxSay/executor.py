@@ -16,7 +16,7 @@ class WhatDoesTheFoxSayPlugin(object):
 			"A-oo-oo-oo-ooo!"
 		]
 
-	def execute(self, message, intent, entities):
+	def execute(self, context):
 		result = {}
 		result["response"] = random.choice(self.foxSounds)
 		return result

@@ -7,7 +7,10 @@ class DuckDuckGoPlugin(object):
 		super(DuckDuckGoPlugin, self).__init__()
 		self.config = config
 
-	def execute(self, message, intent, entities):
+	def execute(self, context):
+		message = context.message
+		entities = context.nlpAnalysis.entities
+		
 		response = requests.get(self.config["question_api"], params= {
 			'q': message,
 			'format': 'json'

@@ -10,6 +10,10 @@ from threading import Thread
 
 trainingData = data.getData()
 
+print("Intents: " + trainingData["intents"].__str__())
+print("Entities: " + trainingData["entities"].__str__())
+print("ChatCategories: " + trainingData["chatCategories"].__str__())
+
 intentTrainingThread = Thread(
 	target=textcat.train, 
 	args=(
@@ -17,7 +21,7 @@ intentTrainingThread = Thread(
 		"./nlp/models/intent_model", 
 		trainingData["intents"], 
 		deepcopy(trainingData["skillData"]), 
-		100
+		50
 	)
 )
 
@@ -39,7 +43,7 @@ chatTrainingThread = Thread(
 		"./nlp/models/chat_model", 
 		trainingData["chatCategories"], 
 		deepcopy(trainingData["chatData"]), 
-		100
+		50
 	)
 )
 
@@ -50,7 +54,7 @@ requestTypeTrainingThread = Thread(
 		"./nlp/models/request_type_model", 
 		trainingData["requestTypes"], 
 		deepcopy(trainingData["requestTypeData"]), 
-		100
+		50
 	)
 )
 

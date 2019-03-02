@@ -6,7 +6,10 @@ class GoogleSearchPlugin(object):
 		super(GoogleSearchPlugin, self).__init__()
 		self.config = config
 
-	def execute(self, message, intent, entities):
+	def execute(self, context):
+		message = context.message
+		entities = context.entities
+		
 		if "query" in entities:
 	 		searchQuery = entities["query"]
 		else:

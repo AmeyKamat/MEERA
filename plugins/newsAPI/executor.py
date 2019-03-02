@@ -6,7 +6,9 @@ class NewsAPIPlugin(object):
 		super(NewsAPIPlugin, self).__init__()
 		self.config = config
 
-	def execute(self, message, intent, entities):
+	def execute(self, context):
+		entities = context.nlpAnalysis.entities
+		
 		if "query" in entities:
 			response = requests.get(self.config["news_url"], params = {
 				'q': entities["query"],

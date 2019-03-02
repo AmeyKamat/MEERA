@@ -16,3 +16,6 @@ can you get news for me|news
 show me news from india|news|query,18,23
 get me business news last week|news|query,7,15|date,21,30
 Search news on football|news|query,15,23
+give me some cricket news|news|query,13,20
+tell me some news|news
+show me political news|news|query,8,17

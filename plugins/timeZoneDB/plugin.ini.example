@@ -1,0 +1,7 @@
+[TimeZoneDBPlugin]
+version = 0.0.1
+intent = time
+time_url = http://api.timezonedb.com/v2/get-time-zone
+key = [YOUR TIMEZONEDB API KEY HERE]
+received_date_format = %Y-%m-%d %H:%M:%S
+required_date_format = %A, %d %B %Y , %I %M %p

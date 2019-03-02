@@ -27,7 +27,7 @@ class TasKExecutorComponent(Component):
 		print(plugin)
 		if plugin is not None:
 			try:
-				context.result = plugin.execute(deepcopy(context.message), deepcopy(context.nlpAnalysis.intent), deepcopy(context.nlpAnalysis.entities))
+				context.result = plugin.execute(deepcopy(context))
 				self.fire(TaskExecutedEvent(context))
 			except SelfLocationNotFoundException:
 				self.fire(SelfLocationRequiredEvent(context))

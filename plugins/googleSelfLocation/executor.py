@@ -9,7 +9,9 @@ class GoogleSelfLocationPlugin(object):
 		super(GoogleSelfLocationPlugin, self).__init__()
 		self.config = config
 
-	def execute(self, message, intent, entities):
+	def execute(self, context):
+		entities = context.nlpAnalysis.entities
+		
 		if "self-location" not in entities:
 			raise SelfLocationNotFoundException("Self Location Not Found")
 		else:
