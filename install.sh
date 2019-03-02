@@ -9,15 +9,17 @@ echo pip: `pip --version`
 echo
 
 echo Installing virtualenv...
-python3.6 -m pip install virtualenv
+pip install virtualenv
 echo
 
 echo virtualenv: `virtualenv --version`
 echo
 
+PYTHON_BINARY=`which python3.6`
+
 echo Creating Virtual Environment...
 echo pwd: `pwd`
-virtualenv -p /usr/bin/python3.6 venv
+virtualenv -p $PYTHON_BINARY venv
 echo
 
 echo Activating Virtual Environment...
