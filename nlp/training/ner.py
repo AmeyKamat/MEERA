@@ -29,7 +29,7 @@ def train(modelName, outputDirectory, entityTypes, trainingData, iterations=20):
             for batch in batches:
                 texts, annotations = zip(*batch)
                 model.update(texts, annotations, drop=0.5, losses=losses, sgd=optimizer)
-            print('{}({}/{})\t\t\t\t\t\tloss={}'.format(modelName, iteration, iterations, losses['ner']))
+            print('{0:40}\t\t\t\t\t\tloss={1}'.format("{0}({1}/{2})".format(modelName, iteration, iterations), losses['ner']))
 
     if outputDirectory is not None:
         outputDirectory = Path(outputDirectory)
