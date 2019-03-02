@@ -27,5 +27,5 @@ parsedatetime==2.4
 # linting python code
 pylint==2.3.0
 
-#testing
+# testing
 pytest==4.3.0

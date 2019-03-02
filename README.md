@@ -1,20 +1,70 @@
-# M.E.E.R.A
 
-[![Build Status](https://travis-ci.org/AmeyKamat/MEERA.svg?branch=master)](https://travis-ci.org/AmeyKamat/MEERA) ![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/AmeyKamat/MEERA.svg) [![Documentation Status](https://readthedocs.org/projects/meera/badge/?version=latest)](https://meera.readthedocs.io/en/latest/?badge=latest) 
+MEERA
+=====
+![GitHub (pre-)release](https://img.shields.io/github/release-pre/AmeyKamat/MEERA.svg)
 
-![GitHub (pre-)release](https://img.shields.io/github/release-pre/AmeyKamat/MEERA.svg) ![GitHub](https://img.shields.io/github/license/AmeyKamat/MEERA.svg) 
+**MEERA** or **Multifunctional Event-driven Expert in Real-time Assistance** is a general purpose open source Artificially Intelligent Bot framework. MEERA is designed to be used as general purpose bot with expandable skill set that can be extended using easy to use plugin framework.
 
-![MEERA Logo](https://github.com/AmeyKamat/MEERA/blob/master/doc/logo.png "MEERA")
 
-MEERA is a acronym for "Multifunctional Event-driven Expert in Real-time Assistance". It is an open source AI Bot framework. The machine learning module is entirely on board. MEERA can be easily integrated with any third party service by developing a plugin.
+Build Status
+------------
+[![Build Status](https://travis-ci.org/AmeyKamat/MEERA.svg?branch=master)](https://travis-ci.org/AmeyKamat/MEERA) ![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/AmeyKamat/MEERA.svg)
 
-## System Requirements
+Features
+--------
+* Configurable on-board machine learning module
+* Expandable skill set with extensive plugin framework
+* Fully configurable dialogue engine
+* Asynchronous event driven message passing
 
+Supported Platform
+------------------
 * Linux (Tested on Ubuntu 16.04 LTS)
 * Python 3.6 (Tested on Python 3.6.8)
 * pip (Tested on pip 19.0.1)
 
-## Usage
+External Dependencies
+---------------------
+See [requirements.txt](https://github.com/AmeyKamat/MEERA/blob/master/requirements.txt) file for more details.
+
+Getting Started
+---------------
+
+### Installing MEERA
+
+To install MEERA:
+
+1. Clone this repository on local machine.
+2. `cd` to project root folder.
+3. Run `chmod +x meera.sh`
+4. Run `./meera.sh install` to install all dependancies.
+5. Run `./meera.sh train` to train ML models
+6. Search and replace API keys in all *.ini.example files (See *Properties to be Replaced* below)
+7. rename all `*.ini.example` files to `*.ini`
+8. Run `./meera.sh start` to deploy the application.
+
+#### Properties to be Replaced
+
+| File path                                            | Attribute Name | Notes                        |
+|------------------------------------------------------|----------------|------------------------------|
+| plugins/googleSelfLocation/plugin.ini.example        | key            | Google API Key               |
+| plugins/newsAPI/plugin.ini.example                   | key            | NewsAPI API key              |
+| plugins/openWeatherAPI/plugin.ini.example            | key            | OpenWeatherAPI API key       |
+| plugins/timeZoneDB/plugin.ini.example                | key            | TimeZoneDB API key           |
+| preprocessing/component.ini.example                  | key            | Google API key               |
+| interface/telegram_bot/telegram.ini.example          | token          | Telegram bot token           |
+
+
+How to Use
+----------
+
+This repository provides an implementation of telegram bot that can be used to interact with MEERA by passing corresponding token through .ini file.
+
+Please see [this](https://core.telegram.org/bots#creating-a-new-bot) for creating a new telegram bot.
+
+Supported Commands
+------------------
+
 
     Usage: ./meera.sh [command [optional parameters...]]
 
@@ -29,11 +79,91 @@ MEERA is a acronym for "Multifunctional Event-driven Expert in Real-time Assista
     start               : starts the deployment
     help                : help on supported commands
 
-## Technology
 
-* Event Driven Architecture: [Circuits](https://github.com/circuits/circuits/)
-* Machine Learning Modelling: [Spacy](https://spacy.io/)
+Built with
+----------
 
-## Architecture
+* [circuits](https://github.com/circuits/circuits/)
+* [spacy](https://spacy.io/)
+* [python-telegram-bot](https://python-telegram-bot.org/)
+
+Developers Manual
+-----------------
+
+### Definitions
+
+COMING SOON
+
+### Communication with Clients
+
+MEERA exposes a WebSocket API for communication with clients. This API consist for 5 different messages which are exchanged as json objects.
+
+COMING SOON
+
+### Debugging API
+
+MEERA also exposes following REST endpoints for debugging purpose
+
+1. **Client Endpoint**
+   
+        path: /clients
+        response:
+       	   [
+               {
+                   "id": ...,
+                   "name": ...,
+                   "type": ...,
+               },
+               ...
+           ]
+
+2. **Conversation Endpoint**
+
+        path: /conversations
+        response:
+            [
+                {
+                    "conversationId": ...,
+                    "contexts": [...]
+                },
+                ...
+            ]
+
+3. **Context Endpoint**
+        
+        path: /context/{contextId}
+        response:
+            {
+                    // context object
+            }
+
+### Building a Plugin
+
+COMING SOON
+
+### Architecture
+
+MEERA banks on various components that communicate with each other through exchange of events. Following figure shows various components of MEERA interacting with each other.
      
-![MEERA Architecture](https://github.com/AmeyKamat/MEERA/blob/master/doc/architecture.png "MEERA Architecture")
+![MEERA Architecture](https://github.com/AmeyKamat/MEERA/blob/master/docs/architecture.png "MEERA Architecture")
+
+Contributions
+-------------
+This project accepts pull requests from contributors.
+
+License
+-------
+
+![GitHub](https://img.shields.io/github/license/AmeyKamat/MEERA.svg)
+
+© 2019 Amey Kamat
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+
+
