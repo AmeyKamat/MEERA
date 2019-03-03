@@ -4,12 +4,22 @@ import spacy
 from spacy.util import minibatch, compounding
 
 def train(modelName, outputDirectory, entityTypes, trainingData, iterations=20):
+
+    modelPath = Path(outputDirectory)
+    if modelPath is not None and modelPath.exists():
+        model = spacy.load(modelPath)
+        print("Loaded model from {0}".format(outputDirectory))
+    else:
+        model = spacy.blank('en')
+        print("No existing model found created new")
     
-    model = spacy.blank('en')
     model.meta['name'] = modelName
     
-    ner = model.create_pipe('ner')
-    model.add_pipe(ner)
+    if 'ner' not in model.pipe_names:
+        ner = model.create_pipe('ner')
+        model.add_pipe(ner)
+    else:
+        ner = model.get_pipe('ner')
         
     optimizer = model.begin_training()
     

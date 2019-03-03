@@ -21,7 +21,7 @@ for example in testData["skillData"]:
 	if expectedIntent[predictedIntent] == 1.0:
 		correctPredictions = correctPredictions + 1
 
-print("Intent Classifier Accuracy: {} percent", correctPredictions*100/totalPredictions)
+print("Intent Classifier Accuracy: {} percent".format(correctPredictions*100/totalPredictions))
 
 
 # analyse requestType
@@ -40,7 +40,7 @@ for example in testData["requestTypeData"]:
 	if expectedRequestType[predictedRequestType] == 1.0:
 		correctPredictions = correctPredictions + 1
 
-print("Request Type Classifier Accuracy: {} percent", correctPredictions*100.0/totalPredictions)
+print("Request Type Classifier Accuracy: {} percent".format(correctPredictions*100.0/totalPredictions))
 
 
 # analyse chat
@@ -59,7 +59,7 @@ for example in testData["chatData"]:
 	if expectedChatResponse[predictedChatResponse] == 1.0:
 		correctPredictions = correctPredictions + 1
 
-print("Chat Classifier Accuracy: {} percent", correctPredictions*100.0/totalPredictions)
+print("Chat Classifier Accuracy: {} percent".format(correctPredictions*100.0/totalPredictions))
 
 
 # analyse entites
@@ -70,7 +70,6 @@ correctPredictions = 0
 totalPredictions = 0
 
 for example in testData["skillData"]:
-	totalPredictions = totalPredictions + 1
 	utterance = example["sentence"]
 	expectedEntities = example["entities"]
 	prediction = model(utterance)
@@ -86,5 +85,5 @@ for example in testData["skillData"]:
 			if expectedEntityText == predictedEntities[expectedEntity[2]]:
 				correctPredictions = correctPredictions + 1
 
-print("Entities NER Accuracy: {} percent", correctPredictions*100.0/totalPredictions)
+print("Entities NER Accuracy: {} percent".format(correctPredictions*100.0/totalPredictions))
 
