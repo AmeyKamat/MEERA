@@ -106,6 +106,17 @@ Here is what each of the above commands do:
 
   deploys MEERA and starts telegram daemon.
 
+#### Enabling Bash Autocomplete for MEERA
+
+*Note: This feature is work in progress*
+
+Bash autocomplete can be enabled for MEERA by running `source scripts/autocomplete.sh` in project root.
+
+Run `./meera.py [TAB][TAB]` to see it action.
+
+However this effect is temporary.
+However this
+
 
 This repository provides an implementation of telegram bot that can be used to interact with MEERA. One needs to [create a telegram bot](https://core.telegram.org/bots#creating-a-new-bot), and add the bot token to `interface/telegram_bot/telegram.ini.example` file for bot to function.
 
