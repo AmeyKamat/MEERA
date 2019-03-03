@@ -205,16 +205,16 @@ Also for every human friendly `date` and `location` entity identified, MEERA tra
 For a `date` entity, you will find following object in `context.nlpAnalysis.entities`
 
     { 
-		"date": "yesterday",
-		"parsedDate": ...
+        "date": "yesterday",
+        "parsedDate": ...
 	} 
 
 For `location` entity:
 
 	{
-		"location": "london",
-		"latitude": ...,
-		"longitude": ...
+        "location": "london",
+        "latitude": ...,
+        "longitude": ...
 	}
 
 #### dialogue.py
@@ -233,9 +233,9 @@ For `location` entity:
 	        # extract information from result. Result object is read-only.
 
 	        return {
-		        "text": ...,
-		        "voice": ...,
-		        "link": ...
+                "text": ...,
+                "voice": ...,
+                "link": ...
 	        }
 
 #### plugin.utterance
