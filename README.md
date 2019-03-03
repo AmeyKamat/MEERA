@@ -51,6 +51,7 @@ To install MEERA:
 | plugins/newsAPI/plugin.ini.example            | key       | NewsAPI API key        | [link](https://newsapi.org/register)                                 |
 | plugins/openWeatherAPI/plugin.ini.example     | key       | OpenWeatherAPI API key | [link](https://openweathermap.org/appid#get)                         |
 | plugins/timeZoneDB/plugin.ini.example         | key       | TimeZoneDB API key     | [link](https://timezonedb.com/api)                                   |
+| plugins/googleDistanceMatrixAPI/plugin.ini    | key       | Google API key         | [link](https://developers.google.com/places/web-service/get-api-key) |
 | preprocessing/component.ini.example           | key       | Google API key         | [link](https://developers.google.com/places/web-service/get-api-key) |
 | interface/telegram_bot/telegram.ini.example   | token     | Telegram bot token     | [link](https://core.telegram.org/bots#creating-a-new-bot)            |
 
