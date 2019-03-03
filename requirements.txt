@@ -5,10 +5,10 @@ circuits==3.2
 spacy==2.0.18
 
 # configuration parser
-configparser==3.5.0
+configparser==3.7.3
 
 # to make rest calls
-requests==2.20.0
+requests==2.21.0
 
 # temporary fix for issue https://github.com/explosion/spaCy/issues/2810
 # remove this after upgrading to spacy 2.1.x

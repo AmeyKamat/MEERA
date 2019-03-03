@@ -263,36 +263,106 @@ COMING SOON
 
 MEERA also exposes following REST endpoints for debugging purpose
 
-1. **Client Endpoint**
-   
-        path: /clients
-        response:
-       	   [
-               {
-                   // client object
-               },
-               ...
-           ]
+#### GET /clients
 
-2. **Conversation Endpoint**
+`/clients` endpoint displays all the clients registered with MEERA.
 
-        path: /conversations
-        response:
-            [
-                {
-                    "conversationId": ...,
-                    "contexts": [contextId1, contextId2, ...]
-                },
-                ...
-            ]
+##### Usage
 
-3. **Context Endpoint**
-        
-        path: /context/{contextId}
-        response:
-            {
-                    // context object
-            }
+    $ curl -sv -H "Accept: application/json" http://localhost:8000/clients | json_pp
+    *   Trying 127.0.0.1...
+    * Connected to localhost (127.0.0.1) port 8000 (#0)
+    > GET /clients HTTP/1.1
+    > Host: localhost:8000
+    > User-Agent: curl/7.47.0
+    > Accept: application/json
+    > 
+    < HTTP/1.1 200 OK
+    < Date: Sun, 03 Mar 2019 14:43:01 GMT
+    < Server: circuits.web/3.2
+    < Content-Type: text/html; charset=utf-8
+    < Content-Length: 92
+    < 
+    { [92 bytes data]
+    * Connection #0 to host localhost left intact
+    [
+       {
+          "name" : "telegram",
+          "type" : "telegram_bot",
+          "id" : "bff7d73b-7f27-4faa-bafb-fcee095d4f5a"
+       }
+    ]
+
+
+#### GET /conversations
+
+`/conversations` endpoints displays all the conversations in the memory.
+
+##### Usage
+
+    $ curl -sv -H "Accept: application/json" http://localhost:8000/conversations | json_pp
+    *   Trying 127.0.0.1...
+    * Connected to localhost (127.0.0.1) port 8000 (#0)
+    > GET /conversations HTTP/1.1
+    > Host: localhost:8000
+    > User-Agent: curl/7.47.0
+    > Accept: application/json
+    > 
+    < HTTP/1.1 200 OK
+    < Date: Sun, 03 Mar 2019 14:50:49 GMT
+    < Server: circuits.web/3.2
+    < Content-Type: text/html; charset=utf-8
+    < Content-Length: 114
+    < 
+    { [114 bytes data]
+    * Connection #0 to host localhost left intact
+    [
+       {
+          "contexts" : [
+              "9e4aea6d-c790-4b42-a5bb-444fdb8453bc"
+          ],
+          "conversationId" : "ba286c55-cde8-4fb0-b10d-8db57bf9b00a"
+       }
+    ]
+
+#### GET /context/{contextId}
+
+`/context` endpoint diplays all the data aggregated during the lifetime of the context
+
+##### Usage
+
+    $ curl -sv -H "Accept: application/json" http://localhost:8000/context/9e4aea6d-c790-4b42-a5bb-444fdb8453bc | json_pp
+    *   Trying 127.0.0.1...
+    * Connected to localhost (127.0.0.1) port 8000 (#0)
+    > GET /context/9e4aea6d-c790-4b42-a5bb-444fdb8453bc HTTP/1.1
+    > Host: localhost:8000
+    > User-Agent: curl/7.47.0
+    > Accept: application/json
+    > 
+    < HTTP/1.1 200 OK
+    < Date: Sun, 03 Mar 2019 14:54:35 GMT
+    < Server: circuits.web/3.2
+    < Content-Type: text/html; charset=utf-8
+    < Content-Length: 423
+    < 
+    { [423 bytes data]
+    * Connection #0 to host localhost left intact
+    {
+        "message" : "Hi",
+        "nlpAnalysis" : {
+            "confidence" : 4.53978718724102e-05,
+            "requestType" : "chat",
+            "category" : "Hello!"
+        },
+        "contextId" : "9e4aea6d-c790-4b42-a5bb-444fdb8453bc",
+        "conversationId" : "ba286c55-cde8-4fb0-b10d-8db57bf9b00a",
+        "interaction" : {
+            "voice" : "Hello!",
+            "text" : "Hello!"
+        },
+        "clientId" : "bff7d73b-7f27-4faa-bafb-fcee095d4f5a"
+}
+
 
 ### Architecture
 

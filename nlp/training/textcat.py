@@ -7,11 +7,22 @@ from spacy.util import minibatch, compounding, decaying
 INTENT_SPLIT = 0.8
 
 def train(modelName, outputDirectory, categories, trainingData, iterations=20):
-    model = spacy.blank('en')
+
+    modelPath = Path(outputDirectory)
+    if modelPath is not None and modelPath.exists():
+        model = spacy.load(modelPath)
+        print("Loaded model from {0}".format(outputDirectory))
+    else:
+        model = spacy.blank('en')
+        print("No existing model found. Created new")
+
     model.meta['name'] = modelName
     
-    textcat = model.create_pipe('textcat')
-    model.add_pipe(textcat)
+    if 'textcat' not in model.pipe_names:
+        textcat = model.create_pipe('textcat')
+        model.add_pipe(textcat)
+    else:
+        textcat = model.get_pipe('textcat')
 
     for category in categories:
         textcat.add_label(category)

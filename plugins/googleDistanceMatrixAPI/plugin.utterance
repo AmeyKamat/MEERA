@@ -1,0 +1,12 @@
+How far is Mumbai from here|distance|destination-location,11,17
+How far is Dombivali from Howrah|distance|source-location,26,32|destination-location,11,20
+What is the distance between Chennai and Silvasa|distance|source-location,29,36|destination-location,41,48
+How much time will it take to reach Jaipur|distance|destination-location,36,42
+How far is Diva|distance|destination-location,11,15
+How much is the distance between Kurla and Srinagar|distance|source-location,33,38|destination-location,43,51
+What is the distance between this place and agartala|distance|destination-location,44,52
+What is the distance between New york and London|distance|source-location,29,37|destination-location,42,48
+What is the distance between Boston and this place|distance|source-location,29,35
+How far is Jodhpur|distance|destination-location,11,18
+How far is pune from mumbai|distance|source-location,21,27|destination-location,11,15
+What is the distance between Agra and Patna|distance|source-location,29,33|destination-location,38,43

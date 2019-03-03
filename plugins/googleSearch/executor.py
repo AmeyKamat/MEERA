@@ -8,7 +8,7 @@ class GoogleSearchPlugin(object):
 
 	def execute(self, context):
 		message = context.message
-		entities = context.entities
+		entities = context.nlpAnalysis.entities
 		
 		if "query" in entities:
 	 		searchQuery = entities["query"]

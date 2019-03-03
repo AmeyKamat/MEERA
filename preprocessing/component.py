@@ -9,6 +9,8 @@ class PreprocessingComponent(Component):
 
 	prepocessors = {
 		"location": LocationPreprocessor(),
+		"source-location": LocationPreprocessor(),
+		"destination-location": LocationPreprocessor(),
 		"date": DatePreprocessor()
 	}
 
