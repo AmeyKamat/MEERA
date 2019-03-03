@@ -312,11 +312,11 @@ Contributions to MEERA
 
 ### Issues
 
-Feel free to submit an issue or request an enhancement [here](https://github.com/AmeyKamat/MEERA/issues). Ensure that you tag the issue as "Issue" or "Enhancement"
+Feel free to submit an issue or request an enhancement [here](https://github.com/AmeyKamat/MEERA/issues). Ensure that you tag the issue as "Bug" or "Enhancement"
 
 ### Contribution
 
-This project accepts pull requests from contributors. We usually follow "fork-and-pull" git workflow. If you are fixing an issue or developing an enhancement, please create an issue on [this page](https://github.com/AmeyKamat/MEERA/issues), before creating a pull request. Ensure that you tag the issue as "Issue" or "Enhancement".
+This project accepts pull requests from contributors. We usually follow "fork-and-pull" git workflow. If you are fixing an issue or developing an enhancement, please create an issue on [this page](https://github.com/AmeyKamat/MEERA/issues), before creating a pull request. Ensure that you tag the issue as "Bug" or "Enhancement".
 
 This project follows [SemVer](https://semver.org/) for versioning.
 
