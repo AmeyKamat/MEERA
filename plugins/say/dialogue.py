@@ -4,9 +4,9 @@ class SayPlugin(object):
 		super(SayPlugin, self).__init__()
 		self.config = config
 
-	def generate(self, intent, entities, result):
+	def generate(self, result):
 
 		return {
-			"text": entities["query"],
-			"voice": entities["query"]
+			"text": result["query"],
+			"voice": result["query"]
 		}

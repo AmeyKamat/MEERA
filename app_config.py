@@ -2,11 +2,11 @@ from circuits import Debugger
 from circuits.web.dispatchers import WebSocketsDispatcher
 from circuits.web import Logger, Static
 
-from web.websockets import WSGateway
-from web.root_controller import Root
-from web.client_controller import ClientController
-from web.context_controller import ContextController
-from web.conversation_controller import ConversationController
+from api.websockets import WSGateway
+from interface.web_app.root_controller import Root
+from api.client_controller import ClientController
+from api.context_controller import ContextController
+from api.conversation_controller import ConversationController
 
 from client.manager import ClientManager
 from context.manager import ContextManager

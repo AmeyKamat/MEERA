@@ -32,6 +32,6 @@ bootstrapGateways(app, BOOTSTRAP_MODULES["gateways"])
 bootstrapDispatchers(app, BOOTSTRAP_MODULES["dispatchers"])
 bootstrapCircuitComponents(app, BOOTSTRAP_MODULES["circuitComponents"])
 
-webbrowser.open('http://localhost:8000')
+#webbrowser.open('http://localhost:8000')
 
 app.run()

@@ -4,7 +4,7 @@ class TimeZoneDBPlugin(object):
 		super(TimeZoneDBPlugin, self).__init__()
 		self.config = config
 
-	def generate(self, intent, entities, result):
+	def generate(self, result):
 
 		datetime = result["datetime"]
 		location = result["location"]
