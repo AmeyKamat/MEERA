@@ -361,7 +361,7 @@ MEERA also exposes following REST endpoints for debugging purpose
             "text" : "Hello!"
         },
         "clientId" : "bff7d73b-7f27-4faa-bafb-fcee095d4f5a"
-}
+    }
 
 
 ### Architecture
