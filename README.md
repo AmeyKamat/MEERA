@@ -55,15 +55,11 @@ To install MEERA:
 | interface/telegram_bot/telegram.ini.example          | token          | Telegram bot token           |
 
 
-How to Use
-----------
+### Usage
 
-This repository provides an implementation of telegram bot that can be used to interact with MEERA by passing corresponding token through .ini file.
+Once MEERA is installed on your system, you can start using MEERA from command line utility. Following are the commands supported:
 
-Please see [this](https://core.telegram.org/bots#creating-a-new-bot) for creating a new telegram bot.
-
-Supported Commands
-------------------
+#### Supported Commands
 
 
     Usage: ./meera.sh [command [optional parameters...]]
@@ -79,13 +75,39 @@ Supported Commands
     start               : starts the deployment
     help                : help on supported commands
 
+Here is what each of the above commands do:
 
-Built with
-----------
+* **clean**
 
-* [circuits](https://github.com/circuits/circuits/)
-* [spacy](https://spacy.io/)
-* [python-telegram-bot](https://python-telegram-bot.org/)
+  deletes pycache folders, log directory virtual environemnt and generated models. Once you clean the project directory, you will need to repeat installation procedure, before next usage.
+
+* **install**
+  
+  sets up virtual environment and installs dependencies.
+
+* **lint**
+  
+  scans for any compile time errors in the python scripts.
+
+* **train [iterations]**
+
+  trains machine learning models based on `*.utterance` files in project directory. This command take optional parameter, number of iterations of training for each model. If no value is passed, default number of iterations are 50.
+
+* **evaluate**
+  
+  evaluates each machine learning model based against data in `*.utterance` files.
+
+* **test**
+  
+  runs tests in `/tests` folder.
+
+* **start**
+
+  deploys MEERA and starts telegram daemon.
+
+
+This repository provides an implementation of telegram bot that can be used to interact with MEERA. One needs to [create a telegram bot](https://core.telegram.org/bots#creating-a-new-bot), and add the bot token to `interface/telegram_bot/telegram.ini.example` file for bot to function.
+
 
 Developers Manual
 -----------------
@@ -146,6 +168,13 @@ COMING SOON
 MEERA banks on various components that communicate with each other through exchange of events. Following figure shows various components of MEERA interacting with each other.
      
 ![MEERA Architecture](https://github.com/AmeyKamat/MEERA/blob/master/docs/architecture.png "MEERA Architecture")
+
+Built with
+----------
+
+* [circuits](https://github.com/circuits/circuits/)
+* [spacy](https://spacy.io/)
+* [python-telegram-bot](https://python-telegram-bot.org/)
 
 Contributions
 -------------
