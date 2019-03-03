@@ -7,7 +7,11 @@ class SayPlugin(object):
 		self.config = config
 
 	def execute(self, context):
-		return {}
+		entities = context.nlpAnalysis.entities
+
+		result ={}
+		result["query"] = entities["query"]
+		return result
 
 	
 		

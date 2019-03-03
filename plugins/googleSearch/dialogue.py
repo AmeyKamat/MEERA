@@ -4,12 +4,13 @@ class GoogleSearchPlugin(object):
 		super(GoogleSearchPlugin, self).__init__()
 		self.config = config
 
-	def generate(self, intent, entities, result):
+	def generate(self, result):
 		url = result["url"]
 		text = "This is what I found on internet.\n\n{0}".format(url)
-		voice = "This is what I found on internet. {0}".format(url)
+		voice = "This is what I found on internet."
 
 		return {
 			"text": text,
-			"voice": voice
+			"voice": voice,
+			"link": url
 		}

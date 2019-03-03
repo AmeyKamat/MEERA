@@ -4,7 +4,7 @@ class NewsAPIPlugin(object):
 		super(NewsAPIPlugin, self).__init__()
 		self.config = config
 
-	def generate(self, intent, entities, result):
+	def generate(self, result):
 		text = "Here are the headlines.\n\n"
 		voice = "Here are the headlines. "
 		for article in result:

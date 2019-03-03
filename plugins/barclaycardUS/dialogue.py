@@ -4,12 +4,13 @@ class BarclaycardUSPlugin(object):
 		super(BarclaycardUSPlugin, self).__init__()
 		self.config = config
 
-	def generate(self, intent, entities, result):
+	def generate(self, result):
 		url = result["url"]
 		text = "Here is your barclaycard application page.\n\n{0}".format(url)
-		voice = "Here is your barclaycard application page.\n\n{0}".format(url)
+		voice = "Here is your barclaycard application page."
 
 		return {
 			"text": text,
-			"voice": voice
+			"voice": voice,
+			"link": url
 		}

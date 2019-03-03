@@ -23,7 +23,7 @@ class InteractionComponent(Component):
 		intent = context.nlpAnalysis.intent
 		plugin = self.plugins.get(intent)
 		if plugin != None:
-			context.interaction = plugin.generate(deepcopy(context.nlpAnalysis.intent), deepcopy(context.nlpAnalysis.entities), deepcopy(context.result))
+			context.interaction = plugin.generate(deepcopy(context.result))
 			self.fire(DialogueGeneratedEvent(context))
 		else:
 			self.fire(NoPluginsAvailableEvent(context))
