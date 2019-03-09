@@ -6,6 +6,4 @@ venv/
 
 meera/nlp/models/
 
-.env
-
 log/
