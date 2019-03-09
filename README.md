@@ -39,21 +39,20 @@ To install MEERA:
 3. Run `chmod +x meera.sh`
 4. Run `./meera.sh install` to install all dependancies.
 5. Run `./meera.sh train` to train ML models
-6. Search and replace API keys in all *.ini.example files (See *Properties to be Replaced* below)
-7. rename all `*.ini.example` files to `*.ini`
+6. Add your API keys to `.env` file
 8. Run `./meera.sh start` to deploy the application.
 
-#### Properties to be Replaced
+#### Environment variables in .env file
 
-| File path                                     | Attribute | Description            | More Details                                                         |
-|:----------------------------------------------|:----------|:-----------------------|:---------------------------------------------------------------------|
-| plugins/googleSelfLocation/plugin.ini.example | key       | Google API Key         | [link](https://developers.google.com/places/web-service/get-api-key) |
-| plugins/newsAPI/plugin.ini.example            | key       | NewsAPI API key        | [link](https://newsapi.org/register)                                 |
-| plugins/openWeatherAPI/plugin.ini.example     | key       | OpenWeatherAPI API key | [link](https://openweathermap.org/appid#get)                         |
-| plugins/timeZoneDB/plugin.ini.example         | key       | TimeZoneDB API key     | [link](https://timezonedb.com/api)                                   |
-| plugins/googleDistanceMatrixAPI/plugin.ini    | key       | Google API key         | [link](https://developers.google.com/places/web-service/get-api-key) |
-| preprocessing/component.ini.example           | key       | Google API key         | [link](https://developers.google.com/places/web-service/get-api-key) |
-| interface/telegram_bot/telegram.ini.example   | token     | Telegram bot token     | [link](https://core.telegram.org/bots#creating-a-new-bot)            |
+| ENV Variable              | Description            | More Details                                                         |
+|:--------------------------|:-----------------------|:---------------------------------------------------------------------|
+| MEERA_GOOGLE_API_KEY      | Google API Key         | [link](https://developers.google.com/places/web-service/get-api-key) |
+| MEERA_NEWSAPI_API_KEY     | NewsAPI API key        | [link](https://newsapi.org/register)                                 |
+| MEERA_OPENWEATHER_API_KEY | OpenWeatherAPI API key | [link](https://openweathermap.org/appid#get)                         |
+| MEERA_TIMEZONEDB_API_KEY  | TimeZoneDB API key     | [link](https://timezonedb.com/api)                                   |
+| MEERA_MAILGUN_API_KEY     | Mailgun API key        | [link](https://documentation.mailgun.com/en/latest/index.html)       |
+| MEERA_MAILGUN_DOMAIN      | Mailgun domain         | [link](https://documentation.mailgun.com/en/latest/index.html)       |
+| MEERA_TELEGRAM_BOT_TOKEN  | Telegram bot token     | [link](https://core.telegram.org/bots#creating-a-new-bot)            |
 
 
 ### Usage
@@ -162,12 +161,12 @@ Interaction object is the output of plugin dialogue generators. it can contains 
 
 MEERA generates 4 models on `./meera.sh train` command. These are listed below:
 
-| Model Name                       | Locatio                           |Type     | Function                             |
-|----------------------------------|-----------------------------------|---------|--------------------------------------|
-| `en.assistant.requestType.model` | `./nlp/models/request_type_model` | textcat | predicts if message is chat or skill |
-| `en.assistant.chat.model`        | `./nlp/models/chat_model`         | textcat | generates response for chat message  |
-| `en.assistant.entity.model`      | `./nlp/models/entities_model`     | ner     | extracts entities from skill message |
-| `en.assistant.intent.model`      | `./nlp/models/intent_model`       | textcat | predicts intent of skill message     | 
+| Model Name                       | Location  ----                        |Type     | Function                             |
+|----------------------------------|---------------------------------------|---------|--------------------------------------|
+| `en.assistant.requestType.model` | `meera/nlp/models/request_type_model` | textcat | predicts if message is chat or skill |
+| `en.assistant.chat.model`        | `meera/nlp/models/chat_model`         | textcat | generates response for chat message  |
+| `en.assistant.entity.model`      | `meera/nlp/models/entities_model`     | ner     | extracts entities from skill message |
+| `en.assistant.intent.model`      | `meera/nlp/models/intent_model`       | textcat | predicts intent of skill message     | 
 
 
 ### Developing a Plugin
@@ -194,14 +193,14 @@ Following is the basic structure of executor.py
     class NameOfThePlugin(object):                       # This should be same as plugin.ini file
 
         def __init__(self, config):
-	        super(NameOfThePlugin, self).__init__()
-	        self.config = config                         # config object provides all properties from plugin.ini as a dict
+            super(NameOfThePlugin, self).__init__()
+            self.config = config                         # config object provides all properties from plugin.ini as a dict
 
         def execute(self, context):
-	        # process the context here. All attributes in context will be read only. any changes to context object will not be reflected
-	        result = {}
-	        # build result object
-	        return result
+            # process the context here. All attributes in context will be read only. any changes to context object will not be reflected
+            result = {}
+            # build result object
+            return result
 
 If your plugin expects client location, you should first check in `self-location` key exists in `context.nlpAnalysis.entities` and if not raise `execution.exception.SelfLocationNotFoundException`. If the key exists, you will get following object as value of key `self-location` in `context.nlpAnalysis.entities`:
 
@@ -217,15 +216,46 @@ For a `date` entity, you will find following object in `context.nlpAnalysis.enti
     { 
         "date": "yesterday",
         "parsedDate": ...
-	} 
+    } 
 
 For `location` entity:
 
-	{
+    {
         "location": "london",
         "latitude": ...,
         "longitude": ...
-	}
+    }
+
+If you need to access any secrets such as API keys in your executor:
+
+* Add a a variable in `.env` file. Convention is to add 'MEERA_' prefix before any variable. Let's assume you added following entry to `.env` file
+
+    MEERA_THIRD_PARTY_API_KEY=someinterestingapikeyforsomeinterestingservice
+    
+* Add following variable in plugin's `plugin.ini` file
+
+    key_variable = MEERA_THIRD_PARTY_API_KEY
+
+* Now in plugin's `executor.py` file:
+
+    import os
+    # Any other modules you want to import
+
+    class NameOfThePlugin:                               # This should be same as plugin.ini file
+
+        def __init__(self, config):
+            self.config = config                         # config object provides all properties from plugin.ini as a dict
+
+        def execute(self, context):
+
+            keyVariable = self.config['key_variable']
+            key = os.environ[keyVariable]
+            
+            # do something interesting
+
+            result = {}
+            # build result object
+            return result
 
 #### dialogue.py
 
@@ -236,17 +266,17 @@ For `location` entity:
     class NameOfThePlugin(object):                      # This should be same as plugin.ini file
 
         def __init__(self, config):
-	        super(NameOfThePlugin, self).__init__()
-	        self.config = config                        # config object provides all properties from plugin.ini as a dict
+            super(NameOfThePlugin, self).__init__()
+            self.config = config                        # config object provides all properties from plugin.ini as a dict
 
         def generate(self, result):
-	        # extract information from result. Result object is read-only.
+            # extract information from result. Result object is read-only.
 
-	        return {
+            return {
                 "text": ...,
                 "voice": ...,
                 "link": ...
-	        }
+            }
 
 #### plugin.utterance
 
