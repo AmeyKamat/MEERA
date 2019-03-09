@@ -1,5 +1,0 @@
-[OpenWeatherAPIPlugin]
-version = 0.0.1
-intent = weather
-weather_url = http://api.openweathermap.org/data/2.5/weather
-key = [YOUR OPEN WEATHER API KEY HERE]

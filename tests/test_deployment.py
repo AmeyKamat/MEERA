@@ -6,7 +6,7 @@ import pytest
 
 def test_deployment():
     
-    args = ["python3.6", "./index.py"]
+    args = ["python3.6", "./meera/index.py"]
     meeraDeployment = Popen(args, stdout=PIPE)
     sleep(60)
 

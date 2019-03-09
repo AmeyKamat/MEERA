@@ -1,0 +1,13 @@
+Send a mail to abc@123.com saying abra ka dabra|mail|email,15,26|email-body,34,47
+Mail hjkgj@vhjjk.com with text Please come to meeting tommorrow|mail|email,5,20|email-body,31,63
+Send a mail to sdaas@ds.in with body What does the fox say|mail|email,15,26|email-body,37,58
+Send a mail to john@doe.com saying please meet me tommorrow|mail|email,15,27|email-body,35,59
+Can you send a mail to amitabh@iitb.ac.in saying come to my party?|mail|email,23,41|email-body,49,65
+Mail abhishek@gmail.com saying I accept your invitation, when do you want me to come in|mail|email,5,23|email-body,31,87
+Send an email to ben@santamonica.edu saying Happy birthday|mail|email,17,36|email-body,44,58
+Could you please mail support@food.in saying Your food was terrible|mail|email,22,37|email-body,45,67
+Send a mail saying I lost my parcel in your bus to transport@st.gov|mail|email,51,67|email-body,19,47
+Could you send an email saying abra ka dabra to v@gmail.com?|mail|email,48,59|email-body,31,44
+Please mail sun@planetarysystem.space saying your planet is too hot|mail|email,12,37|email-body,45,67
+send mail to friend@nit.ac.in saying howdy|mail|email,13,29|email-body,37,42
+Please drop a mail to vishal@barclays.in saying why do you do this?|mail|email,22,40|email-body,48,67

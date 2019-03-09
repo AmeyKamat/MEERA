@@ -6,12 +6,4 @@ venv/
 
 nlp/models/
 
-preprocessing/component.ini
-plugins/newsAPI/plugin.ini
-plugins/googleSelfLocation/plugin.ini
-plugins/openWeatherAPI/plugin.ini
-plugins/timeZoneDB/plugin.ini
-plugins/googleDistanceMatrixAPI/plugin.ini
-interface/telegram_bot/telegram.ini
-
 log/

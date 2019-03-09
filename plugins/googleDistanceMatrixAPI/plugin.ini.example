@@ -1,5 +1,0 @@
-[GoogleDistanceMatrixAPIPlugin]
-version = 0.0.1
-intent = distance
-distance_url = https://maps.googleapis.com/maps/api/distancematrix/json
-key = [YOUR GOOGLE API KEY HERE]
