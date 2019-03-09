@@ -1,0 +1,16 @@
+{
+  "deprecation_fixes":{
+    "vectors_name":"spacy_pretrained_vectors"
+  },
+  "labels":[
+    "I am good!",
+    "Nothing much. Waiting eagerly to help you!",
+    "You're most welcome!!!",
+    "Hello",
+    "Jai Hind!",
+    "Wish you a very happy birthday!!!!",
+    "High sir!",
+    "Hey"
+  ],
+  "pretrained_vectors":null
+}

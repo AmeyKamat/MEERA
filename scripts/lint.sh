@@ -5,7 +5,9 @@ source venv/bin/activate
 echo
 
 echo Linting the project...
-pylint **/*.py --disable=C,R,W
+cd meera
+pylint **/*.py --disable=C,duplicate-code,too-few-public-methods
+cd ..
 echo
 
 deactivate

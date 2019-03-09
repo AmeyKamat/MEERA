@@ -1,0 +1,10 @@
+{
+  "deprecation_fixes":{
+    "vectors_name":"spacy_pretrained_vectors"
+  },
+  "labels":[
+    "skill",
+    "chat"
+  ],
+  "pretrained_vectors":null
+}

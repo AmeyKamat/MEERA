@@ -5,7 +5,7 @@ source venv/bin/activate
 echo
 
 echo Evaluating models...
-chmod +x ./nlp/training/evaluator.py
-./nlp/training/evaluator.py
+chmod +x ./meera/evaluator.py
+./meera/evaluator.py
 
 deactivate

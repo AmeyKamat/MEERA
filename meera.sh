@@ -38,6 +38,11 @@ fi
 
 chmod +x scripts/*.sh
 
+# Activating Environment Variables
+set -a
+. .env
+set +a
+
 case $1 in
 
 'clean')		./scripts/clean.sh;;
