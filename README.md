@@ -408,7 +408,7 @@ MEERA also exposes following REST endpoints for debugging purpose
 
 MEERA banks on various components that communicate with each other through exchange of events. Following figure shows various components of MEERA interacting with each other.
      
-![MEERA Architecture](https://github.com/AmeyKamat/MEERA/blob/master/docs/architecture.png "MEERA Architecture")
+![MEERA Architecture](https://github.com/AmeyKamat/MEERA/raw/master/docs/architecture.png "MEERA Architecture")
 
 Built with
 ----------
