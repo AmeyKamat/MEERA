@@ -44,15 +44,15 @@ To install MEERA:
 
 #### Environment variables in .env file
 
-| ENV Variable              | Description            | More Details                                                         |
-|:--------------------------|:-----------------------|:---------------------------------------------------------------------|
-| MEERA_GOOGLE_API_KEY      | Google API Key         | [link](https://developers.google.com/places/web-service/get-api-key) |
-| MEERA_NEWSAPI_API_KEY     | NewsAPI API key        | [link](https://newsapi.org/register)                                 |
-| MEERA_OPENWEATHER_API_KEY | OpenWeatherAPI API key | [link](https://openweathermap.org/appid#get)                         |
-| MEERA_TIMEZONEDB_API_KEY  | TimeZoneDB API key     | [link](https://timezonedb.com/api)                                   |
-| MEERA_MAILGUN_API_KEY     | Mailgun API key        | [link](https://documentation.mailgun.com/en/latest/index.html)       |
-| MEERA_MAILGUN_DOMAIN      | Mailgun domain         | [link](https://documentation.mailgun.com/en/latest/index.html)       |
-| MEERA_TELEGRAM_BOT_TOKEN  | Telegram bot token     | [link](https://core.telegram.org/bots#creating-a-new-bot)            |
+| ENV Variable                | Description            | More Details                                                         |
+|:----------------------------|:-----------------------|:---------------------------------------------------------------------|
+| `MEERA_GOOGLE_API_KEY`      | Google API Key         | [link](https://developers.google.com/places/web-service/get-api-key) |
+| `MEERA_NEWSAPI_API_KEY`     | NewsAPI API key        | [link](https://newsapi.org/register)                                 |
+| `MEERA_OPENWEATHER_API_KEY` | OpenWeatherAPI API key | [link](https://openweathermap.org/appid#get)                         |
+| `MEERA_TIMEZONEDB_API_KEY`  | TimeZoneDB API key     | [link](https://timezonedb.com/api)                                   |
+| `MEERA_MAILGUN_API_KEY`     | Mailgun API key        | [link](https://documentation.mailgun.com/en/latest/index.html)       |
+| `MEERA_MAILGUN_DOMAIN`      | Mailgun domain         | [link](https://documentation.mailgun.com/en/latest/index.html)       |
+| `MEERA_TELEGRAM_BOT_TOKEN`  | Telegram bot token     | [link](https://core.telegram.org/bots#creating-a-new-bot)            |
 
 
 ### Usage
@@ -230,32 +230,32 @@ If you need to access any secrets such as API keys in your executor:
 
 * Add a a variable in `.env` file. Convention is to add 'MEERA_' prefix before any variable. Let's assume you added following entry to `.env` file
 
-    MEERA_THIRD_PARTY_API_KEY=someinterestingapikeyforsomeinterestingservice
+        MEERA_THIRD_PARTY_API_KEY=someinterestingapikeyforsomeinterestingservice
     
 * Add following variable in plugin's `plugin.ini` file
 
-    key_variable = MEERA_THIRD_PARTY_API_KEY
+        key_variable = MEERA_THIRD_PARTY_API_KEY
 
 * Now in plugin's `executor.py` file:
 
-    import os
-    # Any other modules you want to import
+        import os
+        # Any other modules you want to import
 
-    class NameOfThePlugin:                               # This should be same as plugin.ini file
+        class NameOfThePlugin:                               # This should be same as plugin.ini file
 
-        def __init__(self, config):
-            self.config = config                         # config object provides all properties from plugin.ini as a dict
+            def __init__(self, config):
+                self.config = config                         # config object provides all properties from plugin.ini as a dict
 
-        def execute(self, context):
+            def execute(self, context):
 
-            keyVariable = self.config['key_variable']
-            key = os.environ[keyVariable]
-            
-            # do something interesting
+                keyVariable = self.config['key_variable']
+                key = os.environ[keyVariable]
+                
+                # do something interesting
 
-            result = {}
-            # build result object
-            return result
+                result = {}
+                # build result object
+                return result
 
 #### dialogue.py
 
