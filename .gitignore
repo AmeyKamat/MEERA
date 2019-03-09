@@ -4,6 +4,8 @@ __pycache__/
 
 venv/
 
+.env
+
 meera/nlp/models/
 
 log/
