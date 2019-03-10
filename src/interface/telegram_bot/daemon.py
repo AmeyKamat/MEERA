@@ -62,27 +62,21 @@ def get_location_request(client_id, context_id, location):
     })
 
 async def say_hello(websocket):
-    print(get_hello_request())
     await websocket.send(get_hello_request())
     response = websocket.recv()
     response = json.loads(await asyncio.wait_for(response, CLIENT_TIMEOUT))
-    print(response)
     return response['body']
 
 async def send_message(websocket, client, context_id, message):
-    print(get_message_request(client["client_id"], context_id, message))
     await websocket.send(get_message_request(client["client_id"], context_id, message))
     response = websocket.recv()
     response = json.loads(await asyncio.wait_for(response, CLIENT_TIMEOUT))
-    print(response)
     return response
 
 async def send_location(websocket, client, context_id, location):
-    print(get_location_request(client["client_id"], context_id, location))
     await websocket.send(get_location_request(client["client_id"], context_id, location))
     response = websocket.recv()
     response = json.loads(await asyncio.wait_for(response, CLIENT_TIMEOUT))
-    print(response)
     return response
 
 
