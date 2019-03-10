@@ -511,9 +511,21 @@ Feel free to submit an issue or request an enhancement [here](https://github.com
 
 ### Contribution
 
-This project accepts pull requests from contributors. We usually follow "fork-and-pull" git workflow. If you are fixing an issue or developing an enhancement, please create an issue on [this page](https://github.com/AmeyKamat/MEERA/issues), before creating a pull request. Ensure that you tag the issue as "Bug" or "Enhancement".
+This project accepts pull requests from contributors. We usually follow "fork-and-pull" git workflow. If you are fixing an issue or developing an enhancement, please create an issue on [this page](https://github.com/AmeyKamat/MEERA/issues), before creating a pull request, please ensure following check list:
 
-This project follows [SemVer](https://semver.org/) for versioning.
+[ ] Lint the project
+[ ] Run the dummy training with `./meera.sh train 1`
+[ ] Evaluate the model
+[ ] Run the tests
+[ ] Deploy the project
+[ ] Test the project
+[ ] Ensure that you did not commit `.env` file
+[ ] Ensure that your PR is tagged with the issue as "Bug" or "Enhancement".
+
+This project follows 
+
+* [PEP 8](https://www.python.org/dev/peps/pep-0008/) for style guide
+* [SemVer](https://semver.org/) for versioning.
 
 
 About the Author
