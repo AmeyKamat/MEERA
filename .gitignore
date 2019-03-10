@@ -5,6 +5,8 @@ __pycache__/
 
 venv/
 
+/.env
+
 src/nlp/models/
 
 log/
