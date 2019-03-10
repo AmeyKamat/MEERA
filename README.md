@@ -8,7 +8,7 @@ MEERA
 
 Build Status
 ------------
-[![Build Status](https://travis-ci.org/AmeyKamat/MEERA.svg?branch=master)](https://travis-ci.org/AmeyKamat/MEERA) ![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/AmeyKamat/MEERA.svg)
+[![Build Status](https://travis-ci.org/AmeyKamat/MEERA.svg?branch=master)](https://travis-ci.org/AmeyKamat/MEERA) ![Website](https://img.shields.io/website-up-down-green-red/http/www.ameykamat.in%2FMEERA.svg)
 
 Features
 --------
