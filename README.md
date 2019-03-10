@@ -182,7 +182,7 @@ MEERA performs tasks using plugins included. your plugin should be place in [thi
 ```ini
 [NameOfThePlugin]                            # This should match with the name of the executor and dialogue generator class
 intent = intentOnWhichPluginWillBeTriggered
-... any other property you might load in executor or dialogue generator ...
+# ... any other property you might load in executor or dialogue generator ...
 ```
 
 #### executor.py
@@ -211,8 +211,8 @@ If your plugin expects client location, you should first check in `self-location
 
 ```json
 {
-    "latitude": ...
-    "longitude": ...
+    "latitude": 25.0340
+    "longitude": 121.5645
 }
 ```
 
@@ -223,7 +223,7 @@ For a `date` entity, you will find following object in `context.nlpAnalysis.enti
 ```json
 { 
     "date": "yesterday",
-    "parsedDate": ...
+    "parsedDate": "2019-03-10 19:34:15"
 } 
 ```
 
@@ -231,15 +231,15 @@ For `location` entity:
 
 ```json
 {
-    "location": "london",
-    "latitude": ...,
-    "longitude": ...
+    "location": "taipei",
+    "latitude": 25.0340,
+    "longitude": 121.5645
 }
 ```
 
 If you need to access any secrets such as API keys in your executor:
 
-* Add a a variable in `.env` file. Convention is to add 'MEERA_' prefix before any variable. Let's assume you added following entry to `.env` file
+* Add a a variable in `.env` file. Convention is to add "MEERA_' prefix before any variable. Let's assume you added following entry to `.env` file
 
 ```ini
 MEERA_THIRD_PARTY_API_KEY=someinterestingapikeyforsomeinterestingservice
@@ -330,10 +330,10 @@ This message is the first message that client sends after connection, to registe
 
 ```json
 {
-    'type': 'hello',
-    'body': {
-        'name': 'telegram',
-        'client_type': 'telegram_bot'
+    "type": "hello",
+    "body": {
+        "name": "telegram",
+        "client_type": "telegram_bot"
     }
 }
 ```
@@ -346,11 +346,11 @@ This message is received by the server as response to successful registration of
 
 ```json
 {
-    'type': 'registration-success',
-    'body': {
-        'client_id': 'b110bc34-762b-493b-a4af-9298f255844d', 
-        'client_name': 'telegram', 
-        'client_type': 'telegram_bot'
+    "type": "registration-success",
+    "body": {
+        "client_id": "b110bc34-762b-493b-a4af-9298f255844d", 
+        "client_name": "telegram", 
+        "client_type": "telegram_bot"
     }
 }
 ```
@@ -363,11 +363,11 @@ This message is sent by the client to invoke any operation at server.
 
 ```json 
 {
-    'type': 'message', 
-    'context_id': '977ca71c-fbd9-4024-b215-649c45416103', 
-    'body': {
-        'client_id': 'b110bc34-762b-493b-a4af-9298f255844d', 
-        'message': 'Hi'
+    "type": "message", 
+    "context_id": "977ca71c-fbd9-4024-b215-649c45416103", 
+    "body": {
+        "client_id": "b110bc34-762b-493b-a4af-9298f255844d", 
+        "message": "Hi"
     }
 }
 ```
@@ -380,11 +380,11 @@ This message is sent by the server as response to `message` message.
 
 ```json
 {
-    'type': 'reply', 
-    'reply_to': 'afacbdf6-e7ef-4ba2-8d35-88eb71a91ce6', 
-    'body': {
-        'text': 'Hello', 
-        'voice': 'Hello'
+    "type": "reply", 
+    "reply_to": "afacbdf6-e7ef-4ba2-8d35-88eb71a91ce6", 
+    "body": {
+        "text": "Hello", 
+        "voice": "Hello"
     }
 }
 ```
@@ -397,8 +397,8 @@ This message is sent by the server if it needs location of the client.
     
 ```json
 {
-    'type': 'self-location-request', 
-    'reply_to': 'c8cc450f-e134-46a8-a90f-0a711f078d48'
+    "type": "self-location-request", 
+    "reply_to": "c8cc450f-e134-46a8-a90f-0a711f078d48"
 }
 ```
 
@@ -410,12 +410,12 @@ This message is sent by the client with location details as response to `self-lo
 
 ```json
 {
-    'type': 'self-location', 
-    'context_id': 'c8cc450f-e134-46a8-a90f-0a711f078d48', 
-    'body': {
-        'client_id': 'b110bc34-762b-493b-a4af-9298f255844d', 
-        'latitude': 25.0340, 
-        'longitude': 121.5645
+    "type": "self-location", 
+    "context_id": "c8cc450f-e134-46a8-a90f-0a711f078d48", 
+    "body": {
+        "client_id": "b110bc34-762b-493b-a4af-9298f255844d", 
+        "latitude": 25.0340, 
+        "longitude": 121.5645
     }
 }
 ```

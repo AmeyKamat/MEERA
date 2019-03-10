@@ -10,7 +10,7 @@ class ContextManager:
         self.contexts = {}
 
     def get_context(self, context_id):
-        return self.contexts[context_id]
+        return self.contexts.get(context_id)
 
     def create_context(self, request):
         client_id = request["body"]['client_id']
