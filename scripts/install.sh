@@ -32,7 +32,7 @@ pip install -r requirements.txt
 echo
 
 echo Creating nlp/models Directory...
-mkdir ./meera/nlp/models
+mkdir ./src/nlp/models
 echo
 
 echo Creating log Directory

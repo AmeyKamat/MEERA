@@ -295,9 +295,95 @@ Once you have these all files is expected location, update [this plugins.ini fil
 
 ### Communication with Clients
 
-MEERA exposes a WebSocket API for communication with clients. This API consist for 5 different messages which are exchanged as json objects.
+MEERA exposes a WebSocket API for communication with clients. This API consist for 5 different messages which are exchanged as json objects. this api is exposed on `/websoket` endpoint. Following image shows the exchange of messages:
 
-COMING SOON
+Image Coming soon
+
+#### `hello` message
+
+This message is the first message that client sends after connection, to register with server.
+
+##### Message Structure:
+
+    {
+        'type': 'hello',
+        'body': {
+            'name': 'telegram',
+            'client_type': 'telegram_bot'
+        }
+    }
+
+#### `registration-success` message
+
+This message is received by the server as response to successful registration of client.
+
+##### Message Structure:
+    
+    {
+        'type': 'registration-success',
+        'body': {
+            'client_id': 'b110bc34-762b-493b-a4af-9298f255844d', 
+            'client_name': 'telegram', 
+            'client_type': 'telegram_bot'
+        }
+    }
+
+#### `message` message
+
+This message is sent by the client to invoke any operation at server.
+
+##### Message Structure:
+    
+    {
+        'type': 'message', 
+        'context_id': '977ca71c-fbd9-4024-b215-649c45416103', 
+        'body': {
+            'client_id': 'b110bc34-762b-493b-a4af-9298f255844d', 
+            'message': 'Hi'
+        }
+    }
+
+#### `reply` message
+
+This message is sent by the server as response to `message` message.
+
+##### Message Structure:
+    
+    {
+        'type': 'reply', 
+        'reply_to': 'afacbdf6-e7ef-4ba2-8d35-88eb71a91ce6', 
+        'body': {
+            'text': 'Hello', 
+            'voice': 'Hello'
+        }
+    }
+
+#### `self-location-request` message
+
+This message is sent by the server if it needs location of the client.
+
+##### Message Structure:
+    
+    {
+        'type': 'self-location-request', 
+        'reply_to': 'c8cc450f-e134-46a8-a90f-0a711f078d48'
+    }
+
+#### `self-location` message
+
+This message is sent by the client with location details as response to `self-location-request` message.
+
+##### Message Structure:
+    
+    {
+        'type': 'self-location', 
+        'context_id': 'c8cc450f-e134-46a8-a90f-0a711f078d48', 
+        'body': {
+            'client_id': 'b110bc34-762b-493b-a4af-9298f255844d', 
+            'latitude': 25.0340, 
+            'longitude': 121.5645
+        }
+    }
 
 ### Debugging API
 
@@ -310,7 +396,6 @@ MEERA also exposes following REST endpoints for debugging purpose
 ##### Usage
 
     $ curl -sv -H "Accept: application/json" http://localhost:8000/clients | json_pp
-    *   Trying 127.0.0.1...
     * Connected to localhost (127.0.0.1) port 8000 (#0)
     > GET /clients HTTP/1.1
     > Host: localhost:8000
@@ -318,19 +403,19 @@ MEERA also exposes following REST endpoints for debugging purpose
     > Accept: application/json
     > 
     < HTTP/1.1 200 OK
-    < Date: Sun, 03 Mar 2019 14:43:01 GMT
+    < Date: Sun, 10 Mar 2019 12:50:22 GMT
     < Server: circuits.web/3.2
-    < Content-Type: text/html; charset=utf-8
-    < Content-Length: 92
+    < Content-Type: application/json
+    < Content-Length: 113
     < 
-    { [92 bytes data]
+    { [113 bytes data]
     * Connection #0 to host localhost left intact
     [
-       {
-          "name" : "telegram",
-          "type" : "telegram_bot",
-          "id" : "bff7d73b-7f27-4faa-bafb-fcee095d4f5a"
-       }
+        {
+            "client_name" : "telegram",
+            "client_type" : "telegram_bot",
+            "client_id" : "97079591-7bf3-4462-b11f-ac11f659dc00"
+        }
     ]
 
 
@@ -349,21 +434,22 @@ MEERA also exposes following REST endpoints for debugging purpose
     > Accept: application/json
     > 
     < HTTP/1.1 200 OK
-    < Date: Sun, 03 Mar 2019 14:50:49 GMT
+    < Date: Sun, 10 Mar 2019 12:51:53 GMT
     < Server: circuits.web/3.2
-    < Content-Type: text/html; charset=utf-8
-    < Content-Length: 114
+    < Content-Type: application/json
+    < Content-Length: 115
     < 
-    { [114 bytes data]
+    { [115 bytes data]
     * Connection #0 to host localhost left intact
     [
-       {
-          "contexts" : [
-              "9e4aea6d-c790-4b42-a5bb-444fdb8453bc"
-          ],
-          "conversationId" : "ba286c55-cde8-4fb0-b10d-8db57bf9b00a"
-       }
+        {
+            "contexts" : [
+                "977ca71c-fbd9-4024-b215-649c45416103"
+            ],
+            "conversation_id" : "8532fa9f-f8d2-45b5-99e8-c496fb9ed7d2"
+        }
     ]
+
 
 #### GET /context/{contextId}
 
@@ -374,35 +460,34 @@ MEERA also exposes following REST endpoints for debugging purpose
     $ curl -sv -H "Accept: application/json" http://localhost:8000/context/9e4aea6d-c790-4b42-a5bb-444fdb8453bc | json_pp
     *   Trying 127.0.0.1...
     * Connected to localhost (127.0.0.1) port 8000 (#0)
-    > GET /context/9e4aea6d-c790-4b42-a5bb-444fdb8453bc HTTP/1.1
+    > GET /context/977ca71c-fbd9-4024-b215-649c45416103 HTTP/1.1
     > Host: localhost:8000
     > User-Agent: curl/7.47.0
     > Accept: application/json
     > 
     < HTTP/1.1 200 OK
-    < Date: Sun, 03 Mar 2019 14:54:35 GMT
+    < Date: Sun, 10 Mar 2019 12:53:35 GMT
     < Server: circuits.web/3.2
-    < Content-Type: text/html; charset=utf-8
-    < Content-Length: 423
+    < Content-Type: application/json
+    < Content-Length: 331
     < 
-    { [423 bytes data]
+    { [331 bytes data]
     * Connection #0 to host localhost left intact
     {
+        "context_id" : "977ca71c-fbd9-4024-b215-649c45416103",
         "message" : "Hi",
-        "nlpAnalysis" : {
-            "confidence" : 4.53978718724102e-05,
+        "client_id" : "97079591-7bf3-4462-b11f-ac11f659dc00",
+        "nlp_analysis" : {
+            "confidence" : 0.999954581260681,
             "requestType" : "chat",
-            "category" : "Hello!"
+            "category" : "Hello"
         },
-        "contextId" : "9e4aea6d-c790-4b42-a5bb-444fdb8453bc",
-        "conversationId" : "ba286c55-cde8-4fb0-b10d-8db57bf9b00a",
         "interaction" : {
-            "voice" : "Hello!",
-            "text" : "Hello!"
+            "text" : "Hello",
+            "voice" : "Hello"
         },
-        "clientId" : "bff7d73b-7f27-4faa-bafb-fcee095d4f5a"
+        "conversation_id" : "8532fa9f-f8d2-45b5-99e8-c496fb9ed7d2"
     }
-
 
 ### Architecture
 

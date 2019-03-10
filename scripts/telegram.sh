@@ -5,6 +5,6 @@ source venv/bin/activate
 echo
 
 echo Starting Telegram Daemon...
-python3.6 ./meera/interface/telegram_bot/daemon.py
+python3.6 ./src/interface/telegram_bot/daemon.py
 
 deactivate

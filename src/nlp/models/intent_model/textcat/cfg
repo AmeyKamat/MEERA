@@ -1,0 +1,21 @@
+{
+  "deprecation_fixes":{
+    "vectors_name":"spacy_pretrained_vectors"
+  },
+  "labels":[
+    "search-general",
+    "question",
+    "weather",
+    "self-location",
+    "wikipedia",
+    "mail",
+    "time",
+    "joke",
+    "news",
+    "say",
+    "barclaycard-application",
+    "distance",
+    "what-does-the-fox-say"
+  ],
+  "pretrained_vectors":null
+}
