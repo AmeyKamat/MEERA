@@ -1,5 +1,3 @@
-import json
-
 from circuits.web import JSONController
 
 from api.serializer import convert_to_dict, serialize

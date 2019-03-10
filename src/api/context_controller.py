@@ -1,4 +1,3 @@
-import json
 from copy import deepcopy
 
 from circuits.web import JSONController
@@ -17,7 +16,7 @@ class ContextController(JSONController):
         context = deepcopy(self.context_manager.get_context(context_id))
 
         if context is None:
-        	return self.notfound("context does not exist")
+            return self.notfound("context does not exist")
 
         if context.previous_context is not None:
             context.previous_context = context.previous_context.context_id
