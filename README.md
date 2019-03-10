@@ -61,19 +61,21 @@ Once MEERA is installed on your system, you can start using MEERA from command l
 
 #### Supported Commands
 
+```bash
+$ ./meera.sh help
+Usage: ./meera.sh [command [optional parameters...]]
 
-    Usage: ./meera.sh [command [optional parameters...]]
+Supported commands:
 
-    Supported commands:
-
-    clean               : cleans the project directory
-    install             : installs project
-    lint                : checks for compile time errors
-    train [iterations]  : trains ML models. Optional parameter: # of iterations. Default value is 50
-    evaluate            : evaluates ML models
-    test                : runs tests
-    start               : starts the deployment
-    help                : help on supported commands
+clean               : cleans the project directory
+install             : installs project
+lint                : checks for compile time errors
+train [iterations]  : trains ML models. Optional parameter: # of iterations. Default value is 50
+evaluate            : evaluates ML models
+test                : runs tests
+start               : starts the deployment
+help                : help on supported commands
+```
 
 Here is what each of the above commands do:
 
@@ -177,106 +179,123 @@ MEERA performs tasks using plugins included. your plugin should be place in [thi
  
 `plugin.ini` is a property file that describes the plugin. It should have following structure
 
-    [NameOfThePlugin]                            # This should match with the name of the executor and dialogue generator class
-    intent = intentOnWhichPluginWillBeTriggered
-    ... any other property you might load in executor or dialogue generator ...
-
+```ini
+[NameOfThePlugin]                            # This should match with the name of the executor and dialogue generator class
+intent = intentOnWhichPluginWillBeTriggered
+... any other property you might load in executor or dialogue generator ...
+```
 
 #### executor.py
 
 `executor.py` is class where message received by MEERA can be processed.
 
 Following is the basic structure of executor.py
-        
-    # Any modules you want to import
 
-    class NameOfThePlugin(object):                       # This should be same as plugin.ini file
+```python        
+# Any modules you want to import
 
-        def __init__(self, config):
-            super(NameOfThePlugin, self).__init__()
-            self.config = config                         # config object provides all properties from plugin.ini as a dict
+class NameOfThePlugin(object):                       # This should be same as plugin.ini file
 
-        def execute(self, context):
-            # process the context here. All attributes in context will be read only. any changes to context object will not be reflected
-            result = {}
-            # build result object
-            return result
+    def __init__(self, config):
+        super(NameOfThePlugin, self).__init__()
+        self.config = config                         # config object provides all properties from plugin.ini as a dict
+
+    def execute(self, context):
+        # process the context here. All attributes in context will be read only. any changes to context object will not be reflected
+        result = {}
+        # build result object
+        return result
+```
 
 If your plugin expects client location, you should first check in `self-location` key exists in `context.nlpAnalysis.entities` and if not raise `execution.exception.SelfLocationNotFoundException`. If the key exists, you will get following object as value of key `self-location` in `context.nlpAnalysis.entities`:
 
-    {
-        "latitude": ...
-        "longitude": ...
-    }
+```json
+{
+    "latitude": ...
+    "longitude": ...
+}
+```
 
 Also for every human friendly `date` and `location` entity identified, MEERA translates them to absolute date and latitude-longitude pair out-of-the-box respectively.
 
 For a `date` entity, you will find following object in `context.nlpAnalysis.entities`
 
-    { 
-        "date": "yesterday",
-        "parsedDate": ...
-    } 
+```json
+{ 
+    "date": "yesterday",
+    "parsedDate": ...
+} 
+```
 
 For `location` entity:
 
-    {
-        "location": "london",
-        "latitude": ...,
-        "longitude": ...
-    }
+```json
+{
+    "location": "london",
+    "latitude": ...,
+    "longitude": ...
+}
+```
 
 If you need to access any secrets such as API keys in your executor:
 
 * Add a a variable in `.env` file. Convention is to add 'MEERA_' prefix before any variable. Let's assume you added following entry to `.env` file
 
-        MEERA_THIRD_PARTY_API_KEY=someinterestingapikeyforsomeinterestingservice
+```ini
+MEERA_THIRD_PARTY_API_KEY=someinterestingapikeyforsomeinterestingservice
+```
     
 * Add following variable in plugin's `plugin.ini` file
 
-        key_variable = MEERA_THIRD_PARTY_API_KEY
+```ini
+key_variable = MEERA_THIRD_PARTY_API_KEY
+```
 
 * Now in plugin's `executor.py` file:
 
-        import os
-        # Any other modules you want to import
+```python
+import os
+# Any other modules you want to import
 
-        class NameOfThePlugin:                               # This should be same as plugin.ini file
+class NameOfThePlugin:                               # This should be same as plugin.ini file
 
-            def __init__(self, config):
-                self.config = config                         # config object provides all properties from plugin.ini as a dict
+    def __init__(self, config):
+        self.config = config                         # config object provides all properties from plugin.ini as a dict
 
-            def execute(self, context):
+    def execute(self, context):
 
-                keyVariable = self.config['key_variable']
-                key = os.environ[keyVariable]
-                
-                # do something interesting
+        keyVariable = self.config['key_variable']
+        key = os.environ[keyVariable]
+        
+        # do something interesting
 
-                result = {}
-                # build result object
-                return result
+        result = {}
+        # build result object
+        return result
+```
 
 #### dialogue.py
 
 `dialogue.py` defines how you want to define response of MEERA for a plugin. Output of this class is interaction object. Following is basic structure of dialogue.py
 
-    # Any modules you want to import
+```python
+# Any modules you want to import
 
-    class NameOfThePlugin(object):                      # This should be same as plugin.ini file
+class NameOfThePlugin(object):                      # This should be same as plugin.ini file
 
-        def __init__(self, config):
-            super(NameOfThePlugin, self).__init__()
-            self.config = config                        # config object provides all properties from plugin.ini as a dict
+    def __init__(self, config):
+        super(NameOfThePlugin, self).__init__()
+        self.config = config                        # config object provides all properties from plugin.ini as a dict
 
-        def generate(self, result):
-            # extract information from result. Result object is read-only.
+    def generate(self, result):
+        # extract information from result. Result object is read-only.
 
-            return {
-                "text": ...,
-                "voice": ...,
-                "link": ...
-            }
+        return {
+            "text": ...,
+            "voice": ...,
+            "link": ...
+        }
+```
 
 #### plugin.utterance
 
@@ -284,12 +303,16 @@ If you need to access any secrets such as API keys in your executor:
 
 Following is a structure of each record
 
-    sentence|intent[|entity1,start_index,end_index|entity2,start_index,end_index...]
+```
+sentence|intent[|entity1,start_index,end_index|entity2,start_index,end_index...]
+```
 
 For example:
 
-    where am i|self-location
-    how far is mumbai from delhi|distance|source-location,11,17|destination-location,23,28
+```
+where am i|self-location
+how far is mumbai from delhi|distance|source-location,11,17|destination-location,23,28
+```
 
 Once you have these all files is expected location, update [this plugins.ini file](https://github.com/AmeyKamat/MEERA/blob/master/plugins/plugins.ini) for binding the plugin to MEERA. 
 
@@ -305,58 +328,66 @@ This message is the first message that client sends after connection, to registe
 
 ##### Message Structure:
 
-    {
-        'type': 'hello',
-        'body': {
-            'name': 'telegram',
-            'client_type': 'telegram_bot'
-        }
+```json
+{
+    'type': 'hello',
+    'body': {
+        'name': 'telegram',
+        'client_type': 'telegram_bot'
     }
+}
+```
 
 #### `registration-success` message
 
 This message is received by the server as response to successful registration of client.
 
 ##### Message Structure:
-    
-    {
-        'type': 'registration-success',
-        'body': {
-            'client_id': 'b110bc34-762b-493b-a4af-9298f255844d', 
-            'client_name': 'telegram', 
-            'client_type': 'telegram_bot'
-        }
+
+```json
+{
+    'type': 'registration-success',
+    'body': {
+        'client_id': 'b110bc34-762b-493b-a4af-9298f255844d', 
+        'client_name': 'telegram', 
+        'client_type': 'telegram_bot'
     }
+}
+```
 
 #### `message` message
 
 This message is sent by the client to invoke any operation at server.
 
 ##### Message Structure:
-    
-    {
-        'type': 'message', 
-        'context_id': '977ca71c-fbd9-4024-b215-649c45416103', 
-        'body': {
-            'client_id': 'b110bc34-762b-493b-a4af-9298f255844d', 
-            'message': 'Hi'
-        }
+
+```json 
+{
+    'type': 'message', 
+    'context_id': '977ca71c-fbd9-4024-b215-649c45416103', 
+    'body': {
+        'client_id': 'b110bc34-762b-493b-a4af-9298f255844d', 
+        'message': 'Hi'
     }
+}
+```
 
 #### `reply` message
 
 This message is sent by the server as response to `message` message.
 
 ##### Message Structure:
-    
-    {
-        'type': 'reply', 
-        'reply_to': 'afacbdf6-e7ef-4ba2-8d35-88eb71a91ce6', 
-        'body': {
-            'text': 'Hello', 
-            'voice': 'Hello'
-        }
+
+```json
+{
+    'type': 'reply', 
+    'reply_to': 'afacbdf6-e7ef-4ba2-8d35-88eb71a91ce6', 
+    'body': {
+        'text': 'Hello', 
+        'voice': 'Hello'
     }
+}
+```
 
 #### `self-location-request` message
 
@@ -364,26 +395,30 @@ This message is sent by the server if it needs location of the client.
 
 ##### Message Structure:
     
-    {
-        'type': 'self-location-request', 
-        'reply_to': 'c8cc450f-e134-46a8-a90f-0a711f078d48'
-    }
+```json
+{
+    'type': 'self-location-request', 
+    'reply_to': 'c8cc450f-e134-46a8-a90f-0a711f078d48'
+}
+```
 
 #### `self-location` message
 
 This message is sent by the client with location details as response to `self-location-request` message.
 
 ##### Message Structure:
-    
-    {
-        'type': 'self-location', 
-        'context_id': 'c8cc450f-e134-46a8-a90f-0a711f078d48', 
-        'body': {
-            'client_id': 'b110bc34-762b-493b-a4af-9298f255844d', 
-            'latitude': 25.0340, 
-            'longitude': 121.5645
-        }
+
+```json
+{
+    'type': 'self-location', 
+    'context_id': 'c8cc450f-e134-46a8-a90f-0a711f078d48', 
+    'body': {
+        'client_id': 'b110bc34-762b-493b-a4af-9298f255844d', 
+        'latitude': 25.0340, 
+        'longitude': 121.5645
     }
+}
+```
 
 ### Debugging API
 
@@ -395,29 +430,30 @@ MEERA also exposes following REST endpoints for debugging purpose
 
 ##### Usage
 
-    $ curl -sv -H "Accept: application/json" http://localhost:8000/clients | json_pp
-    * Connected to localhost (127.0.0.1) port 8000 (#0)
-    > GET /clients HTTP/1.1
-    > Host: localhost:8000
-    > User-Agent: curl/7.47.0
-    > Accept: application/json
-    > 
-    < HTTP/1.1 200 OK
-    < Date: Sun, 10 Mar 2019 12:50:22 GMT
-    < Server: circuits.web/3.2
-    < Content-Type: application/json
-    < Content-Length: 113
-    < 
-    { [113 bytes data]
-    * Connection #0 to host localhost left intact
-    [
-        {
-            "client_name" : "telegram",
-            "client_type" : "telegram_bot",
-            "client_id" : "97079591-7bf3-4462-b11f-ac11f659dc00"
-        }
-    ]
-
+```bash
+$ curl -sv -H "Accept: application/json" http://localhost:8000/clients | json_pp
+* Connected to localhost (127.0.0.1) port 8000 (#0)
+> GET /clients HTTP/1.1
+> Host: localhost:8000
+> User-Agent: curl/7.47.0
+> Accept: application/json
+> 
+< HTTP/1.1 200 OK
+< Date: Sun, 10 Mar 2019 12:50:22 GMT
+< Server: circuits.web/3.2
+< Content-Type: application/json
+< Content-Length: 113
+< 
+{ [113 bytes data]
+* Connection #0 to host localhost left intact
+[
+    {
+        "client_name" : "telegram",
+        "client_type" : "telegram_bot",
+        "client_id" : "97079591-7bf3-4462-b11f-ac11f659dc00"
+    }
+]
+```
 
 #### GET /conversations
 
@@ -426,30 +462,30 @@ MEERA also exposes following REST endpoints for debugging purpose
 ##### Usage
 
 ```bash
-    $ curl -sv -H "Accept: application/json" http://localhost:8000/conversations | json_pp
-    *   Trying 127.0.0.1...
-    * Connected to localhost (127.0.0.1) port 8000 (#0)
-    > GET /conversations HTTP/1.1
-    > Host: localhost:8000
-    > User-Agent: curl/7.47.0
-    > Accept: application/json
-    > 
-    < HTTP/1.1 200 OK
-    < Date: Sun, 10 Mar 2019 12:51:53 GMT
-    < Server: circuits.web/3.2
-    < Content-Type: application/json
-    < Content-Length: 115
-    < 
-    { [115 bytes data]
-    * Connection #0 to host localhost left intact
-    [
-        {
-            "contexts" : [
-                "977ca71c-fbd9-4024-b215-649c45416103"
-            ],
-            "conversation_id" : "8532fa9f-f8d2-45b5-99e8-c496fb9ed7d2"
-        }
-    ]
+$ curl -sv -H "Accept: application/json" http://localhost:8000/conversations | json_pp
+*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 8000 (#0)
+> GET /conversations HTTP/1.1
+> Host: localhost:8000
+> User-Agent: curl/7.47.0
+> Accept: application/json
+> 
+< HTTP/1.1 200 OK
+< Date: Sun, 10 Mar 2019 12:51:53 GMT
+< Server: circuits.web/3.2
+< Content-Type: application/json
+< Content-Length: 115
+< 
+{ [115 bytes data]
+* Connection #0 to host localhost left intact
+[
+    {
+        "contexts" : [
+            "977ca71c-fbd9-4024-b215-649c45416103"
+        ],
+        "conversation_id" : "8532fa9f-f8d2-45b5-99e8-c496fb9ed7d2"
+    }
+]
 ```
 
 #### GET /context/{contextId}
@@ -458,37 +494,39 @@ MEERA also exposes following REST endpoints for debugging purpose
 
 ##### Usage
 
-    $ curl -sv -H "Accept: application/json" http://localhost:8000/context/9e4aea6d-c790-4b42-a5bb-444fdb8453bc | json_pp
-    *   Trying 127.0.0.1...
-    * Connected to localhost (127.0.0.1) port 8000 (#0)
-    > GET /context/977ca71c-fbd9-4024-b215-649c45416103 HTTP/1.1
-    > Host: localhost:8000
-    > User-Agent: curl/7.47.0
-    > Accept: application/json
-    > 
-    < HTTP/1.1 200 OK
-    < Date: Sun, 10 Mar 2019 12:53:35 GMT
-    < Server: circuits.web/3.2
-    < Content-Type: application/json
-    < Content-Length: 331
-    < 
-    { [331 bytes data]
-    * Connection #0 to host localhost left intact
-    {
-        "context_id" : "977ca71c-fbd9-4024-b215-649c45416103",
-        "message" : "Hi",
-        "client_id" : "97079591-7bf3-4462-b11f-ac11f659dc00",
-        "nlp_analysis" : {
-            "confidence" : 0.999954581260681,
-            "requestType" : "chat",
-            "category" : "Hello"
-        },
-        "interaction" : {
-            "text" : "Hello",
-            "voice" : "Hello"
-        },
-        "conversation_id" : "8532fa9f-f8d2-45b5-99e8-c496fb9ed7d2"
-    }
+```bash
+$ curl -sv -H "Accept: application/json" http://localhost:8000/context/9e4aea6d-c790-4b42-a5bb-444fdb8453bc | json_pp
+*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 8000 (#0)
+> GET /context/977ca71c-fbd9-4024-b215-649c45416103 HTTP/1.1
+> Host: localhost:8000
+> User-Agent: curl/7.47.0
+> Accept: application/json
+> 
+< HTTP/1.1 200 OK
+< Date: Sun, 10 Mar 2019 12:53:35 GMT
+< Server: circuits.web/3.2
+< Content-Type: application/json
+< Content-Length: 331
+< 
+{ [331 bytes data]
+* Connection #0 to host localhost left intact
+{
+    "context_id" : "977ca71c-fbd9-4024-b215-649c45416103",
+    "message" : "Hi",
+    "client_id" : "97079591-7bf3-4462-b11f-ac11f659dc00",
+    "nlp_analysis" : {
+        "confidence" : 0.999954581260681,
+        "requestType" : "chat",
+        "category" : "Hello"
+    },
+    "interaction" : {
+        "text" : "Hello",
+        "voice" : "Hello"
+    },
+    "conversation_id" : "8532fa9f-f8d2-45b5-99e8-c496fb9ed7d2"
+}
+```
 
 ### Architecture
 
