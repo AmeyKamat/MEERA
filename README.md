@@ -211,7 +211,7 @@ If your plugin expects client location, you should first check in `self-location
 
 ```json
 {
-    "latitude": 25.0340
+    "latitude": 25.0340,
     "longitude": 121.5645
 }
 ```
