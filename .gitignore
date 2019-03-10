@@ -6,6 +6,6 @@ venv/
 
 .env
 
-meera/nlp/models/
+src/nlp/models/
 
 log/
