@@ -1,8 +1,11 @@
 __pycache__/
+.pytest_cache/
 *.py[cod]
 *$py.class
 
 venv/
+
+.env
 
 src/nlp/models/
 
