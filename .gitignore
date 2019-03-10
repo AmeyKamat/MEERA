@@ -8,3 +8,5 @@ venv/
 src/nlp/models/
 
 log/
+
+.env
