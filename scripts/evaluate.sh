@@ -5,6 +5,6 @@ source venv/bin/activate
 echo
 
 echo Evaluating models...
-python3.6 ./meera/evaluator.py
+python3.6 ./src/evaluator.py
 
 deactivate

@@ -8,7 +8,7 @@ rm -r venv
 echo
 
 echo removing models folder
-rm -r nlp/models
+rm -r ./src/nlp/models
 
 echo removing __pycache__ folders
 find . -name __pycache__ -exec rm -rf {} \;

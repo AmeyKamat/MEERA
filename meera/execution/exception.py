@@ -1,2 +1,0 @@
-class SelfLocationNotFoundException(Exception):
-    pass	
