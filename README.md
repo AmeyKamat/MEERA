@@ -322,8 +322,6 @@ MEERA exposes a WebSocket API for communication with clients. This API consist f
 
 ![MEERA Message Passing](https://github.com/AmeyKamat/MEERA/raw/master/docs/message_passing.png "MEERA Message Passing")
 
-Image Coming soon
-
 #### `hello` message
 
 This message is the first message that client sends after connection, to register with server.
@@ -552,15 +550,16 @@ Feel free to submit an issue or request an enhancement [here](https://github.com
 
 ### Contribution
 
-This project accepts pull requests from contributors. We usually follow "fork-and-pull" git workflow. If you are fixing an issue or developing an enhancement, please create an issue on [this page](https://github.com/AmeyKamat/MEERA/issues), before creating a pull request, please ensure following check list:
+This project accepts pull requests from contributors. We usually follow "fork-and-pull" git workflow. If you are fixing an issue or developing an enhancement, please create an issue on [this page](https://github.com/AmeyKamat/MEERA/issues), before creating a pull request. As guidelines, please ensure that you check following check list before creating pull request:
 
-- [ ] Lint the project
+- [ ] Lint the project with `./meera.sh lint`
 - [ ] Run the dummy training with `./meera.sh train 1`
-- [ ] Evaluate the model
-- [ ] Run the tests
-- [ ] Deploy the project
-- [ ] Test the project
-- [ ] Ensure that you did not commit `.env` file
+- [ ] Evaluate the model with `./meera.sh evaluate`
+- [ ] Run the tests with `./meera.sh test`
+- [ ] Deploy the project with `./meera.sh start`
+- [ ] Manually test the project
+- [ ] Ensure that you did not commit `.env` file unless required due to the context
+- [ ] Ensure that PR build passes on travis
 - [ ] Ensure that your PR is tagged with the issue as "Bug" or "Enhancement".
 
 This project follows 
