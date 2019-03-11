@@ -40,7 +40,7 @@ BOOTSTRAP_MODULES = {
         Static()
     ],
     "dispatchers": [
-        WebSocketsDispatcher("/websocket")
+        WebSocketsDispatcher("/talk")
     ],
     "circuitComponents": [
         Logger(),

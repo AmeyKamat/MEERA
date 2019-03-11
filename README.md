@@ -318,7 +318,9 @@ Once you have these all files is expected location, update [this plugins.ini fil
 
 ### Communication with Clients
 
-MEERA exposes a WebSocket API for communication with clients. This API consist for 5 different messages which are exchanged as json objects. this api is exposed on `/websoket` endpoint. Following image shows the exchange of messages:
+MEERA exposes a WebSocket API for communication with clients. This API consist for 5 different messages which are exchanged as json objects. this api is exposed on `/talk` endpoint. Following image shows the exchange of messages:
+
+![MEERA Message Passing](https://github.com/AmeyKamat/MEERA/raw/master/docs/message_passing.png "MEERA Message Passing")
 
 Image Coming soon
 
