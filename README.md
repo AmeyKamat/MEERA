@@ -324,7 +324,9 @@ Once you have these all files is expected location, update [this plugins.ini fil
 
 MEERA exposes a WebSocket API for communication with clients. This API consist for 5 different messages which are exchanged as json objects. this api is exposed on `/talk` endpoint. Following image shows the exchange of messages:
 
-![MEERA Message Passing](https://github.com/AmeyKamat/MEERA/raw/master/docs/message_passing.png "MEERA Message Passing")
+<div align="center">
+    <img src="https://github.com/AmeyKamat/MEERA/raw/master/docs/message_passing.png" />
+</div>
 
 #### `hello` message
 
@@ -535,8 +537,10 @@ $ curl -sv -H "Accept: application/json" http://localhost:8000/context/9e4aea6d-
 ### Architecture
 
 MEERA banks on various components that communicate with each other through exchange of events. Following figure shows various components of MEERA interacting with each other.
-     
-![MEERA Architecture](https://github.com/AmeyKamat/MEERA/raw/master/docs/architecture.png "MEERA Architecture")
+
+<div align="center">
+    <img src="https://github.com/AmeyKamat/MEERA/raw/master/docs/architecture.png" />
+</div>
 
 Built with
 ----------
