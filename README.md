@@ -3,7 +3,7 @@ MEERA
 =====
 ![GitHub (pre-)release](https://img.shields.io/github/release-pre/AmeyKamat/MEERA.svg)
 
-<div style="text-align:center">
+<div align="center">
     <img src="https://github.com/AmeyKamat/MEERA/raw/master/docs/logo.png" />
 </div>
 
