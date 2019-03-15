@@ -67,18 +67,21 @@ Once MEERA is installed on your system, you can start using MEERA from command l
 
 ```bash
 $ ./meera.sh help
-Usage: ./meera.sh [command [optional parameters...]]
+./meera.sh [command [optional parameters...]]
 
 Supported commands:
 
-clean               : cleans the project directory
-install             : installs project
-lint                : checks for compile time errors
-train [iterations]  : trains ML models. Optional parameter: # of iterations. Default value is 50
-evaluate            : evaluates ML models
-test                : runs tests
-start               : starts the deployment
-help                : help on supported commands
+clean                                : cleans the project directory
+pre-install                          : installs python, pip and other required binaries for installation
+install                              : installs project
+install-model                        : installs model from download folder
+lint                                 : checks for compile time errors
+train [iterations]                   : trains ML models. Optional parameter: # of iterations. Default value is 50. Trained models are zipped and placed in `download` folder
+evaluate                             : evaluates ML models
+test                                 : runs tests
+deploy [server|telegram-client|all]  : deploys specified component. Optional parameter: application. Default value is 'all'
+help                                 : help on supported commands
+"
 ```
 
 Here is what each of the above commands do:
@@ -87,9 +90,15 @@ Here is what each of the above commands do:
 
   deletes pycache folders, log directory virtual environemnt and generated models. Once you clean the project directory, you will need to repeat installation procedure, before next usage.
 
+* **pre-install*
+  installs libraries required for installation
+
 * **install**
   
   sets up virtual environment and installs dependencies.
+
+* **install-model**
+  installs model from `download` folder into `src/nlp/models`.
 
 * **lint**
   
@@ -107,9 +116,9 @@ Here is what each of the above commands do:
   
   runs tests in `/tests` folder.
 
-* **start**
+* **deploy [server|telegram-client|all]**
 
-  deploys MEERA and starts telegram daemon.
+  deploys server, telegram client or both based on parameter passed. If no parameter is passed, default value is `all`
 
 #### Enabling Bash Autocomplete for MEERA
 
@@ -560,15 +569,12 @@ Feel free to submit an issue or request an enhancement [here](https://github.com
 
 This project accepts pull requests from contributors. We usually follow "fork-and-pull" git workflow. If you are fixing an issue or developing an enhancement, please create an issue on [this page](https://github.com/AmeyKamat/MEERA/issues), before creating a pull request. As guidelines, please ensure that you check following check list before creating pull request:
 
-- [ ] Lint the project with `./meera.sh lint`
-- [ ] Run the dummy training with `./meera.sh train 1`
-- [ ] Evaluate the model with `./meera.sh evaluate`
-- [ ] Run the tests with `./meera.sh test`
-- [ ] Deploy the project with `./meera.sh start`
-- [ ] Manually test the project
-- [ ] Ensure that you did not commit `.env` file unless required due to the context
-- [ ] Ensure that PR build passes on travis
-- [ ] Ensure that your PR is tagged with the issue as "Bug" or "Enhancement".
+- [ ] Travis build passes for my request
+- [ ] I have have made required changes in documentation.
+- [ ] I have read the **CONTRIBUTION** section of README.
+- [ ] I have manually tested the changes
+- [ ] I have not commited `.env` file (or I have committd it due to the context of PR)
+- [ ] My PR is tagged with the issue as "Bug" or "Enhancement".
 
 This project follows 
 

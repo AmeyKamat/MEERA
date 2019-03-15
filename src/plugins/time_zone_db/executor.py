@@ -38,11 +38,12 @@ class TimeZoneDBPlugin:
         required_date_format = self.config["required_date_format"]
 
         result = {}
+        print(response["formatted"])
         result["datetime"] = datetime.strptime(
             response["formatted"],
             received_date_format).strftime(required_date_format)
 
-        location = entities["location"]["location"]
+        location = entities["location"]["location"] if entities.get("location") is not None
         result["location"] = location if 'location' in entities else response["zoneName"]
 
         return result
