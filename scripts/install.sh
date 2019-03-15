@@ -39,6 +39,10 @@ echo Creating log Directory
 mkdir log
 chmod +w log
 
+echo Creating download Directory
+mkdir download
+chmod +w download
+
 echo Deactivating Virtual Environment...
 deactivate
 echo

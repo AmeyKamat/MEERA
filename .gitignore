@@ -9,4 +9,6 @@ src/nlp/models/
 
 log/
 
+download/
+
 .env

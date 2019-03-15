@@ -5,17 +5,19 @@ usage_message="
 
 Supported commands:
 
-clean               : cleans the project directory
-install             : installs project
-lint                : checks for compile time errors
-train [iterations]  : trains ML models. Optional parameter: # of iterations. Default value is 50
-evaluate            : evaluates ML models
-test                : runs tests
-start               : starts the deployment
-help                : help on supported commands
+clean                                : cleans the project directory
+install                              : installs project
+install-model                        : installs model from download folder
+lint                                 : checks for compile time errors
+train [iterations]                   : trains ML models. Optional parameter: # of iterations. Default value is 50
+evaluate                             : evaluates ML models
+test                                 : runs tests
+deploy [server|telegram-client|all]  : deploys specified component. Optional parameter: # of iterations. Default value is 'all'
+help                                 : help on supported commands
 "
 
 iterations=50
+application=
 
 invalid_command_message="Invalid Command: '$1'
 Try \"./meera.sh help\" to list all supported commands.
@@ -31,9 +33,13 @@ if [ $# -eq 0 ]; then
 fi
 
 
-if [ $# -eq 2 ]; then
-	echo $2
+if [ $# = 2 ] && [ "$1" = 'train' ]; then
 	iterations=$2
+	echo $iterations
+fi
+
+if [ $# = 2 ] && [ "$1" = 'deploy' ]; then
+	application=$2
 fi
 
 chmod +x scripts/*.sh
@@ -45,14 +51,16 @@ set +a
 
 case $1 in
 
-'clean')		./scripts/clean.sh;;
-'install')		./scripts/install.sh;;
-'lint')			./scripts/lint.sh;;
-'train')		./scripts/train.sh "$iterations";;
-'evaluate')		./scripts/evaluate.sh;;
-'test')			./scripts/test.sh;;
-'start')		./scripts/start.sh;;
-'help')			echo "$usage_message";;
-*)				echo "$invalid_command_message";;
+'clean')		 ./scripts/clean.sh;;
+'pre-install')   ./scripts/pre-install.sh;;
+'install')		 ./scripts/install.sh;;
+'lint')			 ./scripts/lint.sh;;
+'train')		 ./scripts/train.sh "$iterations";;
+'install-model') ./scripts/install-model.sh;;
+'evaluate')		 ./scripts/evaluate.sh;;
+'test')			 ./scripts/test.sh;;
+'deploy')        ./scripts/deploy.sh "$application";;
+'help')			 echo "$usage_message";;
+*)				 echo "$invalid_command_message";;
 
 esac

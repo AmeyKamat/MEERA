@@ -1,5 +1,5 @@
 #!/bin/bash
 
-x-terminal-emulator -e scripts/deploy.sh
+x-terminal-emulator -e scripts/deploy.sh server
 sleep 5
-x-terminal-emulator -e scripts/telegram.sh
+x-terminal-emulator -e scripts/deploy.sh telegram-client
