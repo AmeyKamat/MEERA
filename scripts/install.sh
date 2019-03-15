@@ -47,5 +47,9 @@ echo Deactivating Virtual Environment...
 deactivate
 echo
 
+echo Excluding .env file from git tracking...
+git update-index --assume-unchanged .env
+echo
+
 echo Installation Complete.
 echo
