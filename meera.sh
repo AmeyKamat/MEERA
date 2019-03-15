@@ -10,11 +10,11 @@ pre-install                          : installs python, pip and other required b
 install                              : installs project
 install-model                        : installs model from download folder
 lint                                 : checks for compile time errors
-train [iterations]                   : trains ML models. Optional parameter: # of iterations. Default value is 50. Trained models are zipped and placed in `download` folder
+train [iterations]                   : trains ML models. Optional parameter: # of iterations. Default value is 50. Trained models are zipped and placed in download folder
 evaluate                             : evaluates ML models
 test                                 : runs tests
 deploy [server|telegram-client|all]  : deploys specified component. Optional parameter: application. Default value is 'all'
-help                                 : help on supported commands                                : help on supported commands
+help                                 : help on supported commands
 "
 
 iterations=50
