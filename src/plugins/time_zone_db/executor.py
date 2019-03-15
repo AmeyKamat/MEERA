@@ -42,7 +42,11 @@ class TimeZoneDBPlugin:
             response["formatted"],
             received_date_format).strftime(required_date_format)
 
-        location = entities["location"]["location"]
+        if entities.get("location") is not None:
+            location = entities["location"]["location"]
+        else:
+            location = None
+
         result["location"] = location if 'location' in entities else response["zoneName"]
 
         return result

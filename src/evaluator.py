@@ -17,7 +17,6 @@ CONFIG = get_config()
 # analyse intents
 
 def get_intent_model_accuracy(test_data):
-    print(os.path.join(ABS_MODELS_DIR, CONFIG['models']['intent']))
     model = load(os.path.join(ABS_MODELS_DIR, CONFIG['models']['intent']))
 
     correct_predictions = 0
