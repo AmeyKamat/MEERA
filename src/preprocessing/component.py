@@ -15,11 +15,16 @@ class PreprocessingComponent(Component):
 
     @handler("SkillRequestedEvent")
     def preprocess(self, context):
-        entities = context.nlp_analysis.entities
-        for key in entities.keys():
-            value = entities[key]
-            preprocessor = self.prepocessors.get(key)
-            if preprocessor is not None:
-                entities[key] = preprocessor.preprocess(value)
-        context.nlp_analysis.entities = entities
+        try:
+            entities = context.nlp_analysis.entities
+            for key in entities.keys():
+                value = entities[key]
+                preprocessor = self.prepocessors.get(key)
+                if preprocessor is not None:
+                    entities[key] = preprocessor.preprocess(value)
+            context.nlp_analysis.entities = entities
+        # pylint: disable=broad-except
+        except Exception:
+            pass
+
         self.fire(EntitiesPreprocessedEvent(context))

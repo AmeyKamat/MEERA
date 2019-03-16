@@ -35,3 +35,9 @@ class ClientRegisteredEvent(Event):
 
 class SelfLocationReceivedEvent(Event):
     """event"""
+
+class PluginFailedEvent(Event):
+    """event"""
+
+class UserUnauthorizedEvent(Event):
+    """event"""
