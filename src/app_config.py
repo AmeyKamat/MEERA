@@ -18,6 +18,7 @@ from nlp.component import NLPAnalysisComponent
 from preprocessing.component import PreprocessingComponent
 from execution.component import TasKExecutorComponent
 from interaction.component import InteractionComponent
+from logger.component import LoggingComponent
 
 # pylint: disable=invalid-name
 clientManager = ClientManager()
@@ -26,6 +27,7 @@ contextManager = ContextManager()
 
 BOOTSTRAP_MODULES = {
     "appComponents": [
+        LoggingComponent(),
         StatusController(contextManager, clientManager),
         ContextComponent(contextManager),
         NLPAnalysisComponent(),

@@ -48,15 +48,17 @@ To install MEERA:
 
 #### Environment variables in .env file
 
-| ENV Variable                | Description            | More Details                                                         |
-|:----------------------------|:-----------------------|:---------------------------------------------------------------------|
-| `MEERA_GOOGLE_API_KEY`      | Google API Key         | [link](https://developers.google.com/places/web-service/get-api-key) |
-| `MEERA_NEWSAPI_API_KEY`     | NewsAPI API key        | [link](https://newsapi.org/register)                                 |
-| `MEERA_OPENWEATHER_API_KEY` | OpenWeatherAPI API key | [link](https://openweathermap.org/appid#get)                         |
-| `MEERA_TIMEZONEDB_API_KEY`  | TimeZoneDB API key     | [link](https://timezonedb.com/api)                                   |
-| `MEERA_MAILGUN_API_KEY`     | Mailgun API key        | [link](https://documentation.mailgun.com/en/latest/index.html)       |
-| `MEERA_MAILGUN_DOMAIN`      | Mailgun domain         | [link](https://documentation.mailgun.com/en/latest/index.html)       |
-| `MEERA_TELEGRAM_BOT_TOKEN`  | Telegram bot token     | [link](https://core.telegram.org/bots#creating-a-new-bot)            |
+| ENV Variable                      | Description                       | More Details                                                         |
+|:----------------------------------|:----------------------------------|:---------------------------------------------------------------------|
+| `MEERA_GOOGLE_API_KEY`            | Google API Key                    | [link](https://developers.google.com/places/web-service/get-api-key) |
+| `MEERA_NEWSAPI_API_KEY`           | NewsAPI API key                   | [link](https://newsapi.org/register)                                 |
+| `MEERA_OPENWEATHER_API_KEY`       | OpenWeatherAPI API key            | [link](https://openweathermap.org/appid#get)                         |
+| `MEERA_TIMEZONEDB_API_KEY`        | TimeZoneDB API key                | [link](https://timezonedb.com/api)                                   |
+| `MEERA_MAILGUN_API_KEY`           | Mailgun API key                   | [link](https://documentation.mailgun.com/en/latest/index.html)       |
+| `MEERA_MAILGUN_DOMAIN`            | Mailgun domain                    | [link](https://documentation.mailgun.com/en/latest/index.html)       |
+| `MEERA_TELEGRAM_BOT_TOKEN`        | Telegram bot token                | [link](https://core.telegram.org/bots#creating-a-new-bot)            |
+| `MEERA_TELEGRAM_AUTHORIZED_USERS` | List of telegram authorized users |                                                                      |
+
 
 
 ### Usage
@@ -374,6 +376,8 @@ This message is received by the server as response to successful registration of
 
 This message is sent by the client to invoke any operation at server.
 
+*`is_user_authorized` is boolean field that is used to allow user to use chargeable plugins*
+
 ##### Message Structure:
 
 ```json 
@@ -382,6 +386,7 @@ This message is sent by the client to invoke any operation at server.
     "context_id": "977ca71c-fbd9-4024-b215-649c45416103", 
     "body": {
         "client_id": "b110bc34-762b-493b-a4af-9298f255844d", 
+        "is_user_authorized": true
         "message": "Hi"
     }
 }

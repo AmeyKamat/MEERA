@@ -14,6 +14,7 @@ class Context:
     interaction = {}
     result = {}
     status = "INITIALISED"
+    is_user_authorized = False
 
     def __init__(self, client_id, message):
         self.context_id = str(uuid.uuid4())

@@ -40,13 +40,14 @@ def get_hello_request():
         }
     })
 
-def get_message_request(client_id, context_id, message):
+def get_message_request(client_id, context_id, message, is_user_authorized):
     return json.dumps({
         "type": "message",
         "context_id": context_id,
         "body": {
             "client_id": client_id,
-            "message": message
+            "message": message,
+            "is_user_authorized": is_user_authorized
         }
     })
 
@@ -61,14 +62,24 @@ def get_location_request(client_id, context_id, location):
         }
     })
 
+def is_authorized(username):
+    return username in AUTHORIZED_USERS
+
 async def say_hello(websocket):
     await websocket.send(get_hello_request())
     response = websocket.recv()
     response = json.loads(await asyncio.wait_for(response, CLIENT_TIMEOUT))
     return response['body']
 
-async def send_message(websocket, client, context_id, message):
-    await websocket.send(get_message_request(client["client_id"], context_id, message))
+async def send_message(websocket, client, context_id, message, is_user_authorized):
+    await websocket.send(
+        get_message_request(
+            client["client_id"],
+            context_id,
+            message,
+            is_user_authorized
+        )
+    )
     response = websocket.recv()
     response = json.loads(await asyncio.wait_for(response, CLIENT_TIMEOUT))
     return response
@@ -101,13 +112,15 @@ async def start():
                     try:
                         for update in bot.get_updates(offset=update_id, timeout=0):
                             update_id = update.update_id + 1
+                            is_user_authorized = is_authorized(update.effective_user.username)
                             if update.message and update.message.text:
                                 try:
                                     response = await send_message(
                                         websocket,
                                         client,
                                         current_context_id,
-                                        update.message.text)
+                                        update.message.text,
+                                        is_user_authorized)
 
                                     current_context_id = response.get("reply_to")
                                     switcher[response["type"]](bot, update, response)
@@ -145,6 +158,7 @@ CONFIG = get_config()
 TOKEN = os.environ[CONFIG['telegram']['token_variable']]
 MEERA_URL = CONFIG["meera"]["url"]
 CLIENT_TIMEOUT = 5
+AUTHORIZED_USERS = os.environ[CONFIG["telegram"]["authorized-users-variable"]].split(":")
 
 def main():
     asyncio.get_event_loop().run_until_complete(start())

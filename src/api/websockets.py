@@ -74,6 +74,7 @@ class WSGateway(Component):
 
     # pylint: disable=unused-argument
     def message(self, sock, parsed_request):
+        print(parsed_request)
         if self.client_manager.validate_client(parsed_request["body"]["client_id"]):
             self.fire(MessageReceivedEvent(parsed_request))
 

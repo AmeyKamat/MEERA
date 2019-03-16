@@ -5,7 +5,7 @@ from copy import deepcopy
 
 from circuits import Component, handler
 
-from events import DialogueGeneratedEvent, NoPluginsAvailableEvent
+from events import DialogueGeneratedEvent, NoPluginsAvailableEvent, PluginFailedEvent
 from definitions import ABS_PLUGINS_DIR, PLUGINS_DIR
 from interaction.chat_interaction_manager import ChatInteractionManager
 
@@ -31,7 +31,27 @@ class InteractionComponent(Component):
 
     @handler("ChatRequestedEvent")
     def generate_chat(self, context):
-        context.interaction = self.chat_interaction_manager.generate(context.nlp_analysis)
+        try:
+            context.interaction = self.chat_interaction_manager.generate(context.nlp_analysis)
+            self.fire(DialogueGeneratedEvent(context))
+        # pylint: disable=broad-except
+        except Exception:
+            self.fire(PluginFailedEvent(context))
+
+    @handler("UserUnauthorizedEvent")
+    def user_unauthorized(self, context):
+        context.interaction = {
+            'text': 'You are unauthorized to use this service',
+            'voice': 'You are unauthorized to use this service'
+        }
+        self.fire(DialogueGeneratedEvent(context))
+
+    @handler("PluginFailedEvent")
+    def plugin_failed(self, context):
+        context.interaction = {
+            'text': 'I don\'t know how to do that',
+            'voice': 'I don\'t know how to do that'
+        }
         self.fire(DialogueGeneratedEvent(context))
 
     def get_plugins(self):

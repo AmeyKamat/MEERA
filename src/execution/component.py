@@ -5,7 +5,7 @@ from configparser import ConfigParser
 
 from circuits import Component, handler
 
-from events import TaskExecutedEvent, SelfLocationRequiredEvent, NoPluginsAvailableEvent
+from events import TaskExecutedEvent, SelfLocationRequiredEvent, PluginFailedEvent
 from definitions import ABS_PLUGINS_DIR, PLUGINS_DIR
 from execution.exception import SelfLocationNotFoundException
 
@@ -32,8 +32,10 @@ class TasKExecutorComponent(Component):
                 self.fire(TaskExecutedEvent(context))
             except SelfLocationNotFoundException:
                 self.fire(SelfLocationRequiredEvent(context))
+            except Exception:                                        # pylint: disable=broad-except
+                self.fire(PluginFailedEvent(context))
         else:
-            self.fire(NoPluginsAvailableEvent(context))
+            self.fire(PluginFailedEvent(context))
 
     def get_plugins(self):
         installed_plugins = [

@@ -11,6 +11,7 @@ class ContextComponent(Component):
     @handler("MessageReceivedEvent")
     def record_context(self, request):
         context = self.context_manager.create_context(request)
+        context.is_user_authorized = request["body"]["is_user_authorized"]
         print("Context created: " + str(context.context_id))
         self.fire(ContextCreatedEvent(context))
 
