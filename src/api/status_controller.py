@@ -29,7 +29,7 @@ class StatusController(JSONController):
 def get_version():
     return str(
         subprocess.run(
-            ['git', 'describe', '--tags', '--abbrev=0'], 
+            ['git', 'describe', '--tags', '--abbrev=0'],
             stdout=subprocess.PIPE
         ).stdout.decode("utf-8")
     ).split("\n")[0]
