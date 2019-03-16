@@ -29,3 +29,6 @@ pylint==2.3.0
 
 # testing
 pytest==4.3.0
+
+# system health
+psutil==5.6.1
