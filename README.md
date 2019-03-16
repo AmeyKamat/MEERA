@@ -90,7 +90,7 @@ Here is what each of the above commands do:
 
   deletes pycache folders, log directory virtual environemnt and generated models. Once you clean the project directory, you will need to repeat installation procedure, before next usage.
 
-* **pre-install*
+* **pre-install**
   installs libraries required for installation
 
 * **install**
