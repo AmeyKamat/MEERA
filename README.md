@@ -439,6 +439,40 @@ This message is sent by the client with location details as response to `self-lo
 
 MEERA also exposes following REST endpoints for debugging purpose
 
+#### GET /status
+
+`/status` endpoint shows server details and health.
+
+##### Usage
+
+```bash
+$ curl -sv -H "Accept: application/json" http://localhost:8000/status | json_pp
+*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 8000 (#0)
+> GET /status HTTP/1.1
+> Host: localhost:8000
+> User-Agent: curl/7.47.0
+> Accept: application/json
+> 
+< HTTP/1.1 200 OK
+< Date: Sat, 16 Mar 2019 07:13:29 GMT
+< Server: circuits.web/3.2
+< Content-Type: application/json
+< Content-Length: 179
+< 
+{ [179 bytes data]
+* Connection #0 to host localhost left intact
+{
+   "release_version" : "v0.5.0-alpha",
+   "conversation_handled" : 0,
+   "cpu_utilization" : 13.3,
+   "status" : "UP",
+   "requests_received" : 0,
+   "memory_utilization" : 28.6,
+   "registered_clients" : 0
+}
+```
+
 #### GET /clients
 
 `/clients` endpoint displays all the clients registered with MEERA.
