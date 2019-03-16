@@ -12,6 +12,9 @@ class ContextManager:
     def get_context(self, context_id):
         return self.contexts.get(context_id)
 
+    def get_contexts(self):
+        return deepcopy(self.contexts)
+
     def create_context(self, request):
         client_id = request["body"]['client_id']
         message = request["body"]['message']

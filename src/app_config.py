@@ -6,6 +6,7 @@ from api.websockets import WSGateway
 from api.client_controller import ClientController
 from api.context_controller import ContextController
 from api.conversation_controller import ConversationController
+from api.status_controller import StatusController
 
 from interface.web_app.root_controller import Root
 
@@ -25,6 +26,7 @@ contextManager = ContextManager()
 
 BOOTSTRAP_MODULES = {
     "appComponents": [
+        StatusController(contextManager, clientManager),
         ContextComponent(contextManager),
         NLPAnalysisComponent(),
         PreprocessingComponent(),
