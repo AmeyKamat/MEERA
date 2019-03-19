@@ -1,6 +1,8 @@
 class NLPAnalysis:
-    requestType = ""
+    request_type = ""
     intent = ""
     category = ""
-    confidence = 0.0
+    request_type_confidence = 0.0
+    intent_confidence = 0.0
+    chat_category_confidence = 0.0
     entities = {}

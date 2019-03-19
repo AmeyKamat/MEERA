@@ -11,3 +11,4 @@ what is the pressure here|weather
 what is the weather in new york|weather|location,23,31
 how is weather in Panaji|weather|location,18,24
 what is the humidity outside|weather
+How is the weather in goa?|weather|location,22,25

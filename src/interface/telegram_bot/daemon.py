@@ -148,6 +148,10 @@ async def start():
                         print(update)
         except telegram.error.Unauthorized:
             pass
+        except websockets.exceptions.ConnectionClosed:
+            pass
+        except ConnectionRefusedError:
+            pass
 
 def get_config():
     config = ConfigParser()

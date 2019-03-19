@@ -10,3 +10,4 @@ What is the distance between Boston and this place|distance|source-location,29,3
 How far is Jodhpur|distance|destination-location,11,18
 How far is pune from mumbai|distance|source-location,21,27|destination-location,11,15
 What is the distance between Agra and Patna|distance|source-location,29,33|destination-location,38,43
+How far is Mumbai?|distance|destination-location,11,17
