@@ -549,37 +549,40 @@ $ curl -sv -H "Accept: application/json" http://localhost:8000/conversations | j
 ##### Usage
 
 ```bash
-$ curl -sv -H "Accept: application/json" http://localhost:8000/context/9e4aea6d-c790-4b42-a5bb-444fdb8453bc | json_pp
+$ curl -sv -H "Accept: application/json" http://localhost:8000/context/70c80f37-8b01-4e74-9c4c-6563f1b84103 | json_pp
 *   Trying 127.0.0.1...
 * Connected to localhost (127.0.0.1) port 8000 (#0)
-> GET /context/977ca71c-fbd9-4024-b215-649c45416103 HTTP/1.1
+> GET /context/70c80f37-8b01-4e74-9c4c-6563f1b84103 HTTP/1.1
 > Host: localhost:8000
 > User-Agent: curl/7.47.0
 > Accept: application/json
 > 
 < HTTP/1.1 200 OK
-< Date: Sun, 10 Mar 2019 12:53:35 GMT
+< Date: Tue, 19 Mar 2019 16:30:34 GMT
 < Server: circuits.web/3.2
 < Content-Type: application/json
-< Content-Length: 331
+< Content-Length: 425
 < 
-{ [331 bytes data]
+{ [425 bytes data]
 * Connection #0 to host localhost left intact
 {
-    "context_id" : "977ca71c-fbd9-4024-b215-649c45416103",
-    "message" : "Hi",
-    "client_id" : "97079591-7bf3-4462-b11f-ac11f659dc00",
-    "nlp_analysis" : {
-        "confidence" : 0.999954581260681,
-        "requestType" : "chat",
-        "category" : "Hello"
-    },
-    "interaction" : {
-        "text" : "Hello",
-        "voice" : "Hello"
-    },
-    "conversation_id" : "8532fa9f-f8d2-45b5-99e8-c496fb9ed7d2"
+   "client_id" : "fd60cec4-9c08-427d-8d25-81e8ca6cc860",
+   "context_id" : "70c80f37-8b01-4e74-9c4c-6563f1b84103",
+   "is_user_authorized" : true,
+   "nlp_analysis" : {
+      "chat_category" : "Hello",
+      "request_type_confidence" : 0.99346113204956,
+      "chat_category_confidence" : 0.999954581260681,
+      "requestType" : "chat"
+   },
+   "message" : "Hi",
+   "interaction" : {
+      "text" : "Hello",
+      "voice" : "Hello"
+   },
+   "conversation_id" : "fafda5af-686d-403e-9d87-dd65ec51ad20"
 }
+
 ```
 
 ### Architecture
