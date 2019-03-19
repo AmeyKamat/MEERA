@@ -1,0 +1,2 @@
+class NLPConfidenceLowException(Exception):
+    pass

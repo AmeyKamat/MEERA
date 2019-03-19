@@ -54,6 +54,14 @@ class InteractionComponent(Component):
         }
         self.fire(DialogueGeneratedEvent(context))
 
+    @handler("NLPConfidenceLowEvent")
+    def confidence_low(self, context):
+        context.interaction = {
+            'text': 'I did not understand that',
+            'voice': 'I did not understand that'
+        }
+        self.fire(DialogueGeneratedEvent(context))
+
     def get_plugins(self):
         installed_plugins = [
             f.name for f in os.scandir(ABS_PLUGINS_DIR)
