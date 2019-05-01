@@ -11,6 +11,7 @@ python3.6 ./src/trainer.py  $1
 echo Copying model to download folder...
 curr=$(pwd)
 cd ./src/nlp/models
+cp ../../../download/models.tar.gz ../../../download/models_temp.tar.gz
 tar -zcvf ../../../download/models.tar.gz .
 cd $pwd
 
