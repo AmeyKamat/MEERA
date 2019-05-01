@@ -83,7 +83,6 @@ evaluate                             : evaluates ML models
 test                                 : runs tests
 deploy [server|telegram-client|all]  : deploys specified component. Optional parameter: application. Default value is 'all'
 help                                 : help on supported commands
-"
 ```
 
 Here is what each of the above commands do:
@@ -93,6 +92,7 @@ Here is what each of the above commands do:
   deletes pycache folders, log directory virtual environemnt and generated models. Once you clean the project directory, you will need to repeat installation procedure, before next usage.
 
 * **pre-install**
+
   installs libraries required for installation
 
 * **install**
