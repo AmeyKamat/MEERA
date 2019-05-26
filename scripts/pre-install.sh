@@ -2,7 +2,7 @@
 
 apt update
 
-add-apt-repository ppa:deadsnakes/ppa
+add-apt-repository ppa:deadsnakes/ppa -y
 apt update
 
 apt install git
