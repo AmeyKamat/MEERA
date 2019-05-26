@@ -98,15 +98,15 @@ def main():
         )
     )
 
-    #entity_traning_thread.start()
-    #intent_training_thread.start()
+    entity_traning_thread.start()
+    intent_training_thread.start()
     chat_training_thread.start()
-    #request_type_training_thread.start()
+    request_type_training_thread.start()
 
-    #intent_training_thread.join()
+    intent_training_thread.join()
     chat_training_thread.join()
-    #request_type_training_thread.join()
-    #entity_traning_thread.join()
+    request_type_training_thread.join()
+    entity_traning_thread.join()
 
 if __name__ == '__main__':
     main()
