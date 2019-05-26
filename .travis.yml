@@ -14,3 +14,4 @@ script:
   - ./meera.sh test
   after_script:
   - ./meera.sh clean
+  - echo "Build Complete"
