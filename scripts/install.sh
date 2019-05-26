@@ -17,6 +17,8 @@ echo
 
 PYTHON_BINARY=($(which python3.6))
 
+echo $PYTHON_BINARY
+
 echo Creating Virtual Environment...
 echo pwd: `pwd`
 virtualenv -p $PYTHON_BINARY venv
