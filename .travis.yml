@@ -2,8 +2,11 @@ dist: xenial
 language: python
 python:
   - "3.6"
-install:
+before_install:
+  - alias python3.6=python
+  - source ~/.bashrc
   - chmod +x ./meera.sh
+install:
   - sudo ./meera.sh install
   - ./meera.sh train 5
   - ./meera.sh install-model
