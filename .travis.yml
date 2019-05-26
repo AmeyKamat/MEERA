@@ -12,5 +12,5 @@ script:
   - ./meera.sh lint
   - ./meera.sh evaluate
   - ./meera.sh test
-  after_script:
+after_script:
   - ./meera.sh clean
