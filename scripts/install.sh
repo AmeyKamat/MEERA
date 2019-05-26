@@ -51,5 +51,13 @@ echo Excluding .env file from git tracking...
 git update-index --assume-unchanged .env
 echo
 
+if [ `id -u` == "0" ]; then
+	mv ./scripts/autocomplete.sh /etc/bash_completion.d/autocomplete.sh
+	echo "Configured autocomplete."
+else
+	echo Skipping autocomplete installation: `whoami` is not root.
+	echo
+fi
+
 echo Installation Complete.
 echo
