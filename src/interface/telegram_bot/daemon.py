@@ -138,20 +138,20 @@ async def start():
                                     switcher[response["type"]](bot, update, response)
                                 except asyncio.TimeoutError:
                                     print(update.message.location)
-                    except telegram.error.TimedOut:
-                        print("timeout")
+                    except telegram.error.TimedOut as exception:
+                        print(str(exception))
                     except telegram.error.Unauthorized:
                         print("Bot Blocked by {} {}: {}".format(
                             update.effective_user.first_name,
                             update.effective_user.last_name,
                             update.effective_user.username))
                         print(update)
-        except telegram.error.Unauthorized:
-            pass
-        except websockets.exceptions.ConnectionClosed:
-            pass
-        except ConnectionRefusedError:
-            pass
+        except (
+                telegram.error.Unauthorized,
+                websockets.exceptions.ConnectionClosed,
+                ConnectionRefusedError,
+                telegram.error.NetworkError) as exception:
+            print(str(exception))
 
 def get_config():
     config = ConfigParser()
