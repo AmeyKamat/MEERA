@@ -15,7 +15,7 @@ echo
 echo virtualenv: `virtualenv --version`
 echo
 
-PYTHON_BINARY=`which python3.6`
+PYTHON_BINARY=($(which python3.6))
 
 echo Creating Virtual Environment...
 echo pwd: `pwd`
