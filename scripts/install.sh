@@ -38,10 +38,12 @@ echo
 echo Creating log Directory
 mkdir log
 chmod +w log
+echo
 
 echo Creating download Directory
 mkdir download
 chmod +w download
+echo
 
 echo Deactivating Virtual Environment...
 deactivate
@@ -54,6 +56,7 @@ echo
 if [ `id -u` == "0" ]; then
 	mv ./scripts/autocomplete.sh /etc/bash_completion.d/autocomplete.sh
 	echo "Configured autocomplete."
+	echo
 else
 	echo Skipping autocomplete installation: `whoami` is not root.
 	echo
