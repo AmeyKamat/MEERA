@@ -7,8 +7,8 @@ before_install:
   - chmod +x ./meera.sh
 install:
   - sudo -H ./meera.sh install
-  - ./meera.sh train 5
-  - ./meera.sh install-model
+  - sudo ./meera.sh train 5
+  - sudo ./meera.sh install-model
 script:
   - ./meera.sh lint
   - ./meera.sh evaluate
