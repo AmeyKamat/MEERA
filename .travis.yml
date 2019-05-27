@@ -3,8 +3,8 @@ language: python
 python:
   - "3.6"
 before_install:
-  - sudo ./meera.sh pre-install
   - chmod +x ./meera.sh
+  - sudo ./meera.sh pre-install
 install:
   - sudo -H ./meera.sh install
   - sudo ./meera.sh train 5
@@ -14,4 +14,4 @@ script:
   - ./meera.sh evaluate
   - ./meera.sh test
 after_script:
-  - ./meera.sh clean
+  - sudo ./meera.sh clean
