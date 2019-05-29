@@ -53,6 +53,16 @@ IPurple='\033[0;95m'      # Purple
 ICyan='\033[0;96m'        # Cyan
 IWhite='\033[0;97m'       # White
 
+# Italics
+ItBlack='\033[3;90m'       # Black
+ItRed='\033[3;91m'         # Red
+ItGreen='\033[3;92m'       # Green
+ItYellow='\033[3;93m'      # Yellow
+ItBlue='\033[3;94m'        # Blue
+ItPurple='\033[3;95m'      # Purple
+ItCyan='\033[3;96m'        # Cyan
+ItWhite='\033[3;97m'       # White
+
 # Bold High Intensity
 BIBlack='\033[1;90m'      # Black
 BIRed='\033[1;91m'        # Red
@@ -75,7 +85,7 @@ On_IWhite='\033[0;107m'   # White
 
 ARG=$ICyan
 CMD=$BRed
-HLP=$White
+HLP=$ItWhite
 LNK=$UBlue
 HDG=$BWhite
 ENDARG=$Color_Off
