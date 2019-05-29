@@ -56,7 +56,7 @@ git update-index --assume-unchanged .env
 echo
 
 if [ `id -u` == "0" ]; then
-	mv ./scripts/autocomplete.sh /etc/bash_completion.d/autocomplete.sh
+	cp ./scripts/autocomplete.sh /etc/bash_completion.d/autocomplete.sh
 	echo "Configured autocomplete."
 	echo
 else
