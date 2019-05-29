@@ -12,7 +12,7 @@ MEERA
 
 Build Status
 ------------
-[![Build Status](https://travis-ci.org/AmeyKamat/MEERA.svg?branch=master)](https://travis-ci.org/AmeyKamat/MEERA) ![Website](https://img.shields.io/website-up-down-green-red/http/www.ameykamat.in%2FMEERA.svg) ![Deployment](https://img.shields.io/website-up-down-green-red/http/meera.ameykamat.in%2Fstatus.svg)
+[![Build Status](https://travis-ci.org/AmeyKamat/MEERA.svg?branch=master)](https://travis-ci.org/AmeyKamat/MEERA) ![Website](https://img.shields.io/website-up-down-green-red/http/www.ameykamat.in%2FMEERA.svg)
 
 Features
 --------
