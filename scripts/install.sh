@@ -56,7 +56,8 @@ git update-index --assume-unchanged .env
 echo
 
 if [ `id -u` == "0" ]; then
-	cp ./scripts/autocomplete.sh /etc/bash_completion.d/autocomplete.sh
+	cp ./scripts/autocomplete.sh /etc/bash_completion.d/meera.sh
+	source ~/.bashrc
 	echo "Configured autocomplete."
 	echo
 else
