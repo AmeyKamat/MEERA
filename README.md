@@ -107,6 +107,7 @@ Here is what each of the above commands do:
   sets up virtual environment and installs dependencies.
 
 * **install-model**
+
   installs model from `download` folder into `src/nlp/models`.
 
 * **lint**
