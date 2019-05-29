@@ -70,20 +70,26 @@ Once MEERA is installed on your system, you can start using MEERA from command l
 
 ```bash
 $ ./meera.sh help
-./meera.sh [command [optional parameters...]]
+usage: ./meera.sh <command> [<args>]
 
-Supported commands:
+These are commands used in various situations:
 
-clean                                : cleans the project directory
-pre-install                          : installs python, pip and other required binaries for installation
-install                              : installs project
-install-model                        : installs model from download folder
-lint                                 : checks for compile time errors
-train [iterations]                   : trains ML models. Optional parameter: # of iterations. Default value is 50. Trained models are zipped and placed in `download` folder
-evaluate                             : evaluates ML models
-test                                 : runs tests
-deploy [server|telegram-client|all]  : deploys specified component. Optional parameter: application. Default value is 'all'
-help                                 : help on supported commands
+install MEERA as fresh installation
+   clean                                Clean the project directory
+   pre-install                          Prepare machine for installation
+   install                              Install MEERA
+   deploy [server|telegram-client|all]  Deploys MEERA. Takes an optional argument to deploy specific component. Defaults to 'all'
+
+manipulate machine learning model
+   train [<iterations>]                 Train ML models. Takes optional argument to specify number of training iterations. Defaults to 50
+   evaluate                             Evaluate ML models
+   install-model                        Install backup models stored in download folder during training
+
+code quality and sanity checks
+   lint                                 Lint code for code quality
+   test                                 Run tests
+
+For more info visit http://www.ameykamat.in/MEERA/
 ```
 
 Here is what each of the above commands do:
