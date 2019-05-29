@@ -41,10 +41,11 @@ To install MEERA:
 1. Clone this repository on local machine.
 2. `cd` to project root folder.
 3. Run `chmod +x meera.sh`
-4. Run `./meera.sh install` to install all dependancies.
-5. Run `./meera.sh train` to train ML models
-6. Add your API keys to `.env` file
-8. Run `./meera.sh start` to deploy the application.
+4. Run `./meera.sh pre-install` to prepare for environment.
+5. Run `./meera.sh install` to install all dependancies.
+6. Run `./meera.sh train 200` to train ML models or Run `./meera.sh install-model` if you have stored compressed models in `download` folder.
+7. Add your API keys to `.env` file
+8. Run `./meera.sh deploy all` to deploy the application along with telegram client.
 
 #### Environment variables in .env file
 
@@ -124,9 +125,11 @@ Here is what each of the above commands do:
 
 #### Enabling Bash Autocomplete for MEERA
 
-*Note: This feature is work in progress*
+Bash autocomplete is enabled in MEERA by default once you run `./meera.sh install` sucessfully as root.
 
-Bash autocomplete can be enabled for MEERA by running `source scripts/autocomplete.sh` in project root.
+Bash autocomplete can be enabled for MEERA temporarily by running `source scripts/autocomplete.sh` in project root.
+
+It can be disabled by removing `meeta.sh` file from `/etc/bash_autocomplete.d/` folder and running `source ~/.bashrc`.
 
 Run `./meera.py [TAB][TAB]` to see it action.
 
