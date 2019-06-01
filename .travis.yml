@@ -4,11 +4,10 @@ python:
   - "3.6"
 before_install:
   - chmod +x ./meera.sh
-  - sudo ./meera.sh pre-install
+  - chmod +x ./setup.sh
 install:
-  - sudo -H ./meera.sh install
-  - sudo ./meera.sh train 5
-  - sudo ./meera.sh install-model
+  - sudo ./setup.sh
+  - sudo ./meera.sh train 3
 script:
   - ./meera.sh lint
   - ./meera.sh evaluate
