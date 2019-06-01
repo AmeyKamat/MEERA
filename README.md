@@ -34,18 +34,27 @@ See [requirements.txt](https://github.com/AmeyKamat/MEERA/blob/master/requiremen
 Getting Started
 ---------------
 
-### Installing MEERA
+### Setting up MEERA
 
-To install MEERA:
+To setup MEERA:
 
-1. Clone this repository on local machine.
-2. `cd` to project root folder.
-3. Run `chmod +x meera.sh`
-4. Run `./meera.sh pre-install` to prepare for environment.
-5. Run `./meera.sh install` to install all dependancies.
-6. Run `./meera.sh train 200` to train ML models or Run `./meera.sh download-model && ./meera.sh install-model` if you have stored compressed models in `download` folder.
-7. Add your API keys to `.env` file
-8. Run `./meera.sh deploy all` to deploy the application along with telegram client.
+0. If your machine has lower configuration, run ./scripts/create-swapfile.sh, before starting installation.
+1. Run ./setup.sh
+2. Add your API keys to `.env` file
+3. Run `./meera.sh deploy all` to deploy the application along with telegram client.
+
+#### Launch Configuration for remote server
+
+```bash
+apt install git
+git clone https://github.com/AmeyKamat/MEERA.git
+cd MEERA
+chmod +x ./scripts/create-swapfile.sh
+chmod +x ./meera.sh
+chmod +x ./setup.sh
+./scripts/create-swapfile.sh
+./setup.sh
+```
 
 #### Environment variables in .env file
 
@@ -59,7 +68,6 @@ To install MEERA:
 | `MEERA_MAILGUN_DOMAIN`            | Mailgun domain                    | [link](https://documentation.mailgun.com/en/latest/index.html)       |
 | `MEERA_TELEGRAM_BOT_TOKEN`        | Telegram bot token                | [link](https://core.telegram.org/bots#creating-a-new-bot)            |
 | `MEERA_TELEGRAM_AUTHORIZED_USERS` | List of telegram authorized users |                                                                      |
-
 
 
 ### Usage
