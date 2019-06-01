@@ -5,11 +5,11 @@ echo
 
 echo Checking Requirements...
 echo python: `python3.6 --version 2>&1`
-echo pip: `pip --version`
+echo pip: `pip3 --version`
 echo
 
 echo Installing virtualenv...
-pip install virtualenv
+pip3 install virtualenv
 echo
 
 echo virtualenv: `virtualenv --version`
@@ -30,7 +30,7 @@ echo Virtual Environment Activated.
 echo
 
 echo Installing Dependencies...
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 echo
 
 echo Creating nlp/models Directory...

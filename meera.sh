@@ -35,15 +35,16 @@ set +a
 
 case $1 in
 
-'clean')		 ./scripts/clean.sh;;
-'pre-install')   ./scripts/pre-install.sh;;
-'install')		 ./scripts/install.sh;;
-'lint')			 ./scripts/lint.sh;;
-'train')		 ./scripts/train.sh "$iterations";;
-'install-model') ./scripts/install-model.sh;;
-'evaluate')		 ./scripts/evaluate.sh;;
-'test')			 ./scripts/test.sh;;
-'deploy')        ./scripts/deploy.sh "$application";;
+'clean')		  ./scripts/clean.sh;;
+'pre-install')    ./scripts/pre-install.sh;;
+'install')		  ./scripts/install.sh;;
+'lint')			  ./scripts/lint.sh;;
+'train')		  ./scripts/train.sh "$iterations";;
+'install-model')  ./scripts/install-model.sh;;
+'evaluate')		  ./scripts/evaluate.sh;;
+'test')			  ./scripts/test.sh;;
+'deploy')         ./scripts/deploy.sh "$application";;
+'download-model') ./scripts/download-model.sh;;
 'help')			 ./scripts/help.sh;;
 *)				 echo "$invalid_command_message";;
 

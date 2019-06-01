@@ -43,7 +43,7 @@ To install MEERA:
 3. Run `chmod +x meera.sh`
 4. Run `./meera.sh pre-install` to prepare for environment.
 5. Run `./meera.sh install` to install all dependancies.
-6. Run `./meera.sh train 200` to train ML models or Run `./meera.sh install-model` if you have stored compressed models in `download` folder.
+6. Run `./meera.sh train 200` to train ML models or Run `./meera.sh download-model && ./meera.sh install-model` if you have stored compressed models in `download` folder.
 7. Add your API keys to `.env` file
 8. Run `./meera.sh deploy all` to deploy the application along with telegram client.
 
@@ -83,6 +83,7 @@ install MEERA as fresh installation
 manipulate machine learning model
    train [<iterations>]                 Train ML models. Takes optional argument to specify number of training iterations. Defaults to 50
    evaluate                             Evaluate ML models
+   download-model                       Downloads ML models
    install-model                        Install backup models stored in download folder during training
 
 code quality and sanity checks
@@ -105,6 +106,10 @@ Here is what each of the above commands do:
 * **install**
   
   sets up virtual environment and installs dependencies.
+
+* **download-model**
+
+  downloads models from GitHub repo.
 
 * **install-model**
 

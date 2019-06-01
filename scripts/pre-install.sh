@@ -8,4 +8,4 @@ apt install python3.6
 apt install python3.6-dev
 apt install python-virtualenv
 apt install python3-pip
-pip install --upgrade pip
+pip3 install --upgrade pip

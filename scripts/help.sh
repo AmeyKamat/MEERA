@@ -107,6 +107,7 @@ ${HDG}install MEERA as fresh installation${ENDHDG}
 ${HDG}manipulate machine learning model${ENDHDG}
    ${CMD}train${ENDCMD} ${ARG}[<iterations>]${ENDARG}                 ${HLP}Train ML models. Takes optional argument to specify number of training iterations. Defaults to 50${ENDHLP}
    ${CMD}evaluate${ENDCMD}                             ${HLP}Evaluate ML models${ENDHLP}
+   ${CMD}download-model${ENDCMD}                       ${HLP}Downloads ML models${ENDHLP}
    ${CMD}install-model${ENDCMD}                        ${HLP}Install backup models stored in download folder during training${ENDHLP}
 
 ${HDG}code quality and sanity checks${ENDHDG}

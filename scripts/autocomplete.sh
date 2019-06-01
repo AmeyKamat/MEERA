@@ -1,6 +1,6 @@
 _script()
 {
-	_script_commands="clean pre-install install install-model lint train evaluate test deploy help"
+	_script_commands="clean pre-install install download-model install-model lint train evaluate test deploy help"
 	_deploy_commands="server telegram-client all"
 
     local cur prev
