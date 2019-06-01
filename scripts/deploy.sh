@@ -18,8 +18,8 @@ echo "Waking MEERA up!"
 
 case $application in
 
-'server')				python3.6 ./src/index.py;;
-'telegram-client')		python3.6 ./src/interface/telegram_bot/daemon.py;;
+'server')				python3.6 ./src/index.py > ./log/server.out.log 2> ./log/server.err.log;;
+'telegram-client')		python3.6 ./src/interface/telegram_bot/daemon.py > ./log/client.out.log 2> ./log/client.err.log;;
 'all')					./scripts/start.sh;;
 *)						echo "$invalid_command_message";;
 
