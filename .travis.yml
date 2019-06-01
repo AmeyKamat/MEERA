@@ -7,7 +7,7 @@ before_install:
   - chmod +x ./setup.sh
 install:
   - sudo ./setup.sh
-  - rm -r ./src/nlp/models/*
+  - sudo rm -r ./src/nlp/models/*
   - sudo ./meera.sh train 3
 script:
   - ./meera.sh lint
