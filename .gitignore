@@ -12,3 +12,11 @@ log/
 download/
 
 .env
+
+infra/.terraform
+infra/*.tfstate
+infra/*.tfstate.backup
+infra/.env
+infra/*.pem
+infra/meera
+infra/meera.pub

@@ -14,6 +14,65 @@ Build Status
 ------------
 [![Build Status](https://travis-ci.org/AmeyKamat/MEERA.svg?branch=master)](https://travis-ci.org/AmeyKamat/MEERA) ![Website](https://img.shields.io/website-up-down-green-red/http/www.ameykamat.in%2FMEERA.svg)
 
+
+Table of Contents
+-----------------
+* [Build Status](#build-status)
+* [Features](#features)
+* [Supported Platform](#supported-platform)
+* [External Dependencies](#external-dependencies)
+* [Getting Started](#getting-started)
+  + [Setting up MEERA](#setting-up-meera)
+    - [Launch Configuration for Remote Server](#launch-configuration-for-remote-server)
+    - [Using Terraform](#using-terraform)
+    - [Enabling Bash Autocomplete for MEERA](#enabling-bash-autocomplete-for-meera)
+    - [Client Implementation](#client-implementation)
+* [Developers Manual](#developers-manual)
+  + [Concepts](#concepts)
+    - [Client](#client)
+    - [Context](#context)
+    - [Conversation](#conversation)
+    - [NlpAnalysis](#nlpanalysis)
+    - [Result](#result)
+    - [Interaction](#interaction)
+  + [Machine Learning Models](#machine-learning-models)
+  + [Developing a Plugin](#developing-a-plugin)
+    - [plugin.ini](#pluginini)
+    - [executor.py](#executorpy)
+    - [dialogue.py](#dialoguepy)
+    - [plugin.utterance](#pluginutterance)
+  + [Communication with Clients](#communication-with-clients)
+    - [`hello` message](#-hello--message)
+      * [Message Structure:](#message-structure-)
+    - [`registration-success` message](#-registration-success--message)
+      * [Message Structure:](#message-structure--1)
+    - [`message` message](#-message--message)
+      * [Message Structure:](#message-structure--2)
+    - [`reply` message](#-reply--message)
+      * [Message Structure:](#message-structure--3)
+    - [`self-location-request` message](#-self-location-request--message)
+      * [Message Structure:](#message-structure--4)
+    - [`self-location` message](#-self-location--message)
+      * [Message Structure:](#message-structure--5)
+  + [Debugging API](#debugging-api)
+    - [GET /status](#get--status)
+      * [Usage](#usage)
+    - [GET /clients](#get--clients)
+      * [Usage](#usage-1)
+    - [GET /conversations](#get--conversations)
+      * [Usage](#usage-2)
+    - [GET /context/{contextId}](#get--context--contextid-)
+      * [Usage](#usage-3)
+  + [Architecture](#architecture)
+* [Built with](#built-with)
+* [Contributions to MEERA](#contributions-to-meera)
+  + [Issues](#issues)
+  + [Contribution](#contribution)
+* [About the Author](#about-the-author)
+* [Contributors](#contributors)
+* [License](#license)
+
+
 Features
 --------
 * Configurable on-board machine learning module
@@ -43,7 +102,7 @@ To setup MEERA:
 2. Add your API keys to `.env` file
 3. Run `./meera.sh deploy all` to deploy the application along with telegram client.
 
-#### Launch Configuration for remote server
+#### Launch Configuration for Remote Server
 
 ```bash
 apt install git
@@ -54,6 +113,30 @@ chmod +x ./meera.sh
 chmod +x ./setup.sh
 ./scripts/create-swapfile.sh
 ./setup.sh
+```
+
+#### Using Terraform
+
+Meera ships with `infra/main.tf` file that helps deploy application on AWS Lightsail. Here are the instructions to do so:
+
+1. Add AWS Access Key Id and AWS Secret Access Key to environment.
+
+```bash
+export AWS_ACCESS_KEY_ID=<Your AWS Access Key Id>
+export AWS_SECRET_ACCESS_KEY=<Your AWS Secrect Access Key>
+```
+
+2. Navigate to `infra/` directory.
+3. Add `.env` file
+4. Generate ssh keys as follows:
+
+```bash
+ssh-keygen -b 2048 -t rsa -f meera
+```
+
+5. Run `terraform init`
+6. Run `terraform plan` to validate
+7. Run `terraform apply`
 ```
 
 #### Environment variables in .env file
