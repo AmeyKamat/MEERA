@@ -137,7 +137,7 @@ ssh-keygen -b 2048 -t rsa -f meera
 5. Run `terraform init`
 6. Run `terraform plan` to validate
 7. Run `terraform apply`
-```
+
 
 #### Environment variables in .env file
 
