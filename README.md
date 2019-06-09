@@ -1,23 +1,19 @@
-
-MEERA
-=====
-![GitHub (pre-)release](https://img.shields.io/github/release-pre/AmeyKamat/MEERA.svg)
-
 <div align="center">
     <img src="https://github.com/AmeyKamat/MEERA/raw/master/docs/logo.png" />
+</div>
+<h3 align="center">MEERA</h3>
+<div align="center">
+    [GitHub (pre-)release](https://img.shields.io/github/release-pre/AmeyKamat/MEERA.svg) 
+    [![Build Status](https://travis-ci.org/AmeyKamat/MEERA.svg?branch=master)](https://travis-ci.org/AmeyKamat/MEERA) 
+    ![Website](https://img.shields.io/website-up-down-green-red/http/www.ameykamat.in%2FMEERA.svg)
 </div>
 
 **MEERA** or **Multifunctional Event-driven Expert in Real-time Assistance** is a general purpose open source Artificially Intelligent Bot framework. MEERA is designed to be used as general purpose bot with expandable skill set that can be extended using easy to use plugin framework.
 
-
-Build Status
-------------
-[![Build Status](https://travis-ci.org/AmeyKamat/MEERA.svg?branch=master)](https://travis-ci.org/AmeyKamat/MEERA) ![Website](https://img.shields.io/website-up-down-green-red/http/www.ameykamat.in%2FMEERA.svg)
-
+---
 
 Table of Contents
 -----------------
-* [Build Status](#build-status)
 * [Features](#features)
 * [Supported Platform](#supported-platform)
 * [External Dependencies](#external-dependencies)
@@ -70,6 +66,7 @@ Table of Contents
   + [Contribution](#contribution)
 * [About the Author](#about-the-author)
 * [Contributors](#contributors)
+* [Articles and Discussions](#articles-and-discussions)
 * [License](#license)
 
 
@@ -741,6 +738,13 @@ Contributors
 ------------
 
 [![](https://sourcerer.io/fame/AmeyKamat/AmeyKamat/MEERA/images/0)](https://sourcerer.io/fame/AmeyKamat/AmeyKamat/MEERA/links/0)[![](https://sourcerer.io/fame/AmeyKamat/AmeyKamat/MEERA/images/1)](https://sourcerer.io/fame/AmeyKamat/AmeyKamat/MEERA/links/1)[![](https://sourcerer.io/fame/AmeyKamat/AmeyKamat/MEERA/images/2)](https://sourcerer.io/fame/AmeyKamat/AmeyKamat/MEERA/links/2)[![](https://sourcerer.io/fame/AmeyKamat/AmeyKamat/MEERA/images/3)](https://sourcerer.io/fame/AmeyKamat/AmeyKamat/MEERA/links/3)[![](https://sourcerer.io/fame/AmeyKamat/AmeyKamat/MEERA/images/4)](https://sourcerer.io/fame/AmeyKamat/AmeyKamat/MEERA/links/4)[![](https://sourcerer.io/fame/AmeyKamat/AmeyKamat/MEERA/images/5)](https://sourcerer.io/fame/AmeyKamat/AmeyKamat/MEERA/links/5)[![](https://sourcerer.io/fame/AmeyKamat/AmeyKamat/MEERA/images/6)](https://sourcerer.io/fame/AmeyKamat/AmeyKamat/MEERA/links/6)[![](https://sourcerer.io/fame/AmeyKamat/AmeyKamat/MEERA/images/7)](https://sourcerer.io/fame/AmeyKamat/AmeyKamat/MEERA/links/7)
+
+Articles and Discussions
+------------------------
+
+* [Article of CSEStack](https://www.csestack.org/meera-machine-learning-assistant-bot-nlp/)
+* [HackerNews Discussion](https://news.ycombinator.com/item?id=20131733)
+* [r/SIdeProject subreddit on Reddit](https://www.reddit.com/r/SideProject/comments/byhd5i/meera_a_general_purpose_virtual_assistant/)
 
 License
 -------
