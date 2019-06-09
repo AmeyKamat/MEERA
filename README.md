@@ -8,9 +8,10 @@
     <img alt="GitHub release" src="https://img.shields.io/github/release-pre/AmeyKamat/MEERA.svg"> <img alt="Travis (.org)" src="https://img.shields.io/travis/AmeyKamat/MEERA.svg"> <img alt="Website" src="https://img.shields.io/website/http/www.ameykamat.in/MEERA.svg"> <img alt="GitHub" src="https://img.shields.io/github/license/AmeyKamat/MEERA.svg"> 
 </div>
 
+---
+
 **MEERA** or **Multifunctional Event-driven Expert in Real-time Assistance** is a general purpose open source Artificially Intelligent Bot framework. MEERA is designed to be used as general purpose bot with expandable skill set that can be extended using easy to use plugin framework.
 
----
 
 Table of Contents
 -----------------
