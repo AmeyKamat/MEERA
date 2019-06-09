@@ -480,7 +480,7 @@ This message is received by the server as response to successful registration of
 
 This message is sent by the client to invoke any operation at server.
 
-*`is_user_authorized` is boolean field that is used to allow user to use chargeable plugins*
+`is_user_authorized` is boolean field that is used to allow user to use chargeable plugins*
 
 ##### Message Structure:
 
@@ -490,7 +490,7 @@ This message is sent by the client to invoke any operation at server.
     "context_id": "977ca71c-fbd9-4024-b215-649c45416103", 
     "body": {
         "client_id": "b110bc34-762b-493b-a4af-9298f255844d", 
-        "is_user_authorized": true
+        "is_user_authorized": true,
         "message": "Hi"
     }
 }
