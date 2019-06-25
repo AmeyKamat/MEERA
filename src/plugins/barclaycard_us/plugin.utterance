@@ -14,3 +14,4 @@ get barclays application for campaign id 8579 and cell id 58|barclaycard-applica
 fetch barclays application for campaign id 5675 and cell 4|barclaycard-application|campaign,43,47|cell,57,58
 give me barclays application for cell 87 and campaign id 7467|barclaycard-application|campaign,57,61|cell,38,40
 fetch me barclays application for cell id 38 and campaign 2834|barclaycard-application|campaign,58,62|cell,42,44
+open me barclays application for cell id 38 and campaign 2834|barclaycard-application|campaign,58,62|cell,42,44

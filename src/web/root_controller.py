@@ -2,9 +2,6 @@ from circuits.web import Controller
 
 class Root(Controller):
 
-    tpl = "./web/resources/index.html"
-
+	# pylint: disable=no-self-use
     def index(self):
-        with open(self.tpl, 'r') as content_file:
-            return content_file.read()
-            
+        return "MEERA"

@@ -3,6 +3,8 @@ import os
 IP_ADDR = "0.0.0.0"
 PORT = 8000
 
+PROJECT_DIR = os.getcwd()
+
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 MODELS_DIR = 'nlp/models'

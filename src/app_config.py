@@ -8,7 +8,7 @@ from api.context_controller import ContextController
 from api.conversation_controller import ConversationController
 from api.status_controller import StatusController
 
-from interface.web_app.root_controller import Root
+from web.root_controller import Root
 
 from client.manager import ClientManager
 from context.manager import ContextManager
