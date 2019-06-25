@@ -2,14 +2,18 @@ provider "aws" {
   region = "us-east-1"
 }
 
+output "meera_public_ip" {
+    value               = aws_lightsail_static_ip.meera_static_ip.ip_address
+}
+
 resource "aws_lightsail_static_ip_attachment" "meera_static_ip_attachment" {
-    static_ip_name = "${aws_lightsail_static_ip.meera_static_ip.name}"
-    instance_name  = "${aws_lightsail_instance.meera_instance.name}"
+    static_ip_name      = "${aws_lightsail_static_ip.meera_static_ip.name}"
+    instance_name       = "${aws_lightsail_instance.meera_instance.name}"
 }
 
 
 resource "aws_lightsail_static_ip" "meera_static_ip" {
-    name = "meera_static_ip"
+    name                = "meera_static_ip"
 }
 
 resource "aws_lightsail_instance" "meera_instance" {
