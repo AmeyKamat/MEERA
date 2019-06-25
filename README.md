@@ -14,7 +14,7 @@
 
 <div align="center">
   <a href="https://www.youtube.com/watch?v=dlDJMxemm3M" target="_blank">
-    <img src="https://github.com/AmeyKamat/MEERA/raw/master/docs/demo_video_screen.png" />
+    <img src="https://github.com/AmeyKamat/MEERA/raw/master/docs/demo_video_screenshot.png" />
   </a>
 </div>
 
