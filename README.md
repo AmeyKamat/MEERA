@@ -1,7 +1,5 @@
 <div align="center">
     <img src="https://github.com/AmeyKamat/MEERA/raw/master/docs/logo.png" />
-    <h3 align="center">MEERA</h3>
-    ![GitHub (pre-)release](https://img.shields.io/github/release-pre/AmeyKamat/MEERA.svg) [![Build Status](https://travis-ci.org/AmeyKamat/MEERA.svg?branch=master)](https://travis-ci.org/AmeyKamat/MEERA) ![Website](https://img.shields.io/website-up-down-green-red/http/www.ameykamat.in%2FMEERA.svg)
 </div>
 <h1 align="center">MEERA</h1>
 <h3 align="center">Multifunctional Event-driven Expert in Real-time Assistance</h3>
@@ -19,6 +17,7 @@
     <img src="https://github.com/AmeyKamat/MEERA/raw/master/docs/demo_video_screen.png" />
   </a>
 </div>
+
 
 Table of Contents
 -----------------
