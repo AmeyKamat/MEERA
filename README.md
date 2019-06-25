@@ -10,7 +10,9 @@
 
 ---
 
-**MEERA** or **Multifunctional Event-driven Expert in Real-time Assistance** is a general purpose open source Artificially Intelligent Bot framework. MEERA is designed to be used as general purpose bot with expandable skill set that can be extended using easy to use plugin framework.
+**MEERA** or **Multifunctional Event-driven Expert in Real-time Assistance** is a general purpose open source Artificially Intelligent Bot framework. MEERA is designed to be used as general purpose bot with expandable skill set that can be extended using easy to use plugin framework
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dlDJMxemm3M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 Table of Contents
