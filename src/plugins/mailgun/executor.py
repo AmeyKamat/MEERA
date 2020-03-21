@@ -30,4 +30,9 @@ class MailgunPlugin:
             'html': body
         })
 
-        return {"success": response.status_code}
+        result = {"success": response.status_code}
+        response = {
+            'result': result,
+            'status': 'success'
+        }
+        return response

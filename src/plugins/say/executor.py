@@ -10,4 +10,9 @@ class SayPlugin:
 
         result = {}
         result["query"] = entities["query"]
-        return result
+
+        response = {
+            'result': result,
+            'status': 'success'
+        }
+        return response

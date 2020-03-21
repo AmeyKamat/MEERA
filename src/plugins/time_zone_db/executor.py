@@ -3,8 +3,6 @@ from datetime import datetime
 
 import requests
 
-from execution.exception import SelfLocationNotFoundException
-
 class TimeZoneDBPlugin:
 
     def __init__(self, config):
@@ -21,7 +19,7 @@ class TimeZoneDBPlugin:
             latitude = entities["self-location"]["latitude"]
             longitude = entities["self-location"]["longitude"]
         else:
-            raise SelfLocationNotFoundException("Self Location Not Found")
+            return {'status': 'need-location'}
 
         key_variable = self.config['key_variable']
         key = os.environ[key_variable]
@@ -49,4 +47,8 @@ class TimeZoneDBPlugin:
 
         result["location"] = location if 'location' in entities else response["zoneName"]
 
-        return result
+        response = {
+            'result': result,
+            'status': 'success'
+        }
+        return response

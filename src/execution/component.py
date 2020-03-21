@@ -1,4 +1,5 @@
 import os
+import sys
 import importlib
 from copy import deepcopy
 from configparser import ConfigParser
@@ -6,8 +7,8 @@ from configparser import ConfigParser
 from circuits import Component, handler
 
 from events import TaskExecutedEvent, SelfLocationRequiredEvent, PluginFailedEvent
+from execution.status import STATUS_SUCCESS, STATUS_NEED_LOCATION
 from definitions import ABS_PLUGINS_DIR, PLUGINS_DIR
-from execution.exception import SelfLocationNotFoundException
 
 class TasKExecutorComponent(Component):
 
@@ -15,26 +16,35 @@ class TasKExecutorComponent(Component):
         super(TasKExecutorComponent, self).__init__()
 
         config = ConfigParser()
-        print(os.path.join(ABS_PLUGINS_DIR, 'plugins.ini'))
         config.read(os.path.join(ABS_PLUGINS_DIR, 'plugins.ini'))
 
         self.plugin_preference = config['plugins']
         self.plugins = self.get_plugins()
+        self.response_handlers = {
+            STATUS_SUCCESS: TaskExecutedEvent,
+            STATUS_NEED_LOCATION: SelfLocationRequiredEvent
+        }
 
     @handler("EntitiesPreprocessedEvent")
     def execute(self, context):
         intent = context.nlp_analysis.intent
         plugin = self.plugins.get(intent)
-        print(plugin)
+        print(context)
         if plugin is not None:
-            try:
-                context.result = plugin.execute(deepcopy(context))
-                self.fire(TaskExecutedEvent(context))
-            except SelfLocationNotFoundException:
-                self.fire(SelfLocationRequiredEvent(context))
-            except Exception:                                        # pylint: disable=broad-except
-                self.fire(PluginFailedEvent(context))
+            self.handle_plugin(plugin, context)
         else:
+            self.fire(PluginFailedEvent(context))
+
+    def handle_plugin(self, plugin, context):
+        try:
+            response = plugin.execute(deepcopy(context))
+            context.result = response.get('result')
+            event = self.response_handlers.get(
+                response['status'], PluginFailedEvent)(context)
+            self.fire(event)
+        # pylint: disable=broad-except
+        except Exception as exception:
+            print(str(exception), file=sys.stderr)
             self.fire(PluginFailedEvent(context))
 
     def get_plugins(self):

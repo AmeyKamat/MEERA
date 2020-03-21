@@ -2,8 +2,6 @@ import os
 
 import requests
 
-from execution.exception import SelfLocationNotFoundException
-
 class OpenWeatherAPIPlugin:
 
     def __init__(self, config):
@@ -20,7 +18,7 @@ class OpenWeatherAPIPlugin:
             latitude = entities["self-location"]["latitude"]
             longitude = entities["self-location"]["longitude"]
         else:
-            raise SelfLocationNotFoundException("Self Location Not Found")
+            return {'status': 'need-location'}
 
         key_variable = self.config['key_variable']
         key = os.environ[key_variable]
@@ -38,5 +36,10 @@ class OpenWeatherAPIPlugin:
         result["temperature"] = response["main"]["temp"]
         result["pressure"] = response["main"]["pressure"]
         result["humidity"] = response["main"]["humidity"]
+
+        response = {
+            'result': result,
+            'status': 'success'
+        }
 
         return result

@@ -12,5 +12,9 @@ class BarclaycardUSPlugin:
 
         result = {}
         result["url"] = self.config["barclaycard_url"].format(campaign, cell)
+        response = {
+            'result': result,
+            'status': 'success'
+        }
 
-        return result
+        return response

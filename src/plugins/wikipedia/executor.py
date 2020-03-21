@@ -12,4 +12,8 @@ class WikipediaPlugin:
         search_query = entities["query"]
         result = {}
         result["url"] = self.config["wikipedia_api"] + urllib.request.pathname2url(search_query)
-        return result
+        response = {
+            'result': result,
+            'status': 'success'
+        }
+        return response

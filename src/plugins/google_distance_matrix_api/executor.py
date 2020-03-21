@@ -2,8 +2,6 @@ import os
 
 import requests
 
-from execution.exception import SelfLocationNotFoundException
-
 class GoogleDistanceMatrixAPIPlugin:
 
     def __init__(self, config):
@@ -19,7 +17,7 @@ class GoogleDistanceMatrixAPIPlugin:
             source_latitude = entities["self-location"]["latitude"]
             source_longitude = entities["self-location"]["longitude"]
         else:
-            raise SelfLocationNotFoundException("Self Location Not Found")
+            return {'status': 'need-location'}
 
         if "destination-location" in entities:
             destination_latitude = entities["destination-location"]["latitude"]
@@ -28,7 +26,7 @@ class GoogleDistanceMatrixAPIPlugin:
             destination_latitude = entities["self-location"]["latitude"]
             destination_longitude = entities["self-location"]["longitude"]
         else:
-            raise SelfLocationNotFoundException("Self Location Not Found")
+            return {'status': 'need-location'}
 
         key_variable = self.config['key_variable']
         key = os.environ[key_variable]
@@ -45,4 +43,9 @@ class GoogleDistanceMatrixAPIPlugin:
         result["source-location"] = entities.get("source-location")
         result["destination-location"] = entities.get("destination-location")
 
-        return result
+        response = {
+            'result': result,
+            'status': 'success'
+        }
+
+        return response
