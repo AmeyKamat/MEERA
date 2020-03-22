@@ -20,4 +20,8 @@ class WhatDoesTheFoxSayPlugin:
     def execute(self, context):
         result = {}
         result["response"] = random.choice(self.fox_sounds)
-        return result
+        response = {
+            'result': result,
+            'status': 'success'
+        }
+        return response

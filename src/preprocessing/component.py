@@ -1,3 +1,5 @@
+import sys
+
 from circuits import Component, handler
 
 from events import EntitiesPreprocessedEvent
@@ -24,7 +26,7 @@ class PreprocessingComponent(Component):
                     entities[key] = preprocessor.preprocess(value)
             context.nlp_analysis.entities = entities
         # pylint: disable=broad-except
-        except Exception:
-            pass
+        except Exception as exception:
+            print(str(exception), file=sys.stderr)
 
         self.fire(EntitiesPreprocessedEvent(context))

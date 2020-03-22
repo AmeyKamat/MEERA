@@ -35,4 +35,9 @@ class DuckDuckGoPlugin:
                 search_query = message
             result["url"] = self.config["search_api"] + urllib.request.pathname2url(search_query)
 
-        return result
+        response = {
+            'result': result,
+            'status': 'success'
+        }
+
+        return response

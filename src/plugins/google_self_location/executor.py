@@ -2,8 +2,6 @@ import os
 
 import requests
 
-from execution.exception import SelfLocationNotFoundException
-
 class GoogleSelfLocationPlugin:
 
     def __init__(self, config):
@@ -14,7 +12,7 @@ class GoogleSelfLocationPlugin:
         entities = context.nlp_analysis.entities
 
         if "self-location" not in entities:
-            raise SelfLocationNotFoundException("Self Location Not Found")
+            return {'status': 'need-location'}
 
         self_location = entities["self-location"]
 
@@ -29,4 +27,8 @@ class GoogleSelfLocationPlugin:
         result = {}
         result["location"] = response["results"][0]["formatted_address"]
 
-        return result
+        response = {
+            'result': result,
+            'status': 'success'
+        }
+        return response

@@ -15,4 +15,9 @@ class ICanHazDadJokePlugin:
 
         result = {}
         result["joke"] = response["joke"]
-        return result
+
+        response = {
+            'result': result,
+            'status': 'success'
+        }
+        return response

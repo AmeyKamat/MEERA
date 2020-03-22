@@ -5,7 +5,7 @@
 <h3 align="center">Multifunctional Event-driven Expert in Real-time Assistance</h3>
 
 <div align="center">
-    <img alt="GitHub release" src="https://img.shields.io/github/release-pre/AmeyKamat/MEERA.svg"> <img alt="Travis (.org)" src="https://img.shields.io/travis/AmeyKamat/MEERA.svg"> <img alt="Website" src="https://img.shields.io/website/http/www.ameykamat.in/MEERA.svg"> <img alt="GitHub" src="https://img.shields.io/github/license/AmeyKamat/MEERA.svg"> 
+    <img alt="GitHub release" src="https://img.shields.io/github/release-pre/AmeyKamat/MEERA.svg"> <img alt="Travis (.org)" src="https://img.shields.io/travis/AmeyKamat/MEERA.svg"> <img alt="Website" src="https://img.shields.io/website/http/www.ameykamat.in/MEERA.svg"> <img alt="GitHub" src="https://img.shields.io/github/license/AmeyKamat/MEERA.svg">
 </div>
 
 ---
@@ -199,7 +199,7 @@ Here is what each of the above commands do:
   installs libraries required for installation
 
 * **install**
-  
+
   sets up virtual environment and installs dependencies.
 
 * **download-model**
@@ -211,7 +211,7 @@ Here is what each of the above commands do:
   installs model from `download` folder into `src/nlp/models`.
 
 * **lint**
-  
+
   scans for any compile time errors in the python scripts.
 
 * **train [iterations]**
@@ -219,11 +219,11 @@ Here is what each of the above commands do:
   trains machine learning models based on `*.utterance` files in project directory. This command take optional parameter, number of iterations of training for each model. If no value is passed, default number of iterations are 50.
 
 * **evaluate**
-  
+
   evaluates each machine learning model based against data in `*.utterance` files.
 
 * **test**
-  
+
   runs tests in `/tests` folder.
 
 * **deploy [server|telegram-client|all]**
@@ -264,7 +264,7 @@ Conversation is sequence of contexts from a particular client. Each conversation
 
 #### NlpAnalysis
 
-This object stores optput of each of the machine learning models. NlpAnalysis store `intent` of the message, `entities` extracted from the message and `confidence` associated with the intent. See [this](https://github.com/AmeyKamat/MEERA/blob/master/nlp/model.py) for the definition. 
+This object stores optput of each of the machine learning models. NlpAnalysis store `intent` of the message, `entities` extracted from the message and `confidence` associated with the intent. See [this](https://github.com/AmeyKamat/MEERA/blob/master/nlp/model.py) for the definition.
 
 #### Result
 
@@ -272,7 +272,7 @@ This object stores the output of plugin executors. Plugin developers can store a
 
 #### Interaction
 
-Interaction object is the output of plugin dialogue generators. it can contains following attributes that can be used in various scenarios in client devices subject to their implementation in client. Note that it is not mandated to implement all of these attributes on client. If a particular attribute is not implemented on client, value of that attribute should be ignored. For example, the telegram client shipped by default with MEERA only supports `text` attribute. However, plugins are expected to implement atleast `text` an `voice` the attributes below. 
+Interaction object is the output of plugin dialogue generators. it can contains following attributes that can be used in various scenarios in client devices subject to their implementation in client. Note that it is not mandated to implement all of these attributes on client. If a particular attribute is not implemented on client, value of that attribute should be ignored. For example, the telegram client shipped by default with MEERA only supports `text` attribute. However, plugins are expected to implement atleast `text` an `voice` the attributes below.
 
 | Attribute | Description                                                                       |
 |-----------|-----------------------------------------------------------------------------------|
@@ -293,7 +293,7 @@ MEERA generates 4 models on `./meera.sh train` command. These are listed below:
 | `en.assistant.requestType.model` | `meera/nlp/models/request_type_model` | textcat | predicts if message is chat or skill |
 | `en.assistant.chat.model`        | `meera/nlp/models/chat_model`         | textcat | generates response for chat message  |
 | `en.assistant.entity.model`      | `meera/nlp/models/entities_model`     | ner     | extracts entities from skill message |
-| `en.assistant.intent.model`      | `meera/nlp/models/intent_model`       | textcat | predicts intent of skill message     | 
+| `en.assistant.intent.model`      | `meera/nlp/models/intent_model`       | textcat | predicts intent of skill message     |
 
 
 ### Developing a Plugin
@@ -301,7 +301,7 @@ MEERA generates 4 models on `./meera.sh train` command. These are listed below:
 MEERA performs tasks using plugins included. your plugin should be place in [this directory](https://github.com/AmeyKamat/MEERA/tree/master/plugins) for MEERA to load it. Plugins basically consist of 4 components as follows:
 
 #### plugin.ini
- 
+
 `plugin.ini` is a property file that describes the plugin. It should have following structure
 
 ```ini
@@ -346,10 +346,10 @@ Also for every human friendly `date` and `location` entity identified, MEERA tra
 For a `date` entity, you will find following object in `context.nlpAnalysis.entities`
 
 ```json
-{ 
+{
     "date": "yesterday",
     "parsedDate": "2019-03-10 19:34:15"
-} 
+}
 ```
 
 For `location` entity:
@@ -369,14 +369,19 @@ If you need to access any secrets such as API keys in your executor:
 ```ini
 MEERA_THIRD_PARTY_API_KEY=someinterestingapikeyforsomeinterestingservice
 ```
-    
+
 * Add following variable in plugin's `plugin.ini` file
 
 ```ini
 key_variable = MEERA_THIRD_PARTY_API_KEY
 ```
 
-* Now in plugin's `executor.py` file:
+* Now in plugin's `executor.py` file, process context object, and return `response` object. This `response` dict should contain `status` and `result` attributes. `status` attribute dictates further action on `response` object. You cn send following values in status attribute.
+
+| Status           | Description                                                                       |
+|------------------|-----------------------------------------------------------------------------------|
+| 'success'        | sucessful response, generate dialog for the same                                  |
+| 'need-location'  | need user location for processing, request client for location                    |
 
 ```python
 import os
@@ -391,12 +396,16 @@ class NameOfThePlugin:                               # This should be same as pl
 
         keyVariable = self.config['key_variable']
         key = os.environ[keyVariable]
-        
+
         # do something interesting
 
-        result = {}
-        # build result object
-        return result
+        result = {...}                               # build result object
+        response = {
+            'status': 'success',
+            'result': result
+        }
+
+        return response
 ```
 
 #### dialogue.py
@@ -439,7 +448,7 @@ where am i|self-location
 how far is mumbai from delhi|distance|source-location,11,17|destination-location,23,28
 ```
 
-Once you have these all files is expected location, update [this plugins.ini file](https://github.com/AmeyKamat/MEERA/blob/master/plugins/plugins.ini) for binding the plugin to MEERA. 
+Once you have these all files is expected location, update [this plugins.ini file](https://github.com/AmeyKamat/MEERA/blob/master/plugins/plugins.ini) for binding the plugin to MEERA.
 
 ### Communication with Clients
 
@@ -475,8 +484,8 @@ This message is received by the server as response to successful registration of
 {
     "type": "registration-success",
     "body": {
-        "client_id": "b110bc34-762b-493b-a4af-9298f255844d", 
-        "client_name": "telegram", 
+        "client_id": "b110bc34-762b-493b-a4af-9298f255844d",
+        "client_name": "telegram",
         "client_type": "telegram_bot"
     }
 }
@@ -490,12 +499,12 @@ This message is sent by the client to invoke any operation at server.
 
 ##### Message Structure:
 
-```json 
+```json
 {
-    "type": "message", 
-    "context_id": "977ca71c-fbd9-4024-b215-649c45416103", 
+    "type": "message",
+    "context_id": "977ca71c-fbd9-4024-b215-649c45416103",
     "body": {
-        "client_id": "b110bc34-762b-493b-a4af-9298f255844d", 
+        "client_id": "b110bc34-762b-493b-a4af-9298f255844d",
         "is_user_authorized": true,
         "message": "Hi"
     }
@@ -510,10 +519,10 @@ This message is sent by the server as response to `message` message.
 
 ```json
 {
-    "type": "reply", 
-    "reply_to": "afacbdf6-e7ef-4ba2-8d35-88eb71a91ce6", 
+    "type": "reply",
+    "reply_to": "afacbdf6-e7ef-4ba2-8d35-88eb71a91ce6",
     "body": {
-        "text": "Hello", 
+        "text": "Hello",
         "voice": "Hello"
     }
 }
@@ -524,10 +533,10 @@ This message is sent by the server as response to `message` message.
 This message is sent by the server if it needs location of the client.
 
 ##### Message Structure:
-    
+
 ```json
 {
-    "type": "self-location-request", 
+    "type": "self-location-request",
     "reply_to": "c8cc450f-e134-46a8-a90f-0a711f078d48"
 }
 ```
@@ -540,11 +549,11 @@ This message is sent by the client with location details as response to `self-lo
 
 ```json
 {
-    "type": "self-location", 
-    "context_id": "c8cc450f-e134-46a8-a90f-0a711f078d48", 
+    "type": "self-location",
+    "context_id": "c8cc450f-e134-46a8-a90f-0a711f078d48",
     "body": {
-        "client_id": "b110bc34-762b-493b-a4af-9298f255844d", 
-        "latitude": 25.0340, 
+        "client_id": "b110bc34-762b-493b-a4af-9298f255844d",
+        "latitude": 25.0340,
         "longitude": 121.5645
     }
 }
@@ -568,13 +577,13 @@ $ curl -sv -H "Accept: application/json" http://localhost:8000/status | json_pp
 > Host: localhost:8000
 > User-Agent: curl/7.47.0
 > Accept: application/json
-> 
+>
 < HTTP/1.1 200 OK
 < Date: Sat, 16 Mar 2019 07:13:29 GMT
 < Server: circuits.web/3.2
 < Content-Type: application/json
 < Content-Length: 179
-< 
+<
 { [179 bytes data]
 * Connection #0 to host localhost left intact
 {
@@ -601,13 +610,13 @@ $ curl -sv -H "Accept: application/json" http://localhost:8000/clients | json_pp
 > Host: localhost:8000
 > User-Agent: curl/7.47.0
 > Accept: application/json
-> 
+>
 < HTTP/1.1 200 OK
 < Date: Sun, 10 Mar 2019 12:50:22 GMT
 < Server: circuits.web/3.2
 < Content-Type: application/json
 < Content-Length: 113
-< 
+<
 { [113 bytes data]
 * Connection #0 to host localhost left intact
 [
@@ -633,13 +642,13 @@ $ curl -sv -H "Accept: application/json" http://localhost:8000/conversations | j
 > Host: localhost:8000
 > User-Agent: curl/7.47.0
 > Accept: application/json
-> 
+>
 < HTTP/1.1 200 OK
 < Date: Sun, 10 Mar 2019 12:51:53 GMT
 < Server: circuits.web/3.2
 < Content-Type: application/json
 < Content-Length: 115
-< 
+<
 { [115 bytes data]
 * Connection #0 to host localhost left intact
 [
@@ -666,13 +675,13 @@ $ curl -sv -H "Accept: application/json" http://localhost:8000/context/70c80f37-
 > Host: localhost:8000
 > User-Agent: curl/7.47.0
 > Accept: application/json
-> 
+>
 < HTTP/1.1 200 OK
 < Date: Tue, 19 Mar 2019 16:30:34 GMT
 < Server: circuits.web/3.2
 < Content-Type: application/json
 < Content-Length: 425
-< 
+<
 { [425 bytes data]
 * Connection #0 to host localhost left intact
 {
@@ -728,7 +737,7 @@ This project accepts pull requests from contributors. We usually follow "fork-an
 - [ ] I have not commited `.env` file (or I have committd it due to the context of PR)
 - [ ] My PR is tagged with the issue as "Bug" or "Enhancement".
 
-This project follows 
+This project follows
 
 * [PEP 8](https://www.python.org/dev/peps/pep-0008/) for style guide
 * [SemVer](https://semver.org/) for versioning.

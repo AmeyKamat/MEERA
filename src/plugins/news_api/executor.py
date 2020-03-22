@@ -25,4 +25,9 @@ class NewsAPIPlugin:
                 'apiKey': key
             })
 
-        return response.json()["articles"]
+        result = response.json()["articles"]
+        response = {
+            'result': result,
+            'status': 'success'
+        }
+        return response
