@@ -51,8 +51,11 @@ echo Deactivating Virtual Environment...
 deactivate
 echo
 
-echo Excluding .env files from git tracking...
+version=`git describe --tags`
+
+echo Excluding configuration files from git tracking...
 git update-index --assume-unchanged .env
+git update-index --assume-unchanged pkg_info.ini
 echo
 
 if [ `id -u` == "0" ]; then
