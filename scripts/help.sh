@@ -114,6 +114,9 @@ ${HDG}code quality and sanity checks${ENDHDG}
    ${CMD}lint${ENDCMD}                                 ${HLP}Lint code for code quality${ENDHLP}
    ${CMD}test${ENDCMD}                                 ${HLP}Run tests${ENDHLP}
 
+${HDG}system info
+   ${CMD}version${ENDCMD}                              ${HLP}Shows version and system info${ENDHLP} 
+
 For more info visit ${LNK}http://www.ameykamat.in/MEERA/${ENDLNK}
 "
 

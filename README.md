@@ -185,6 +185,9 @@ code quality and sanity checks
    lint                                 Lint code for code quality
    test                                 Run tests
 
+system info
+   version                              Shows version and system info
+
 For more info visit http://www.ameykamat.in/MEERA/
 ```
 
@@ -229,6 +232,11 @@ Here is what each of the above commands do:
 * **deploy [server|telegram-client|all]**
 
   deploys server, telegram client or both based on parameter passed. If no parameter is passed, default value is `all`
+
+* **version**
+
+  shows system version and info
+
 
 #### Enabling Bash Autocomplete for MEERA
 
@@ -587,14 +595,18 @@ $ curl -sv -H "Accept: application/json" http://localhost:8000/status | json_pp
 { [179 bytes data]
 * Connection #0 to host localhost left intact
 {
-   "release_version" : "v0.5.0-alpha",
-   "conversation_handled" : 0,
-   "cpu_utilization" : 13.3,
-   "status" : "UP",
+   "cpu_utilization" : 6.3,
+   "author" : "Amey Kamat",
    "requests_received" : 0,
-   "memory_utilization" : 28.6,
-   "registered_clients" : 0
+   "registered_clients" : 1,
+   "status" : "UP",
+   "email" : "amey@ameykamat.in",
+   "memory_utilization" : 44.1,
+   "website" : "https://www.ameykamat.in",
+   "release_version" : "v1.0,0",
+   "conversation_handled" : 0
 }
+
 ```
 
 #### GET /clients

@@ -45,7 +45,8 @@ case $1 in
 'test')			  ./scripts/test.sh;;
 'deploy')         ./scripts/deploy.sh "$application";;
 'download-model') ./scripts/download-model.sh;;
-'help')			 ./scripts/help.sh;;
+'help')			  ./scripts/help.sh;;
+'version')        ./scripts/version.sh;;
 *)				 echo "$invalid_command_message";;
 
 esac

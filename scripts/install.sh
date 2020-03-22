@@ -51,9 +51,14 @@ echo Deactivating Virtual Environment...
 deactivate
 echo
 
-echo Excluding .env files from git tracking...
+version=`git describe --tags --abbrev=0`
+
+echo Excluding configuration files from git tracking...
 git update-index --assume-unchanged .env
+git update-index --assume-unchanged pkg_info.ini
 echo
+
+sed -i -e "s/\${version}/$version/g" pkg_info.ini
 
 if [ `id -u` == "0" ]; then
 	cp ./scripts/autocomplete.sh /etc/bash_completion.d/meera.sh
