@@ -1,5 +1,4 @@
 import os
-import subprocess
 
 from configparser import ConfigParser
 import psutil
