@@ -16,7 +16,7 @@ msgpack-numpy==0.4.3.2
 msgpack==0.5.6
 
 # for telegram bot instantiation
-websockets==7.0
+websockets==9.1
 
 # for communication with telegram
 python-telegram-bot==11.1.0
