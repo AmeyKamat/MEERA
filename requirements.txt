@@ -13,7 +13,7 @@ requests==2.21.0
 # temporary fix for issue https://github.com/explosion/spaCy/issues/2810
 # remove this after upgrading to spacy 2.1.x
 msgpack-numpy==0.4.3.2
-msgpack==0.5.6
+msgpack==0.6.0
 
 # for telegram bot instantiation
 websockets==7.0
@@ -32,3 +32,4 @@ pytest==4.3.0
 
 # system health
 psutil==5.6.6
+setuptools>=65.5.1 # not directly required, pinned by Snyk to avoid a vulnerability
