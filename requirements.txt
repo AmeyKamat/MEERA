@@ -8,7 +8,7 @@ spacy==2.0.18
 configparser==3.7.3
 
 # to make rest calls
-requests==2.21.0
+requests==2.32.0
 
 # temporary fix for issue https://github.com/explosion/spaCy/issues/2810
 # remove this after upgrading to spacy 2.1.x
@@ -32,3 +32,8 @@ pytest==4.3.0
 
 # system health
 psutil==5.6.6
+certifi>=2023.7.22 # not directly required, pinned by Snyk to avoid a vulnerability
+cryptography>=42.0.2 # not directly required, pinned by Snyk to avoid a vulnerability
+numpy>=1.21.0rc1 # not directly required, pinned by Snyk to avoid a vulnerability
+tqdm>=4.66.3 # not directly required, pinned by Snyk to avoid a vulnerability
+ujson>=5.4.0 # not directly required, pinned by Snyk to avoid a vulnerability
